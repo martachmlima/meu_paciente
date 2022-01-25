@@ -4,6 +4,7 @@ export const Conteiner = styled.div`
   width: 100%;
   height: 50px;
   color: grey;
+  margin: 0 auto;
 
   ${(props) =>
     props.errors &&
