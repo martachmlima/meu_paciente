@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import InputComponent from '../../components/input'
 
 function SignUpForm({ hSubmit, errors, register }) {
-  console.log(hSubmit)
+
   return (
     <Grid
       onSubmit={hSubmit}

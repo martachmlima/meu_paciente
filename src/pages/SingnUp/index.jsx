@@ -19,7 +19,7 @@ function SingnUp() {
     confirm_password: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")], "Senhas diferentes"),
     age: yup.string().required('Idade obrigatória').max(3, 'Máximo 3 algarismos'),
     gender: yup.string().required("Informação obrigatória"),
-    bloodytype: yup.string().required("Informação obrigatória"),
+    bloodtype: yup.string().required("Informação obrigatória"),
   })
 
   const {
@@ -32,26 +32,26 @@ function SingnUp() {
 
   const handleSignup = (data) => {
     console.log('chegou aqui')
-    // const newData = {
-    //   name: data.name,
-    //   email: data.email,
-    //   password: data.password,
-    //   age: data.age,
-    //   gender: data.gender,
-    //   bloodtype: data.bloodtype,
-    //   weight: 18,
-    //   height: 160,
-    // }
+    const newData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      age: data.age,
+      gender: data.gender,
+      bloodtype: data.bloodtype,
+      weight: 18,
+      height: 160,
+    }
 
-    // api
-    //   .post("/register", newData)
-    //   .then((response) => {
-    //     console.log('Usuário cadastrado')
-    //     history.push('/')
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
+    api
+      .post("/register", newData)
+      .then((response) => {
+        console.log('Usuário cadastrado')
+        history.push('/')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
     
   return (
