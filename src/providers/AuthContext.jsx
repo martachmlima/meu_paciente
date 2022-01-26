@@ -1,48 +1,56 @@
-import { createContext, useContext, useState } from 'react'
-import { api } from '../services'
+import { createContext, useContext, useState } from "react";
+import { api } from "../services";
 
-const AuthContext = createContext({})
+const AuthContext = createContext({});
 
 function useAuth() {
-  return useContext(AuthContext)
+  return useContext(AuthContext);
 }
 
 function AuthProvider({ children }) {
-
   const [data, setData] = useState(() => {
-    const accessToken = localStorage.getItem("@+saude:accessToken")
-    const user = localStorage.getItem("@+saude:user")
+    const accessToken = localStorage.getItem("@+saude:accessToken");
+    const user = localStorage.getItem("@+saude:user");
 
     if (accessToken && user) {
-      return { accessToken, user: JSON.parse(user) }
+      return { accessToken, user: JSON.parse(user) };
     } else {
-      return {}
+      return {};
     }
-  })
+  });
 
   const signUp = (params) => {
-    api.post("/login", params).then(res => {
-      console.log('Usuário logado')
-      console.log(res)
+    api.post("/login", params).then((res) => {
+      console.log("Usuário logado");
+      console.log(res);
 
-      const { accessToken, user } = res.data
+      const { accessToken, user } = res.data;
 
-      localStorage.setItem("@+saude:accessToken", accessToken)
-      localStorage.setItem("@+saude:user", JSON.stringify(user))
-  
-      setData({ accessToken, user })
-    })
-  }
+      localStorage.setItem("@+saude:accessToken", accessToken);
+      localStorage.setItem("@+saude:user", JSON.stringify(user));
+
+      setData({ accessToken, user });
+    });
+  };
+
+  const logOut = () => {
+    localStorage.removeItem("@+saude:accessToken");
+    localStorage.removeItem("@+saude:user");
+    setData({});
+  };
 
   return (
-    <AuthContext.Provider value={{
-      accessToken: data.accessToken,
-      user: data.user,
-      signUp: signUp
-    }} >
+    <AuthContext.Provider
+      value={{
+        accessToken: data.accessToken,
+        user: data.user,
+        signUp: signUp,
+        logOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
-export { AuthProvider, useAuth }
+export { AuthProvider, useAuth };

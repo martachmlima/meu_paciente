@@ -2,10 +2,11 @@ import MedicationCard from "../../components/MedicationCard";
 import { useUser } from "../../providers/UserContext";
 import { useAuth } from "../../providers/AuthContext";
 import { useEffect } from "react";
+import { Button } from "@chakra-ui/react";
 
 const Dashboard = () => {
   const { getMedications, medications } = useUser();
-  const { accessToken } = useAuth();
+  const { accessToken, logOut } = useAuth();
 
   useEffect(() => {
     getMedications(accessToken);
@@ -23,6 +24,7 @@ const Dashboard = () => {
           use={medication.function}
         />
       ))}
+      <Button onClick={logOut}>logout</Button>
     </div>
   );
 };
