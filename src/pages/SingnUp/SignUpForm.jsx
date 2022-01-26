@@ -17,7 +17,7 @@ function SignUpForm({ hSubmit, errors, register }) {
       w={['100%', '100%', '40%', '40%']}
       maxWidth='500px'
     >
-      <Heading size="lg"> Bem vindo de volta!</Heading>
+      <Heading size="lg">Bem vindo!</Heading>
       <VStack mt="6" spacing="5">
         <Box w="100%" paddingBottom='4' >
           <InputComponent
