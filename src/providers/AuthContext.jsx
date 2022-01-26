@@ -10,8 +10,8 @@ function useAuth() {
 function AuthProvider({ children }) {
 
   const [data, setData] = useState(() => {
-    const accessToken = localStorage.getItem("@Hamburgueria:accessToken")
-    const user = localStorage.getItem("@Hamburgueria:user")
+    const accessToken = localStorage.getItem("@+saude:accessToken")
+    const user = localStorage.getItem("@+saude:user")
 
     if (accessToken && user) {
       return { accessToken, user: JSON.parse(user) }
@@ -27,8 +27,8 @@ function AuthProvider({ children }) {
 
       const { accessToken, user } = res.data
 
-      localStorage.setItem("@Hamburgueria:accessToken", accessToken)
-      localStorage.setItem("@Hamburgueria:user", JSON.stringify(user))
+      localStorage.setItem("@+saude:accessToken", accessToken)
+      localStorage.setItem("@+saude:user", JSON.stringify(user))
   
       setData({ accessToken, user })
     })

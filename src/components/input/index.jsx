@@ -1,7 +1,6 @@
 import { Conteiner } from "./StyleInput";
 
 const InputComponent = ({ errors, label, register, valueRegister, type }) => {
-  console.log(errors)
   return (
     <>
       <Conteiner errors={errors}>
