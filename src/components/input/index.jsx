@@ -1,6 +1,6 @@
 import { Conteiner } from "./StyleInput";
 
-const InputComponent = ({ errors, label, register, valueRegister, type }) => {
+const InputComponent = ({ errors, label, register, valueRegister, type, ...res }) => {
   return (
     <>
       <Conteiner errors={errors}>
@@ -10,7 +10,7 @@ const InputComponent = ({ errors, label, register, valueRegister, type }) => {
           <label>{label}</label>
         )}
 
-        <input {...register(valueRegister)} type={type} />
+        <input {...res} {...register(valueRegister)} type={type} />
       </Conteiner>
     </>
   );
