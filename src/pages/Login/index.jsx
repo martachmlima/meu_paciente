@@ -34,7 +34,7 @@ function Login() {
       color="#000"
     >
       <Flex
-        w={["100%", "100%", "90%", "65%"]}
+        w={["100%", "100%", "90%", "75%"]}
         justifyContent="center"
         flexDirection={["column", "column", "row", "row"]}
         alignItems="center"

@@ -56,7 +56,7 @@ function SingnUp() {
     
   return (
     <Flex
-      margin={['0', '0', '20px 0', '20px 0']}
+      margin={['0', '0', '20px 0', '10px']}
       minHeight='100vh'
       padding={["10px 15px", "10 15px", "0px", "0px"]}
       alignItems="center"
@@ -65,8 +65,15 @@ function SingnUp() {
       bgColor='#fff'
       color="#000"
     >
+      <Flex
+        w={["100%", "100%", "90%", "75%"]}
+        justifyContent="center"
+        flexDirection={["column", "column", "row", "row"]}
+        alignItems="center"
+      >
       {isLargerThan800 && <SignUpInfo/>}
       <SignUpForm hSubmit={handleSubmit(handleSignup)} errors={errors} register={register} />
+      </Flex>
     </Flex>
   )
 }
