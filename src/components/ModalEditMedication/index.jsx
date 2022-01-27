@@ -21,10 +21,10 @@ import { useAuth } from "../../providers/AuthContext";
 import { useMedications } from "../../providers/MedicationsContext";
 
 const editMedicationSchema = yup.object().shape({
-  name: yup.string(),
-  frequency: yup.string(),
-  time: yup.string(),
-  function: yup.string(),
+  name: yup.string().required("Campo obrigatório"),
+  frequency: yup.string().required("Campo obrigatório"),
+  time: yup.string().required("Campo obrigatório"),
+  function: yup.string().required("Campo obrigatório"),
 });
 
 export const ModalEditMedication = ({ isOpen, onClose, id }) => {
