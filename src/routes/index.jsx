@@ -5,6 +5,7 @@ import { Route } from "./Route";
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import LandingPage from "../pages/LandingPage";
+import { Vaccines } from "../pages/Vaccines";
 
 function Routes() {
   return (
@@ -13,6 +14,7 @@ function Routes() {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/vaccines" component={Vaccines} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   );
