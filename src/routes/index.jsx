@@ -5,6 +5,7 @@ import { Route } from "./Route";
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 import LandingPage from "../pages/LandingPage";
+import Query from "../pages/Query";
 import MedicationPage from "../pages/MedicationPage";
 
 function Routes() {
@@ -15,6 +16,7 @@ function Routes() {
       <Route path="/signup" component={SignUp} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/query" component={Query} />
       <Route path="/medications" component={MedicationPage} isPrivate />
     </Switch>
   );
