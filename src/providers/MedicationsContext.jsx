@@ -40,7 +40,7 @@ function MedicationsProvider({ children }) {
       .catch((err) => console.log(err));
   };
 
-  const editMedication = (id) => {
+  const completeMedication = (id) => {
     api
       .patch(
         `/medications/${id}`,
@@ -55,6 +55,20 @@ function MedicationsProvider({ children }) {
       .catch((err) => console.log(err));
   };
 
+  const editMedication = (id, data) => {
+    api
+      .patch(`/medications/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        console.log("editado");
+        getMedications(accessToken);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <MedicationsContext.Provider
       value={{
@@ -62,6 +76,7 @@ function MedicationsProvider({ children }) {
         medications,
         setMedications,
         addMedication,
+        completeMedication,
         editMedication,
       }}
     >
