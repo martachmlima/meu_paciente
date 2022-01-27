@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Heading, Text, VStack } from '@chakra-ui/react'
 import InputComponent from '../../components/input'
 import { useHistory } from 'react-router-dom'
+import { theme } from '../../styles/global'
 
 function LoginForm({ handleSubmit, errors, register }) {
   const history = useHistory()
@@ -11,13 +12,13 @@ function LoginForm({ handleSubmit, errors, register }) {
       as='form'
       padding='30px 15px'
       borderRadius='8'
-      bg='#BAD5F3'
+      bg={theme.colors.blue[800]}
       mt={['4', '4', '0']}
       w={['100%', '100%', '50%', '50%']}
       maxWidth='500px'
       mixWidth='350px'
     >
-      <Heading textAlign='center' color='#434343' size="lg">Login</Heading>
+      <Heading textAlign='center' color={theme.colors.gray[200]} size="lg">Login</Heading>
       <VStack mt="6" spacing="5">
         <Box w="100%" paddingBottom='8' >
           <InputComponent
@@ -40,28 +41,28 @@ function LoginForm({ handleSubmit, errors, register }) {
       </VStack>
       <VStack mt="4" spacing="5">
         <Button
-          bg="#8FB7E3"
-          color="#F8F7F7"
+          bg={theme.colors.blue[700]}
+          color={theme.colors.gray[900]}
           w="100%"
           h="60px"
           borderRadius="8px"
           _hover={{
-            background: "#3F3D56",
+            background: `${theme.colors.blue[300]}`,
           }}
           type="submit"
         >
           Entrar
         </Button>
-        <Text color="#555">Ainda não possui uma conta? </Text>
+        <Text color={theme.colors.gray[200]}>Ainda não possui uma conta? </Text>
         <Button
-          bg="#0968C0"
+          bg={theme.colors.blue[500]}
           w="100%"
-          color="#F8F7F7"
+          color={theme.colors.gray[900]}
           h="60px"
           borderRadius="8px"
           onClick={() => history.push("/signup")}
           _hover={{
-            background: "#3F3D56",
+            background: `${theme.colors.blue[300]}`,
           }}
         >
           Cadastrar

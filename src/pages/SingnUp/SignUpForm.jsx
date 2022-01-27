@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Heading, Select, Text, VStack, Flex } from '@chakra-ui/react'
 import InputComponent from '../../components/input'
 import { Link } from 'react-router-dom'
+import { theme } from '../../styles/global'
 function SignUpForm({ hSubmit, errors, register }) {
 
   return (
@@ -9,13 +10,13 @@ function SignUpForm({ hSubmit, errors, register }) {
       as='form'
       padding='30px 15px'
       borderRadius='8'
-      bg='#BAD5F3'
+      bg={theme.colors.blue[800]}
       mt={['4', '4', '0']}
       w={['100%', '100%', '50%', '50%']}
       maxWidth='500px'
       minWidth='350px'
     >
-      <Heading textAlign='center' color='#434343' size="lg">Bem vindo!</Heading>
+      <Heading textAlign='center' color={theme.colors.gray[200]} size="lg">Bem vindo!</Heading>
       <VStack mt="6" spacing="5">
         <Box w="100%">
           <InputComponent
@@ -72,7 +73,7 @@ function SignUpForm({ hSubmit, errors, register }) {
           />
         </Box>
         <Box w="100%">
-          <Select bgColor='#F8F7F7' size='lg' color='gray' placeholder='Seu Sexo' {...register('gender')} >
+          <Select bgColor={theme.colors.gray[900]} size='lg' color='gray' placeholder='Seu Sexo' {...register('gender')} >
             <option value='male'>Masculino</option>
             <option value='female'>Feminino</option>
             <option value='others'>Outros</option>
@@ -81,7 +82,7 @@ function SignUpForm({ hSubmit, errors, register }) {
           {!!errors.sex && <label>{errors.sex.message}</label>}
         </Box>
         <Box w="100%">
-          <Select bgColor='#F8F7F7' size='lg' color='gray' placeholder='Seu tipo sanguíneo' {...register('bloodtype')}>
+          <Select bgColor={theme.colors.gray[900]} size='lg' color='gray' placeholder='Seu tipo sanguíneo' {...register('bloodtype')}>
             <option value='male'>A+</option>
             <option value='male'>A-</option>
             <option value='male'>B+</option>
@@ -97,13 +98,13 @@ function SignUpForm({ hSubmit, errors, register }) {
       </VStack>
       <VStack mt="4" spacing="5">
         <Button
-          bg="#8FB7E3"
-          color="#F8F7F7"
+          bg={theme.colors.blue[700]}
+          color={theme.colors.gray[900]}
           w="100%"
           h="40px"
           borderRadius="8px"
           _hover={{
-            background: "#3F3D56",
+            background: `${theme.colors.blue[300]}`,
           }}
           type="submit"
         >
@@ -111,7 +112,7 @@ function SignUpForm({ hSubmit, errors, register }) {
         </Button>
         <Flex>
           Já é cadastrado? Faça seu
-          <Link to={'/login'}><Text color='#0968C0'>Login</Text></Link>
+          <Link to={'/login'}><Text color={theme.colors.blue[500]}>Login</Text></Link>
         </Flex>
       </VStack>
     </Grid>
