@@ -13,7 +13,7 @@ describe('Component LoginForm', () => {
 
     expect(
       screen.getByRole('heading', {
-        name: 'Bem vindo de volta!'
+        name: 'Login'
       })
     ).toBeTruthy()
   })

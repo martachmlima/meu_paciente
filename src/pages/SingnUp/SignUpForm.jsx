@@ -1,81 +1,78 @@
-import { Box, Button, Grid, Heading, Select, Text, VStack } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Box, Button, Grid, Heading, Select, Text, VStack, Flex } from '@chakra-ui/react'
 import InputComponent from '../../components/input'
-
+import { Link } from 'react-router-dom'
 function SignUpForm({ hSubmit, errors, register }) {
 
   return (
     <Grid
       onSubmit={hSubmit}
       as='form'
-      padding='20px 15px'
-      border='3px solid'
-      borderColor='#555'
-      bg='white'
-      color='#000'
-      mt='4'
-      w={['100%', '100%', '40%', '40%']}
+      padding='30px 15px'
+      borderRadius='8'
+      bg='#BAD5F3'
+      mt={['4', '4', '0']}
+      w={['100%', '100%', '50%', '50%']}
       maxWidth='500px'
+      minWidth='350px'
     >
-      <Heading size="lg">Bem vindo!</Heading>
+      <Heading textAlign='center' color='#434343' size="lg">Bem vindo!</Heading>
       <VStack mt="6" spacing="5">
-        <Box w="100%" paddingBottom='4' >
+        <Box w="100%">
           <InputComponent
-            label='Seu Nome'
             errors={errors.name?.message}
             register={register}
             valueRegister='name'
             type='text'
+            placeholder='Nome'
           />
         </Box>
-        <Box w="100%" paddingBottom='4' >
+        <Box w="100%">
           <InputComponent
-            label='Email'
             errors={errors.email?.message}
             register={register}
             valueRegister='email'
             type='email'
+            placeholder='Email'
           />
         </Box>
-        <Box w="100%"paddingBottom='4'>
+        <Box w="100%">
           <InputComponent
-            label='Confirme seu email'
             errors={errors.confirm_email?.message}
             register={register}
             valueRegister='confirm_email'
             type='email'
+            placeholder='Confirme seu email'
           />
         </Box>
-        <Box w="100%"paddingBottom='4'>
+        <Box w="100%">
           <InputComponent
-            label='Senha'
             errors={errors.password?.message}
             register={register}
             valueRegister='password'
             type='password'
+            placeholder='Senha'
           />
         </Box>
-        <Box w="100%"paddingBottom='4'>
+        <Box w="100%">
           <InputComponent
-            label='Confirme sua senha'
             errors={errors.confirm_password?.message}
             register={register}
             valueRegister='confirm_password'
             type='password'
+            placeholder='Confirme sua senha'
           />
         </Box>
-        <Box w="100%"paddingBottom='4'>
+        <Box w="100%">
           <InputComponent
-            label='Sua idade'
             errors={errors.age?.message}
             register={register}
             valueRegister='age'
             type='number'
+            placeholder='Sua idade'
           />
         </Box>
         <Box w="100%">
-          <label>Sexo</label>
-          <Select placeholder='Seu Sexo' {...register('gender')} >
+          <Select bgColor='#F8F7F7' size='lg' color='gray' placeholder='Seu Sexo' {...register('gender')} >
             <option value='male'>Masculino</option>
             <option value='female'>Feminino</option>
             <option value='others'>Outros</option>
@@ -84,8 +81,7 @@ function SignUpForm({ hSubmit, errors, register }) {
           {!!errors.sex && <label>{errors.sex.message}</label>}
         </Box>
         <Box w="100%">
-          <label>Tipo Sanguíneo</label>
-          <Select placeholder='Seu tipo sanguíneo' {...register('bloodtype')}>
+          <Select bgColor='#F8F7F7' size='lg' color='gray' placeholder='Seu tipo sanguíneo' {...register('bloodtype')}>
             <option value='male'>A+</option>
             <option value='male'>A-</option>
             <option value='male'>B+</option>
@@ -101,21 +97,22 @@ function SignUpForm({ hSubmit, errors, register }) {
       </VStack>
       <VStack mt="4" spacing="5">
         <Button
-          bg="#444"
+          bg="#8FB7E3"
+          color="#F8F7F7"
           w="100%"
-          color="#ddd"
           h="40px"
           borderRadius="8px"
           _hover={{
-            background: "#000",
+            background: "#3F3D56",
           }}
           type="submit"
         >
           Cadastrar
         </Button>
-        <Text color="#555">
-          Já é cadastrado? Faça seu <Link to='/'>Login</Link> 
-        </Text>
+        <Flex>
+          Já é cadastrado? Faça seu
+          <Link to={'/login'}><Text color='#0968C0'>Login</Text></Link>
+        </Flex>
       </VStack>
     </Grid>
   )
