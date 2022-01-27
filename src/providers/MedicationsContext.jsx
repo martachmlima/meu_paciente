@@ -1,13 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import { api } from "../services";
 
-const UserContext = createContext({});
+const MedicationsContext = createContext({});
 
-function useUser() {
-  return useContext(UserContext);
+function useMedications() {
+  return useContext(MedicationsContext);
 }
 
-function UserProvider({ children }) {
+function MedicationsProvider({ children }) {
   const [medications, setMedications] = useState([]);
 
   const getMedications = (token) => {
@@ -26,12 +26,12 @@ function UserProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider
+    <MedicationsContext.Provider
       value={{ getMedications, medications, setMedications }}
     >
       {children}
-    </UserContext.Provider>
+    </MedicationsContext.Provider>
   );
 }
 
-export { UserProvider, useUser };
+export { MedicationsProvider, useMedications };
