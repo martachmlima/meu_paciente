@@ -7,7 +7,7 @@ import { ModalAddMedication } from "../../components/ModalAddMedication";
 import { Button } from "@chakra-ui/react";
 
 const MedicationPage = () => {
-  const { getMedications, medications, editMedication } = useMedications();
+  const { getMedications, medications, completeMedication } = useMedications();
   const { accessToken, user } = useAuth();
   const {
     isOpen: isCreateTaskOpen,
@@ -23,12 +23,13 @@ const MedicationPage = () => {
     <div>
       {medications.map((medication) => (
         <MedicationCard
+          id={medication.id}
           key={medication.id}
           name={medication.name}
           frequency={medication.frequency}
           time={medication.time}
           use={medication.function}
-          currentFunction={() => editMedication(medication.id)}
+          currentFunction={() => completeMedication(medication.id)}
         />
       ))}
       <ModalAddMedication
