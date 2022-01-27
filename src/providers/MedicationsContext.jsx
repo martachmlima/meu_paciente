@@ -63,7 +63,6 @@ function MedicationsProvider({ children }) {
         },
       })
       .then((response) => {
-        console.log("editado");
         getMedications(accessToken);
       })
       .catch((err) => console.log(err));
