@@ -1,11 +1,11 @@
 import MedicationCard from "../../components/MedicationCard";
-import { useUser } from "../../providers/UserContext";
+import { useMedications } from "../../providers/MedicationsContext";
 import { useAuth } from "../../providers/AuthContext";
 import { useEffect } from "react";
 import { Button } from "@chakra-ui/react";
 
 const Dashboard = () => {
-  const { getMedications, medications } = useUser();
+  const { getMedications, medications } = useMedications();
   const { accessToken, logOut } = useAuth();
 
   useEffect(() => {
