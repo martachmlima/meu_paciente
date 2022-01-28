@@ -24,7 +24,7 @@ function LoginForm({ handleSubmit, errors, register }) {
       <VStack mt="6" spacing="5">
         <Box w="100%" paddingBottom="8">
           <InputComponent
-            label='E-mail'
+            label="E-mail"
             errors={errors.email?.message}
             register={register}
             valueRegister="email"
@@ -34,7 +34,7 @@ function LoginForm({ handleSubmit, errors, register }) {
         </Box>
         <Box w="100%" paddingBottom="8">
           <InputComponent
-            label='Senha'
+            label="Senha"
             errors={errors.password?.message}
             register={register}
             valueRegister="password"

@@ -1,5 +1,5 @@
-import { Card, CardHeader } from "./style";
-import { FaTrash } from "react-icons/fa";
+import { Card, CardHeader, Paragraphs } from "./style";
+import { FaTrash, FaCheck } from "react-icons/fa";
 import { useDisclosure } from "@chakra-ui/react";
 import { ModalEditMedication } from "../ModalEditMedication";
 
@@ -18,13 +18,16 @@ const MedicationCard = ({
   } = useDisclosure();
   return (
     <>
-      <Card onClick={onCreateTaskOpen}>
+      <Card>
         <CardHeader>
-          <p>Medicação: {name}</p> <FaTrash onClick={currentFunction} />
+          <p>Medicação: {name}</p> <FaTrash />
+          <FaCheck onClick={currentFunction} />
         </CardHeader>
-        <p>Frequência: {frequency}</p>
-        <p>Horário: {time}</p>
-        <p>Função: {use}</p>
+        <Paragraphs onClick={onCreateTaskOpen}>
+          <p>Frequência: {frequency}</p>
+          <p>Horário: {time}</p>
+          <p>Função: {use}</p>
+        </Paragraphs>
       </Card>
       <ModalEditMedication
         isOpen={isCreateTaskOpen}
