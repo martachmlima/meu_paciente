@@ -16,12 +16,13 @@ function LoginForm({ handleSubmit, errors, register }) {
       mt={['4', '4', '0']}
       w={['100%', '100%', '50%', '50%']}
       maxWidth='500px'
-      mixWidth='350px'
+      minWidth='350px'
     >
       <Heading textAlign='center' color={theme.colors.gray[200]} size="lg">Login</Heading>
       <VStack mt="6" spacing="5">
         <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='E-mail'
             errors={errors.email?.message}
             register={register}
             valueRegister='email'
@@ -31,6 +32,7 @@ function LoginForm({ handleSubmit, errors, register }) {
         </Box>
         <Box w="100%"paddingBottom='8'>
           <InputComponent
+            label='Senha'
             errors={errors.password?.message}
             register={register}
             valueRegister='password'

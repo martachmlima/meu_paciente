@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 export const Conteiner = styled.div`
   width: 100%;
@@ -6,7 +6,7 @@ export const Conteiner = styled.div`
   color: grey;
   margin: 0 auto;
 
-  ${(props) =>
+  ${props =>
     props.errors &&
     css`
       color: red;
@@ -19,11 +19,11 @@ export const Conteiner = styled.div`
     border: solid 1px grey;
     border-radius: 8px;
     padding: 4px;
-    ${(props) =>
+    ${props =>
       props.errors &&
       css`
         color: red;
         border: solid 1px red;
       `};
   }
-`;
+`
