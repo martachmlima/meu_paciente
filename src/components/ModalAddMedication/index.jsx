@@ -15,7 +15,7 @@ import { theme } from "../../styles/global";
 import InputComponent from "../input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { FaClipboard, FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import * as yup from "yup";
 import { useAuth } from "../../providers/AuthContext";
 import { useMedications } from "../../providers/MedicationsContext";
@@ -51,18 +51,13 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent
+        borderRadius="0"
         as="form"
         onSubmit={handleSubmit(handleAddMedication)}
-        padding="2"
-        bg="white"
-        color="gray.200"
       >
-        <ModalHeader display="flex">
-          <Center bg="blue.700" w="30px" h="30px" borderRadius="5px">
-            <FaClipboard color="white" />
-          </Center>
+        <ModalHeader color="gray.300" display="flex">
           <Text fontWeight="bold" ml="2">
-            Adicionar
+            Adicionar Medicação
           </Text>
           <Center
             onClick={onClose}
@@ -70,18 +65,18 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
             ml="auto"
             w="32px"
             h="32px"
-            bg="red.600"
             fontSize="lg"
             borderRadius="md"
           >
-            <FaTimes color="whhite" />
+            <FaTimes />
           </Center>
         </ModalHeader>
 
         <ModalBody textAlign="center">
-          <VStack spacing="5">
+          <VStack spacing="2">
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Medicação"
                 errors={errors.name?.message}
                 register={register}
                 valueRegister="name"
@@ -91,6 +86,7 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
             </Box>
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Frequência"
                 errors={errors.frequency?.message}
                 register={register}
                 valueRegister="frequency"
@@ -100,6 +96,7 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
             </Box>
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Horário"
                 errors={errors.time?.message}
                 register={register}
                 valueRegister="time"
@@ -109,6 +106,7 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
             </Box>
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Função"
                 errors={errors.function?.message}
                 register={register}
                 valueRegister="function"
@@ -122,13 +120,14 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
         <ModalFooter flexDirection="column">
           <Button
             type="submit"
-            bg="purple.500"
+            w="80%"
+            h="40px"
+            _hover={{ bg: "blue.300" }}
+            bg="blue.750"
+            borderRadius="3px"
             color="white"
-            w="100%"
-            h="60px"
-            _hover={{ bg: "purple.600" }}
           >
-            Adicionar medicamento
+            Adicionar
           </Button>
         </ModalFooter>
       </ModalContent>

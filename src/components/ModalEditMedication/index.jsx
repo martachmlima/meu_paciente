@@ -53,16 +53,11 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
       <ModalContent
         as="form"
         onSubmit={handleSubmit(handleEditMedication)}
-        padding="2"
-        bg="white"
-        color="gray.200"
+        borderRadius="0"
       >
-        <ModalHeader display="flex">
-          <Center bg="blue.700" w="30px" h="30px" borderRadius="5px">
-            <FaClipboard color="white" />
-          </Center>
+        <ModalHeader color="gray.300" display="flex">
           <Text fontWeight="bold" ml="2">
-            Adicionar
+            Alterar Medicação
           </Text>
           <Center
             onClick={onClose}
@@ -70,7 +65,6 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
             ml="auto"
             w="32px"
             h="32px"
-            bg="red.600"
             fontSize="lg"
             borderRadius="md"
           >
@@ -79,9 +73,10 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
         </ModalHeader>
 
         <ModalBody textAlign="center">
-          <VStack spacing="5">
+          <VStack spacing="2">
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Medicação"
                 errors={errors.name?.message}
                 register={register}
                 valueRegister="name"
@@ -91,6 +86,7 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
             </Box>
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Freequência"
                 errors={errors.frequency?.message}
                 register={register}
                 valueRegister="frequency"
@@ -100,6 +96,7 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
             </Box>
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Horário"
                 errors={errors.time?.message}
                 register={register}
                 valueRegister="time"
@@ -109,6 +106,7 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
             </Box>
             <Box w="100%" paddingBottom="8">
               <InputComponent
+                label="Função"
                 errors={errors.function?.message}
                 register={register}
                 valueRegister="function"
@@ -122,13 +120,14 @@ export const ModalEditMedication = ({ isOpen, onClose, id }) => {
         <ModalFooter flexDirection="column">
           <Button
             type="submit"
-            bg="purple.500"
+            w="80%"
+            h="40px"
+            _hover={{ bg: "blue.300" }}
+            bg="blue.750"
+            borderRadius="3px"
             color="white"
-            w="100%"
-            h="60px"
-            _hover={{ bg: "purple.600" }}
           >
-            Editar medicamento
+            Alterar
           </Button>
         </ModalFooter>
       </ModalContent>
