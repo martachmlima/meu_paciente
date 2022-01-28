@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services";
+import { useAuth } from "./AuthContext";
 
 const UserContext = createContext({});
 
@@ -10,7 +11,9 @@ function useUser() {
 function UserProvider({ children }) {
   const [medications, setMedications] = useState([]);
   const [query, setQuery] = useState([]);
-  const token = "";
+  const token = localStorage.getItem("@+saude:accessToken");
+  const { user } = useAuth();
+  console.log(user);
   const getMedications = (token) => {
     if (token) {
       api
@@ -29,13 +32,13 @@ function UserProvider({ children }) {
   useEffect(() => {
     if (token) {
       api
-        .get("/appointments", {
+        .get(`/users/${user.id}?_embed=appointments`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          setQuery(response.data);
+          setQuery(response.data.appointments);
         })
         .catch((err) => console.log(err));
     }
@@ -54,13 +57,13 @@ function UserProvider({ children }) {
         })
         .then((res) => {
           api
-            .get("/appointments", {
+            .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             })
             .then((response) => {
-              setQuery(response.data);
+              setQuery(response.data.appointments);
             })
             .catch((err) => console.log(err));
         })
