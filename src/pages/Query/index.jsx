@@ -5,7 +5,7 @@ import { CardBox } from "./style";
 
 const Query = () => {
   const { query } = useUser();
-  //Está faltando o modal e o token
+  
   return (
     <div>
       <CardHeader />

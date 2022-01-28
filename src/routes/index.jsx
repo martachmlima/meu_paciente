@@ -18,7 +18,7 @@ function Routes() {
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/vaccines" component={Vaccines} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
-      <Route path="/query" component={Query} />
+      <Route path="/query" component={Query} isPrivate />
       <Route path="/medications" component={MedicationPage} isPrivate />
     </Switch>
   );
