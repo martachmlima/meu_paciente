@@ -13,17 +13,10 @@ function LoginForm({ handleSubmit, errors, register }) {
       padding="30px 15px"
       borderRadius="8"
       bg={theme.colors.blue[800]}
-<<<<<<< HEAD
-      mt={['4', '4', '0']}
-      w={['100%', '100%', '50%', '50%']}
-      maxWidth='500px'
-      minWidth='350px'
-=======
       mt={["4", "4", "0"]}
       w={["100%", "100%", "50%", "50%"]}
       maxWidth="500px"
       minWidth="350px"
->>>>>>> develop
     >
       <Heading textAlign="center" color={theme.colors.gray[200]} size="lg">
         Login
