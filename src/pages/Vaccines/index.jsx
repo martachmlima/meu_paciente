@@ -1,18 +1,17 @@
 import { useDisclosure } from "@chakra-ui/react";
-import { FaTrash } from "react-icons/fa";
+import { useEffect } from "react";
 import { ModalAddVaccines } from "../../components/ModalAddVaccines";
-import { ModalEditVaccines } from "../../components/ModalEditVaccines";
+import { VaccinesCard } from "../../components/VaccinesCard";
+import { useAuth } from "../../providers/AuthContext";
 import { useVaccines } from "../../providers/VaccinesContext";
-import { Card, CardHeader } from "./style";
 
 export const Vaccines = () => {
-  const { vaccines } = useVaccines();
+  const { vaccines, getVaccines, completeVaccines } = useVaccines();
+  const { accessToken } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    isOpen: modalEditIsOpen,
-    onOpen: modalEditOnOpen,
-    onClose: modalEditOnClose,
-  } = useDisclosure();
+  useEffect(() => {
+    getVaccines(accessToken);
+  });
   return (
     <div>
       <ModalAddVaccines isOpen={isOpen} onClose={onClose} />
@@ -20,20 +19,13 @@ export const Vaccines = () => {
       {vaccines.map((items) => (
         <div key={items.id}>
           {!items.completed && (
-            <>
-              <Card onClick={modalEditOnOpen}>
-                <CardHeader>
-                  <p>Tipo: {items.type}</p> <FaTrash />
-                </CardHeader>
-                <p>Ultima dose: {items.date}</p>
-                <p>Proxima dose: {items.nextshot}</p>
-              </Card>
-              <ModalEditVaccines
-                isOpen={modalEditIsOpen}
-                onClose={modalEditOnClose}
-                id={items.id}
-              />
-            </>
+            <VaccinesCard
+              type={items.type}
+              date={items.date}
+              nextshot={items.nextshot}
+              id={items.id}
+              complete={() => completeVaccines(items.id)}
+            />
           )}
         </div>
       ))}
