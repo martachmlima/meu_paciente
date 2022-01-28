@@ -18,82 +18,86 @@ function SignUpForm({ hSubmit, errors, register }) {
     >
       <Heading textAlign='center' color={theme.colors.gray[200]} size="lg">Bem vindo!</Heading>
       <VStack mt="6" spacing="5">
-        <Box w="100%">
+        <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='Nome'
             errors={errors.name?.message}
             register={register}
             valueRegister='name'
             type='text'
-            placeholder='Nome'
+            placeholder='Ex: Dom Kenzo Segundo'
           />
         </Box>
-        <Box w="100%">
+        <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='E-mail'
             errors={errors.email?.message}
             register={register}
             valueRegister='email'
             type='email'
-            placeholder='Email'
+            placeholder='Ex: fulano@mail.com'
           />
         </Box>
-        <Box w="100%">
+        <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='Confirme seu e-mail'
             errors={errors.confirm_email?.message}
             register={register}
             valueRegister='confirm_email'
             type='email'
-            placeholder='Confirme seu email'
+            placeholder='Ex: fulano@mail.com'
           />
         </Box>
-        <Box w="100%">
+        <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='Senha'
             errors={errors.password?.message}
             register={register}
             valueRegister='password'
             type='password'
-            placeholder='Senha'
           />
         </Box>
-        <Box w="100%">
+        <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='Confirme sua senha'
             errors={errors.confirm_password?.message}
             register={register}
             valueRegister='confirm_password'
             type='password'
-            placeholder='Confirme sua senha'
           />
         </Box>
-        <Box w="100%">
+        <Box w="100%" paddingBottom='8' >
           <InputComponent
+            label='Idade'
             errors={errors.age?.message}
             register={register}
             valueRegister='age'
             type='number'
-            placeholder='Sua idade'
+            placeholder='Ex: 32'
           />
         </Box>
-        <Box w="100%">
-          <Select bgColor={theme.colors.gray[900]} size='lg' color='gray' placeholder='Seu Sexo' {...register('gender')} >
+        <Box color={errors.gender ? 'red' : 'grey'} w="100%">
+        <label>{errors.gender ? `${errors.gender.message}` : 'Sexo'}</label>
+          <Select bgColor={theme.colors.gray[900]} size='lg' color='gray' placeholder='Ex: Feminino' {...register('gender')} >
             <option value='male'>Masculino</option>
             <option value='female'>Feminino</option>
             <option value='others'>Outros</option>
             <option value='undisclosed'>Prefiro não dizer</option>
           </Select>
-          {!!errors.sex && <label>{errors.sex.message}</label>}
         </Box>
-        <Box w="100%">
-          <Select bgColor={theme.colors.gray[900]} size='lg' color='gray' placeholder='Seu tipo sanguíneo' {...register('bloodtype')}>
-            <option value='male'>A+</option>
-            <option value='male'>A-</option>
-            <option value='male'>B+</option>
-            <option value='male'>B-</option>
-            <option value='male'>AB+</option>
-            <option value='male'>AB-</option>
-            <option value='male'>O+</option>
-            <option value='male'>O-</option>
+        <Box color={errors.bloodtype ? 'red' : 'grey'} w="100%">
+          <label>{errors.bloodtype ? `${errors.bloodtype.message}` : 'Tipo sanguíneo'}</label>
+          <Select bgColor={theme.colors.gray[900]} size='lg' color='gray' placeholder='Ex: A+' {...register('bloodtype')}>
+            <option value='A+'>A+</option>
+            <option value='A-'>A-</option>
+            <option value='B+'>B+</option>
+            <option value='B-'>B-</option>
+            <option value='AB+'>AB+</option>
+            <option value='AB-'>AB-</option>
+            <option value='O+'>O+</option>
+            <option value='O-'>O-</option>
             <option value='DoNotKnow'>Não sei</option>
           </Select>
-          {!!errors.blood && <label>{errors.blood.message}</label>}
         </Box>
       </VStack>
       <VStack mt="4" spacing="5">

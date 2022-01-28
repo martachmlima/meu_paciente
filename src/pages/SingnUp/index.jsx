@@ -31,7 +31,6 @@ function SingnUp() {
   })
 
   const handleSignup = (data) => {
-    console.log('chegou aqui')
     const newData = {
       name: data.name,
       email: data.email,
@@ -41,8 +40,10 @@ function SingnUp() {
       bloodtype: data.bloodtype,
       weight: 18,
       height: 160,
+      allergies: [],
+      illnesses: []
     }
-
+    console.log(newData)
     api
       .post("/register", newData)
       .then((response) => {

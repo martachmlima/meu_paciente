@@ -11,7 +11,7 @@ const InputComponent = ({
   return (
     <>
       <Conteiner errors={errors}>
-        {!!errors && <label>{errors}</label>}
+        {!!errors ? (<label>{errors}</label>) : (<label>{label}</label>)}
 
         <input {...rest} {...register(valueRegister)} type={type} />
       </Conteiner>
