@@ -1,13 +1,13 @@
-import MedicationCard from '../../components/MedicationCard'
-import { useMedications } from '../../providers/MedicationsContext'
-import { useAuth } from '../../providers/AuthContext'
 import { useEffect } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
-import { ModalAddMedication } from '../../components/ModalAddMedication'
-import { Container } from './style'
 import { Button, Flex } from '@chakra-ui/react'
+import MedicationCard from '../../components/MedicationCard'
+import ModalAddMedication from '../../components/ModalAddMedication'
+import { useMedications } from '../../providers/MedicationsContext'
+import { useAuth } from '../../providers/AuthContext'
+import { Container } from './style'
 
-const MedicationPage = () => {
+function MedicationPage() {
   const { getMedications, medications, completeMedication } = useMedications()
   const { accessToken, user } = useAuth()
   const {

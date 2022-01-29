@@ -3,7 +3,7 @@ import { CardHeader } from '../../components/MedicationCard/style'
 import { useUser } from '../../providers/UserContext'
 import { CardBox } from './style'
 
-const Query = () => {
+function Query() {
   const { query } = useUser()
 
   return (

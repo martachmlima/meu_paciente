@@ -1,7 +1,7 @@
 import { useUser } from '../../providers/UserContext'
 import { Conteiner } from './style'
 
-const CardQuery = ({ obj }) => {
+function CardQuery({ obj }) {
   const { handleQueryCompleted } = useUser()
   return (
     <>

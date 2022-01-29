@@ -25,7 +25,7 @@ const addVaccinesSchema = yup.object().shape({
   nextshot: yup.string().required('Campo obrigatório')
 })
 
-export const ModalAddVaccines = ({ isOpen, onClose }) => {
+function ModalAddVaccines({ isOpen, onClose }) {
   const {
     formState: { errors },
     register,
@@ -134,3 +134,5 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
     </Modal>
   )
 }
+
+export default ModalAddVaccines

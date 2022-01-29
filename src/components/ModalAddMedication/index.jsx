@@ -27,7 +27,7 @@ const addMedicationSchema = yup.object().shape({
   function: yup.string().required('Campo obrigatório')
 })
 
-export const ModalAddMedication = ({ isOpen, onClose }) => {
+function ModalAddMedication({ isOpen, onClose }) {
   const {
     formState: { errors },
     register,
@@ -131,3 +131,5 @@ export const ModalAddMedication = ({ isOpen, onClose }) => {
     </Modal>
   )
 }
+
+export default ModalAddMedication

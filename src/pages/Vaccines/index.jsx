@@ -1,11 +1,11 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect } from 'react'
-import { ModalAddVaccines } from '../../components/ModalAddVaccines'
-import { VaccinesCard } from '../../components/VaccinesCard'
 import { useAuth } from '../../providers/AuthContext'
 import { useVaccines } from '../../providers/VaccinesContext'
+import ModalAddVaccines from '../../components/ModalAddVaccines'
+import VaccinesCard from '../../components/VaccinesCard'
 
-export const Vaccines = () => {
+function Vaccines() {
   const { vaccines, getVaccines, completeVaccines } = useVaccines()
   const { accessToken } = useAuth()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,3 +32,5 @@ export const Vaccines = () => {
     </div>
   )
 }
+
+export default Vaccines

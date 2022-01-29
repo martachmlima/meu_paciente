@@ -4,7 +4,7 @@ import { ModalEditVaccines } from '../../components/ModalEditVaccines'
 import { useDisclosure } from '@chakra-ui/react'
 import { useVaccines } from '../../providers/VaccinesContext'
 
-export const VaccinesCard = ({ type, date, nextshot, id, complete }) => {
+function VaccinesCard({ type, date, nextshot, id, complete }) {
   const {
     isOpen: modalEditIsOpen,
     onOpen: modalEditOnOpen,
@@ -29,3 +29,5 @@ export const VaccinesCard = ({ type, date, nextshot, id, complete }) => {
     </>
   )
 }
+
+export default VaccinesCard

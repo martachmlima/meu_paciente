@@ -1,11 +1,11 @@
 import { Switch } from 'react-router-dom'
+import { Route } from './Route'
 import Login from '../pages/Login'
 import SignUp from '../pages/SingnUp'
-import { Route } from './Route'
 import Dashboard from '../pages/Dashboard'
 import Profile from '../pages/Profile'
 import LandingPage from '../pages/LandingPage'
-import { Vaccines } from '../pages/Vaccines'
+import Vaccines from '../pages/Vaccines'
 import Query from '../pages/Query'
 import MedicationPage from '../pages/MedicationPage'
 
