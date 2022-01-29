@@ -9,128 +9,125 @@ import {
   ModalOverlay,
   Text,
   VStack,
-  Box,
-} from "@chakra-ui/react";
-import { theme } from "../../styles/global";
-import InputComponent from "../input";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { FaClipboard, FaTimes } from "react-icons/fa";
-import * as yup from "yup";
-import { useAuth } from "../../providers/AuthContext";
-import { useMedications } from "../../providers/MedicationsContext";
+  Box
+} from '@chakra-ui/react'
+import { theme } from '../../styles/global'
+import InputComponent from '../input'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import { FaClipboard, FaTimes } from 'react-icons/fa'
+import * as yup from 'yup'
+import { useAuth } from '../../providers/AuthContext'
+import { useMedications } from '../../providers/MedicationsContext'
 
 const editMedicationSchema = yup.object().shape({
-  name: yup.string().required("Campo obrigatório"),
-  frequency: yup.string().required("Campo obrigatório"),
-  time: yup.string().required("Campo obrigatório"),
-  function: yup.string().required("Campo obrigatório"),
-});
+  name: yup.string().required('Campo obrigatório'),
+  frequency: yup.string().required('Campo obrigatório'),
+  time: yup.string().required('Campo obrigatório'),
+  function: yup.string().required('Campo obrigatório')
+})
 
 export const ModalEditMedication = ({ isOpen, onClose, id }) => {
   const {
     formState: { errors },
     register,
-    handleSubmit,
+    handleSubmit
   } = useForm({
-    resolver: yupResolver(editMedicationSchema),
-  });
+    resolver: yupResolver(editMedicationSchema)
+  })
 
-  const { editMedication } = useMedications();
+  const { editMedication } = useMedications()
 
-  const { user, accessToken } = useAuth();
+  const { user, accessToken } = useAuth()
 
-  const handleEditMedication = (data) => {
-    const newData = { ...data, userId: user.id };
+  const handleEditMedication = data => {
+    const newData = { ...data, userId: user.id }
 
-    editMedication(id, newData);
-    onClose();
-  };
+    editMedication(id, newData)
+    onClose()
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent
-        as="form"
+        as='form'
         onSubmit={handleSubmit(handleEditMedication)}
-        borderRadius="0"
-      >
-        <ModalHeader color="gray.300" display="flex">
-          <Text fontWeight="bold" ml="2">
+        borderRadius='0'>
+        <ModalHeader color='gray.300' display='flex'>
+          <Text fontWeight='bold' ml='2'>
             Alterar Medicação
           </Text>
           <Center
             onClick={onClose}
-            as="button"
-            ml="auto"
-            w="32px"
-            h="32px"
-            fontSize="lg"
-            borderRadius="md"
-          >
-            <FaTimes color="whhite" />
+            as='button'
+            ml='auto'
+            w='32px'
+            h='32px'
+            fontSize='lg'
+            borderRadius='md'>
+            <FaTimes color='whhite' />
           </Center>
         </ModalHeader>
 
-        <ModalBody textAlign="center">
-          <VStack spacing="2">
-            <Box w="100%" paddingBottom="8">
+        <ModalBody textAlign='center'>
+          <VStack spacing='2'>
+            <Box w='100%' paddingBottom='8'>
               <InputComponent
-                label="Medicação"
+                label='Medicação'
                 errors={errors.name?.message}
                 register={register}
-                valueRegister="name"
-                type="name"
-                placeholder="Medicação"
+                valueRegister='name'
+                type='name'
+                placeholder='Medicação'
               />
             </Box>
-            <Box w="100%" paddingBottom="8">
+            <Box w='100%' paddingBottom='8'>
               <InputComponent
-                label="Freequência"
+                label='Freequência'
                 errors={errors.frequency?.message}
                 register={register}
-                valueRegister="frequency"
-                type="frequency"
-                placeholder="Frequência"
+                valueRegister='frequency'
+                type='frequency'
+                placeholder='Frequência'
               />
             </Box>
-            <Box w="100%" paddingBottom="8">
+            <Box w='100%' paddingBottom='8'>
               <InputComponent
-                label="Horário"
+                label='Horário'
                 errors={errors.time?.message}
                 register={register}
-                valueRegister="time"
-                type="time"
-                placeholder="Horário"
+                valueRegister='time'
+                type='time'
+                placeholder='Horário'
               />
             </Box>
-            <Box w="100%" paddingBottom="8">
+            <Box w='100%' paddingBottom='8'>
               <InputComponent
-                label="Função"
+                label='Função'
                 errors={errors.function?.message}
                 register={register}
-                valueRegister="function"
-                type="function"
-                placeholder="Função"
+                valueRegister='function'
+                type='function'
+                placeholder='Função'
               />
             </Box>
           </VStack>
         </ModalBody>
 
-        <ModalFooter flexDirection="column">
+        <ModalFooter flexDirection='column'>
           <Button
-            type="submit"
-            w="80%"
-            h="40px"
-            _hover={{ bg: "blue.300" }}
-            bg="blue.750"
-            borderRadius="3px"
-            color="white"
-          >
+            type='submit'
+            w='80%'
+            h='40px'
+            _hover={{ bg: 'blue.300' }}
+            bg='blue.750'
+            borderRadius='3px'
+            color='white'>
             Alterar
           </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

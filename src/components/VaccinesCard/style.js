@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Card = styled.div`
   width: 300px;
@@ -16,7 +16,7 @@ export const Card = styled.div`
   > div {
     padding: 5px;
   }
-`;
+`
 
 export const CardHeader = styled.div`
   width: 100%;
@@ -28,4 +28,4 @@ export const CardHeader = styled.div`
   > svg {
     cursor: pointer;
   }
-`;
+`

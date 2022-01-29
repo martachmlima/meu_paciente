@@ -1,8 +1,8 @@
-import { useUser } from "../../providers/UserContext";
-import { Conteiner } from "./style";
+import { useUser } from '../../providers/UserContext'
+import { Conteiner } from './style'
 
 const CardQuery = ({ obj }) => {
-  const { handleQueryCompleted } = useUser();
+  const { handleQueryCompleted } = useUser()
   return (
     <>
       {
@@ -15,6 +15,6 @@ const CardQuery = ({ obj }) => {
         </Conteiner>
       }
     </>
-  );
-};
-export default CardQuery;
+  )
+}
+export default CardQuery

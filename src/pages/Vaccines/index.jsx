@@ -1,22 +1,22 @@
-import { useDisclosure } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { ModalAddVaccines } from "../../components/ModalAddVaccines";
-import { VaccinesCard } from "../../components/VaccinesCard";
-import { useAuth } from "../../providers/AuthContext";
-import { useVaccines } from "../../providers/VaccinesContext";
+import { useDisclosure } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { ModalAddVaccines } from '../../components/ModalAddVaccines'
+import { VaccinesCard } from '../../components/VaccinesCard'
+import { useAuth } from '../../providers/AuthContext'
+import { useVaccines } from '../../providers/VaccinesContext'
 
 export const Vaccines = () => {
-  const { vaccines, getVaccines, completeVaccines } = useVaccines();
-  const { accessToken } = useAuth();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { vaccines, getVaccines, completeVaccines } = useVaccines()
+  const { accessToken } = useAuth()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   useEffect(() => {
-    getVaccines(accessToken);
-  });
+    getVaccines(accessToken)
+  })
   return (
     <div>
       <ModalAddVaccines isOpen={isOpen} onClose={onClose} />
       <button onClick={onOpen}>Adicionar vacinas</button>
-      {vaccines.map((items) => (
+      {vaccines.map(items => (
         <div key={items.id}>
           {!items.completed && (
             <VaccinesCard
@@ -30,5 +30,5 @@ export const Vaccines = () => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
