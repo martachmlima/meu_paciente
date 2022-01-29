@@ -90,6 +90,58 @@ function AuthProvider({ children }) {
     []
   )
 
+  const removeDisease = async (removeDisease, userDisease, userId, token) => {
+    const newArrDisease = userDisease.filter(
+      disease => disease !== removeDisease
+    )
+    await api
+      .patch(
+        `/users/${userId}`,
+        { illnesses: newArrDisease },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      .then(res => {
+        const user = res.data
+        localStorage.setItem('@+saude:user', JSON.stringify(user))
+        data.user = user
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  const removeAllergy = async (removeAllergy, userAllergy, userId, token) => {
+    const newArrAllergy = userAllergy.filter(
+      allergy => allergy !== removeAllergy
+    )
+    await api
+      .patch(
+        `/users/${userId}`,
+        { allergies: newArrAllergy },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      .then(res => {
+        const user = res.data
+        localStorage.setItem('@+saude:user', JSON.stringify(user))
+        data.user = user
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   const logOut = () => {
     localStorage.removeItem('@+saude:accessToken')
     localStorage.removeItem('@+saude:user')
@@ -101,10 +153,12 @@ function AuthProvider({ children }) {
       value={{
         accessToken: data.accessToken,
         user: data.user,
-        signUp: signUp,
+        signUp,
         logOut,
         addAllergy,
         addDisease,
+        removeDisease,
+        removeAllergy,
         allergiesAndIllnesses
       }}>
       {children}

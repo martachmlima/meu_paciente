@@ -6,7 +6,8 @@ import {
   HStack,
   Heading,
   Button,
-  useMediaQuery
+  useMediaQuery,
+  useDisclosure
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { theme } from '../../styles/global'
@@ -14,10 +15,11 @@ import { useAuth } from '../../providers/AuthContext'
 import CardAllergies from './CardAllergies'
 import CardIllnesses from './CardIllnesses'
 import Header from '../../components/Header'
+import ModalAddDisease from '../../components/ModalAddDisease'
+import ModalAddAllergy from '../../components/ModalAddAllergy'
 
 function Profile() {
-  const { user, addAllergy, addDisease, accessToken, allergiesAndIllnesses } =
-    useAuth()
+  const { user, allergiesAndIllnesses } = useAuth()
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
@@ -25,8 +27,22 @@ function Profile() {
     console.log(allergiesAndIllnesses)
   }, [allergiesAndIllnesses])
 
+  const {
+    isOpen: isAddDiseaseOpen,
+    onOpen: onAddDiseaseOpen,
+    onClose: onAddDiseaseClose
+  } = useDisclosure()
+
+  const {
+    isOpen: isAddAllergyOpen,
+    onOpen: onAddAllergyOpen,
+    onClose: onAddAllergyClose
+  } = useDisclosure()
+
   return (
     <>
+      <ModalAddDisease isOpen={isAddDiseaseOpen} onClose={onAddDiseaseClose} />
+      <ModalAddAllergy isOpen={isAddAllergyOpen} onClose={onAddAllergyClose} />
       <Header actualPage='Meu Perfil' />
       <Box p={['12px 16px', '16px 32px', '24px 48px', '32px 64px']}>
         <Flex
@@ -128,9 +144,7 @@ function Profile() {
                   background: `${theme.colors.blue[300]}`
                 }}
                 //função de adicionar teste para o modal
-                onClick={() =>
-                  addAllergy('teste', user.allergies, user.id, accessToken)
-                }
+                onClick={onAddAllergyOpen}
                 //
               >
                 +
@@ -161,14 +175,7 @@ function Profile() {
                   background: `${theme.colors.blue[300]}`
                 }}
                 //função de adicionar teste para o modal
-                onClick={() =>
-                  addDisease(
-                    'testedoenca',
-                    user.illnesses,
-                    user.id,
-                    accessToken
-                  )
-                }
+                onClick={onAddDiseaseOpen}
                 //
               >
                 +
