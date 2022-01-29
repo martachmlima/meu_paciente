@@ -1,8 +1,7 @@
 import { FaTrash } from 'react-icons/fa'
 import { Card, CardHeader } from './style'
-import { ModalEditVaccines } from '../../components/ModalEditVaccines'
+import ModalEditVaccines from '../../components/ModalEditVaccines'
 import { useDisclosure } from '@chakra-ui/react'
-import { useVaccines } from '../../providers/VaccinesContext'
 
 function VaccinesCard({ type, date, nextshot, id, complete }) {
   const {
