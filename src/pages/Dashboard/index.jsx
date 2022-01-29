@@ -1,7 +1,7 @@
 import { useAuth } from '../../providers/AuthContext'
 import { Button } from '@chakra-ui/react'
 
-const Dashboard = () => {
+function Dashboard() {
   const { logOut } = useAuth()
 
   return (

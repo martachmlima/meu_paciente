@@ -1,4 +1,5 @@
 import CardQuery from '../../components/cardQuery'
+import Header from '../../components/Header'
 import { CardHeader } from '../../components/MedicationCard/style'
 import { useUser } from '../../providers/UserContext'
 import { CardBox } from './style'
@@ -8,6 +9,7 @@ function Query() {
 
   return (
     <div>
+      <Header actualPage='Consultas' />
       <CardHeader />
 
       <button onClick={() => console.log('abrir modal')}>

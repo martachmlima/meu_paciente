@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard'
 import Profile from '../pages/Profile'
 import LandingPage from '../pages/LandingPage'
 import Vaccines from '../pages/Vaccines'
+import Exams from '../pages/Exams'
 import Query from '../pages/Query'
 import MedicationPage from '../pages/MedicationPage'
 
@@ -17,6 +18,7 @@ function Routes() {
       <Route path='/signup' component={SignUp} />
       <Route path='/dashboard' component={Dashboard} isPrivate />
       <Route path='/vaccines' component={Vaccines} isPrivate />
+      <Route path='/exams' component={Exams} isPrivate />
       <Route path='/profile' component={Profile} isPrivate />
       <Route path='/query' component={Query} isPrivate />
       <Route path='/medications' component={MedicationPage} isPrivate />
