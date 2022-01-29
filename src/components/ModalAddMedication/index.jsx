@@ -11,7 +11,6 @@ import {
   VStack,
   Box
 } from '@chakra-ui/react'
-import { theme } from '../../styles/global'
 import InputComponent from '../input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'

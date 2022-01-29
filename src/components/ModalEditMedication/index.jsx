@@ -11,11 +11,10 @@ import {
   VStack,
   Box
 } from '@chakra-ui/react'
-import { theme } from '../../styles/global'
 import InputComponent from '../input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { FaClipboard, FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
 import { useAuth } from '../../providers/AuthContext'
 import { useMedications } from '../../providers/MedicationsContext'
@@ -38,7 +37,7 @@ function ModalEditMedication({ isOpen, onClose, id }) {
 
   const { editMedication } = useMedications()
 
-  const { user, accessToken } = useAuth()
+  const { user } = useAuth()
 
   const handleEditMedication = data => {
     const newData = { ...data, userId: user.id }

@@ -3,17 +3,9 @@ import {
   Center,
   Heading,
   HStack,
-  VStack,
   useMediaQuery,
-  Modal,
-  useDisclosure,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  ModalHeader
+  useDisclosure
 } from '@chakra-ui/react'
-import { useHistory } from 'react-router-dom'
 import { theme } from '../../styles/global'
 import { GrMenu } from 'react-icons/gr'
 import LinkPage from './LinkPage'

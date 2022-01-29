@@ -6,11 +6,10 @@ import ModalAddMedication from '../../components/ModalAddMedication'
 import Header from '../../components/Header'
 import { useMedications } from '../../providers/MedicationsContext'
 import { useAuth } from '../../providers/AuthContext'
-import { Container } from './style'
 
 function MedicationPage() {
   const { getMedications, medications, completeMedication } = useMedications()
-  const { accessToken, user } = useAuth()
+  const { accessToken } = useAuth()
   const {
     isOpen: isCreateTaskOpen,
     onOpen: onCreateTaskOpen,
