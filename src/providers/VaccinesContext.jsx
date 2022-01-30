@@ -15,13 +15,13 @@ export const VaccinesProvider = ({ children }) => {
   const getVaccines = (token) => {
     if (token) {
       api
-        .get("/vaccines", {
+        .get(`/users/${user.id}?_embed=vaccines`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          setVaccines(response.data);
+          setVaccines(response.data.vaccines);
         })
         .catch((err) => console.log(err));
     }
@@ -49,7 +49,6 @@ export const VaccinesProvider = ({ children }) => {
           },
         }
       )
-      .then((res) => console.log("arquivado"))
       .catch((err) => console.log(err));
   };
   const editVaccines = (id, data) => {
@@ -59,7 +58,7 @@ export const VaccinesProvider = ({ children }) => {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      .then((_) => getVaccines)
+      .then((_) => getVaccines(accessToken))
       .catch((err) => console.log(err));
   };
   return (
