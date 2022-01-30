@@ -15,13 +15,13 @@ function MedicationsProvider({ children }) {
   const getMedications = (token) => {
     if (token) {
       api
-        .get("/medications", {
+        .get(`/users/${user.id}?_embed=medications`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((response) => {
-          setMedications(response.data);
+          setMedications(response.data.medications);
         })
         .catch((err) => console.log(err));
     }
@@ -51,7 +51,7 @@ function MedicationsProvider({ children }) {
           },
         }
       )
-      .then((res) => console.log("arquivado"))
+      .then((res) => getMedications(accessToken))
       .catch((err) => console.log(err));
   };
 
