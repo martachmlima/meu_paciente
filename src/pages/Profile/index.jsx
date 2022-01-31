@@ -22,7 +22,7 @@ function Profile() {
   const { user, allergiesAndIllnesses } = useAuth()
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
-
+  console.log(user)
   useEffect(() => {
     console.log(allergiesAndIllnesses)
   }, [allergiesAndIllnesses])
@@ -151,7 +151,7 @@ function Profile() {
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {allergiesAndIllnesses.allergies.map(allergy => (
+              {user.allergies.map(allergy => (
                 <CardAllergies key={allergy} allergy={allergy} />
               ))}
             </Flex>
@@ -182,7 +182,7 @@ function Profile() {
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {allergiesAndIllnesses.illnesses.map(disease => (
+              {user.illnesses.map(disease => (
                 <CardIllnesses key={disease} disease={disease} />
               ))}
             </Flex>
