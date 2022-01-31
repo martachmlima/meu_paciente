@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { api } from '../services'
+import toast from 'react-hot-toast'
 
 const AuthContext = createContext({})
 
@@ -18,60 +19,67 @@ function AuthProvider({ children }) {
   })
 
   const signUp = params => {
-    api.post('/login', params).then(res => {
-      console.log('Usuário logado')
-      console.log(res)
-      const { accessToken, user } = res.data
+    api
+      .post('/login', params)
+      .then(res => {
+        toast.success('Você está logado')
+        const { accessToken, user } = res.data
 
-      localStorage.setItem('@+saude:accessToken', accessToken)
-      localStorage.setItem('@+saude:user', JSON.stringify(user))
-      setData({ accessToken, user })
-    })
+        localStorage.setItem('@+saude:accessToken', accessToken)
+        localStorage.setItem('@+saude:user', JSON.stringify(user))
+        setData({ accessToken, user })
+      })
+      .catch(err => {
+        toast.error('Usuário ou senha incorreto')
+        console.log(err)
+      })
   }
 
-  const addAllergy = useCallback(
-    async (newAllergy, userAllergies, userId, token) => {
-      await api
-        .patch(
-          `/users/${userId}`,
-          { allergies: [newAllergy, ...userAllergies] },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+  const addAllergy = async (newAllergy, userAllergies, userId, token) => {
+    await api
+      .patch(
+        `/users/${userId}`,
+        { allergies: [newAllergy, ...userAllergies] },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
           }
-        )
-        .then(res => {
-          const user = res.data
-          localStorage.setItem('@+saude:user', JSON.stringify(user))
-          data.user = user
-        })
-        .catch(err => console.log(err))
-    },
-    []
-  )
+        }
+      )
+      .then(res => {
+        toast.success('Alergia adicionada')
+        const user = res.data
+        localStorage.setItem('@+saude:user', JSON.stringify(user))
+        data.user = user
+      })
+      .catch(err => {
+        toast.error('Erro inesperado. Tente novamente mais tarde')
+        console.log(err)
+      })
+  }
 
-  const addDisease = useCallback(
-    async (newDisease, userDisease, userId, token) => {
-      await api
-        .patch(
-          `/users/${userId}`,
-          { illnesses: [newDisease, ...userDisease] },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+  const addDisease = async (newDisease, userDisease, userId, token) => {
+    await api
+      .patch(
+        `/users/${userId}`,
+        { illnesses: [newDisease, ...userDisease] },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
           }
-        )
-        .then(res => {
-          const user = res.data
-          localStorage.setItem('@+saude:user', JSON.stringify(user))
-          data.user = user
-        })
-        .catch(err => console.log(err))
-    },
-    []
-  )
+        }
+      )
+      .then(res => {
+        toast.success('Doença adicionada')
+        const user = res.data
+        localStorage.setItem('@+saude:user', JSON.stringify(user))
+        data.user = user
+      })
+      .catch(err => {
+        toast.error('Erro inesperado. Tente novamente mais tarde')
+        console.log(err)
+      })
+  }
 
   const removeDisease = async (removeDisease, userDisease, userId, token) => {
     const newArrDisease = userDisease.filter(
@@ -88,11 +96,15 @@ function AuthProvider({ children }) {
         }
       )
       .then(res => {
+        toast.success('Doença removida')
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        toast.error('Erro inesperado. Tente novamente mais tarde')
+        console.log(err)
+      })
   }
 
   const removeAllergy = async (removeAllergy, userAllergy, userId, token) => {
@@ -110,14 +122,19 @@ function AuthProvider({ children }) {
         }
       )
       .then(res => {
+        toast.success('Doença removida')
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        toast.error('Erro inesperado. Tente novamente mais tarde')
+        console.log(err)
+      })
   }
 
   const logOut = () => {
+    toast.success('Você saiu')
     localStorage.removeItem('@+saude:accessToken')
     localStorage.removeItem('@+saude:user')
     setData({})

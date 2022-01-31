@@ -61,8 +61,8 @@ function Profile() {
             fontSize={['4xl', '4xl', '2xl', '2xl']}
             justifyContent='space-around'
             w='100%'>
-            <Box>
-              Nome Completo: <br />
+            <Flex alignItems='center'>
+              Nome Completo:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -70,9 +70,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.name}
               </Text>
-            </Box>
-            <Box>
-              Idade: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Idade:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -80,9 +80,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.age}
               </Text>
-            </Box>
-            <Box>
-              Altura: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Altura:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -90,9 +90,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.height}
               </Text>
-            </Box>
-            <Box>
-              Peso: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Peso:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -100,9 +100,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.weight}
               </Text>
-            </Box>
-            <Box>
-              Tipo Sanguíneo: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Tipo Sanguíneo:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -110,7 +110,7 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.bloodtype}
               </Text>
-            </Box>
+            </Flex>
           </Flex>
         </Flex>
 

@@ -16,7 +16,7 @@ function SignUpForm({ hSubmit, errors, register }) {
     <Grid
       onSubmit={hSubmit}
       as='form'
-      padding='30px 15px'
+      padding='15px'
       borderRadius='8'
       bg={theme.colors.blue[800]}
       mt={['4', '4', '0']}
@@ -26,8 +26,8 @@ function SignUpForm({ hSubmit, errors, register }) {
       <Heading textAlign='center' color={theme.colors.gray[200]} size='lg'>
         Bem vindo!
       </Heading>
-      <VStack mt='6' spacing='5'>
-        <Box w='100%' paddingBottom='8'>
+      <VStack spacing='5'>
+        <Box w='100%' paddingBottom='4'>
           <InputComponent
             label='Nome'
             errors={errors.name?.message}
@@ -37,7 +37,7 @@ function SignUpForm({ hSubmit, errors, register }) {
             placeholder='Ex: Dom Kenzo Segundo'
           />
         </Box>
-        <Box w='100%' paddingBottom='8'>
+        <Box w='100%' paddingBottom='4'>
           <InputComponent
             label='E-mail'
             errors={errors.email?.message}
@@ -47,17 +47,7 @@ function SignUpForm({ hSubmit, errors, register }) {
             placeholder='Ex: fulano@mail.com'
           />
         </Box>
-        <Box w='100%' paddingBottom='8'>
-          <InputComponent
-            label='Confirme seu e-mail'
-            errors={errors.confirm_email?.message}
-            register={register}
-            valueRegister='confirm_email'
-            type='email'
-            placeholder='Ex: fulano@mail.com'
-          />
-        </Box>
-        <Box w='100%' paddingBottom='8'>
+        <Box w='100%' paddingBottom='4'>
           <InputComponent
             label='Senha'
             errors={errors.password?.message}
@@ -66,7 +56,7 @@ function SignUpForm({ hSubmit, errors, register }) {
             type='password'
           />
         </Box>
-        <Box w='100%' paddingBottom='8'>
+        <Box w='100%' paddingBottom='4'>
           <InputComponent
             label='Confirme sua senha'
             errors={errors.confirm_password?.message}
@@ -75,7 +65,7 @@ function SignUpForm({ hSubmit, errors, register }) {
             type='password'
           />
         </Box>
-        <Box w='100%' paddingBottom='8'>
+        <Box w='100%' paddingBottom='4'>
           <InputComponent
             label='Idade'
             errors={errors.age?.message}
