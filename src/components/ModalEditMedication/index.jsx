@@ -9,7 +9,8 @@ import {
   ModalOverlay,
   Text,
   VStack,
-  Box
+  Box,
+  Flex
 } from '@chakra-ui/react'
 import InputComponent from '../input'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -52,38 +53,51 @@ function ModalEditMedication({ isOpen, onClose, id }) {
       <ModalContent
         as='form'
         onSubmit={handleSubmit(handleEditMedication)}
-        borderRadius='0'>
-        <ModalHeader color='gray.300' display='flex'>
-          <Text fontWeight='bold' ml='2'>
-            Alterar Medicação
-          </Text>
-          <Center
-            onClick={onClose}
-            as='button'
-            ml='auto'
-            w='32px'
-            h='32px'
-            fontSize='lg'
-            borderRadius='md'>
-            <FaTimes color='whhite' />
-          </Center>
+        borderRadius='0'
+        width={['95%', '100%']}
+        padding='2'
+        bg='white'
+        color='gray.200'
+        alignItems='center'>
+        <ModalHeader
+          display='flex'
+          padding='2'
+          borderBottom='2px solid'
+          borderColor='gray.400'
+          width='95%'
+          mb='2'>
+          <Flex alignItems='center' width='95%' justifyContent='space-between'>
+            <Text fontWeight='500' color='gray.200'>
+              Alterar Remédio
+            </Text>
+            <Center
+              onClick={onClose}
+              as='button'
+              ml='auto'
+              w='32px'
+              h='32px'
+              fontSize='lg'
+              borderRadius='md'>
+              <FaTimes color='whhite' />
+            </Center>
+          </Flex>
         </ModalHeader>
 
         <ModalBody textAlign='center'>
           <VStack spacing='2'>
             <Box w='100%' paddingBottom='8'>
               <InputComponent
-                label='Medicação'
+                label='Remédio'
                 errors={errors.name?.message}
                 register={register}
                 valueRegister='name'
                 type='name'
-                placeholder='Medicação'
+                placeholder='Remédio'
               />
             </Box>
             <Box w='100%' paddingBottom='8'>
               <InputComponent
-                label='Freequência'
+                label='Frequência'
                 errors={errors.frequency?.message}
                 register={register}
                 valueRegister='frequency'
@@ -117,7 +131,7 @@ function ModalEditMedication({ isOpen, onClose, id }) {
         <ModalFooter flexDirection='column'>
           <Button
             type='submit'
-            w='80%'
+            w='170%'
             h='40px'
             _hover={{ bg: 'blue.300' }}
             bg='blue.750'

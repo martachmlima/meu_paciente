@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
-import { Button, Flex } from '@chakra-ui/react'
+import { Button, Flex, Text } from '@chakra-ui/react'
 import MedicationCard from '../../components/MedicationCard'
 import ModalAddMedication from '../../components/ModalAddMedication'
 import Header from '../../components/Header'
@@ -20,6 +20,16 @@ function MedicationPage() {
     getMedications(accessToken)
   }, [])
 
+  const [whatToShow, setWhatToShow] = useState('active')
+
+  const showActive = () => {
+    setWhatToShow('active')
+  }
+
+  const showHistory = () => {
+    setWhatToShow('history')
+  }
+
   return (
     <>
       <Header actualPage='Remédios' />
@@ -28,7 +38,7 @@ function MedicationPage() {
         direction='column'
         alignItems={['center', 'center', 'start']}>
         <Button
-          w={['70%', '50%', '25%']}
+          w={['70%', '50%', '17%']}
           padding='4'
           borderRadius='3'
           mt='6'
@@ -37,26 +47,63 @@ function MedicationPage() {
           _hover={{ bg: 'blue.300 ' }}
           onClick={onCreateTaskOpen}
           marginBottom='20px'>
-          Adicionar Medicação
+          Adicionar Remédio
         </Button>
+        <Flex mb='4' alignItems='center' justifyContent='center' w='100%'>
+          <Text
+            pr='3'
+            borderRight='2px solid'
+            fontSize={['md', '3xl']}
+            cursor='pointer'
+            onClick={showActive}>
+            Ativos
+          </Text>
+          <Text
+            pl='3'
+            fontSize={['md', '3xl']}
+            cursor='pointer'
+            onClick={showHistory}>
+            Histórico
+          </Text>
+        </Flex>
         <Flex
           justifyContent='space-evenly'
           alignItems='center'
           w='98%'
           wrap='wrap'>
-          {medications
-            .filter(item => !item.completed)
-            .map(medication => (
-              <MedicationCard
-                id={medication.id}
-                key={medication.id}
-                name={medication.name}
-                frequency={medication.frequency}
-                time={medication.time}
-                use={medication.function}
-                currentFunction={() => completeMedication(medication.id)}
-              />
-            ))}
+          {whatToShow === 'active' ? (
+            <>
+              {medications
+                .filter(item => !item.completed)
+                .map(medication => (
+                  <MedicationCard
+                    id={medication.id}
+                    key={medication.id}
+                    name={medication.name}
+                    frequency={medication.frequency}
+                    time={medication.time}
+                    use={medication.function}
+                    currentFunction={() => completeMedication(medication.id)}
+                  />
+                ))}
+            </>
+          ) : (
+            <>
+              {medications
+                .filter(item => item.completed)
+                .map(medication => (
+                  <MedicationCard
+                    id={medication.id}
+                    key={medication.id}
+                    name={medication.name}
+                    frequency={medication.frequency}
+                    time={medication.time}
+                    use={medication.function}
+                    currentFunction={() => completeMedication(medication.id)}
+                  />
+                ))}
+            </>
+          )}
         </Flex>
         <ModalAddMedication
           isOpen={isCreateTaskOpen}
