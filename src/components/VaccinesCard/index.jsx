@@ -1,9 +1,9 @@
 import { FaTrash } from 'react-icons/fa'
-import { Card, CardHeader } from './style'
-import ModalEditVaccines from '../../components/ModalEditVaccines'
+import { Card, CardHeader, ContentBody } from './style'
+import { ModalEditVaccines } from '../../components/ModalEditVaccines'
 import { useDisclosure } from '@chakra-ui/react'
 
-function VaccinesCard({ type, date, nextshot, id, complete }) {
+export const VaccinesCard = ({ type, date, nextshot, id, complete }) => {
   const {
     isOpen: modalEditIsOpen,
     onOpen: modalEditOnOpen,
@@ -15,18 +15,17 @@ function VaccinesCard({ type, date, nextshot, id, complete }) {
         <CardHeader>
           <p>Tipo: {type}</p> <FaTrash onClick={complete} />
         </CardHeader>
-        <div onClick={modalEditOnOpen}>
+        <ContentBody onClick={modalEditOnOpen}>
           <p>Ultima dose: {date}</p>
-          <p>Proxima dose: {nextshot}</p>
-        </div>
+          <p>Próxima dose: {nextshot}</p>
+        </ContentBody>
       </Card>
       <ModalEditVaccines
         isOpen={modalEditIsOpen}
         onClose={modalEditOnClose}
         id={id}
+        type={type}
       />
     </>
   )
 }
-
-export default VaccinesCard

@@ -1,24 +1,27 @@
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect } from 'react'
+import { ModalAddVaccines } from '../../components/ModalAddVaccines'
+import { VaccinesCard } from '../../components/VaccinesCard'
 import { useAuth } from '../../providers/AuthContext'
 import { useVaccines } from '../../providers/VaccinesContext'
-import ModalAddVaccines from '../../components/ModalAddVaccines'
-import VaccinesCard from '../../components/VaccinesCard'
+import { BoxCard, ButtonVaccine } from './style'
 import Header from '../../components/Header'
 
-function Vaccines() {
+export const Vaccines = () => {
   const { vaccines, getVaccines, completeVaccines } = useVaccines()
   const { accessToken } = useAuth()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { logOut } = useAuth()
   useEffect(() => {
     getVaccines(accessToken)
   })
   return (
-    <>
+    <div>
       <Header actualPage='Vacinas' />
-      <div>
-        <ModalAddVaccines isOpen={isOpen} onClose={onClose} />
-        <button onClick={onOpen}>Adicionar vacinas</button>
+
+      <ModalAddVaccines isOpen={isOpen} onClose={onClose} />
+      <ButtonVaccine onClick={onOpen}>Adicionar vacinas</ButtonVaccine>
+      <BoxCard>
         {vaccines.map(items => (
           <div key={items.id}>
             {!items.completed && (
@@ -32,9 +35,8 @@ function Vaccines() {
             )}
           </div>
         ))}
-      </div>
-    </>
+      </BoxCard>
+      <ButtonVaccine onClick={logOut}>sair</ButtonVaccine>
+    </div>
   )
 }
-
-export default Vaccines

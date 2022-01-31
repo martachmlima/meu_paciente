@@ -1,6 +1,5 @@
 import {
   Button,
-  Center,
   Modal,
   ModalBody,
   ModalContent,
@@ -9,12 +8,13 @@ import {
   ModalOverlay,
   Text,
   VStack,
-  Box
+  Box,
+  Flex
 } from '@chakra-ui/react'
 import InputComponent from '../input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { FaClipboard, FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
 import { useAuth } from '../../providers/AuthContext'
 import { useVaccines } from '../../providers/VaccinesContext'
@@ -25,7 +25,7 @@ const addVaccinesSchema = yup.object().shape({
   nextshot: yup.string().required('Campo obrigatório')
 })
 
-function ModalAddVaccines({ isOpen, onClose }) {
+export const ModalAddVaccines = ({ isOpen, onClose }) => {
   const {
     formState: { errors },
     register,
@@ -66,30 +66,27 @@ function ModalAddVaccines({ isOpen, onClose }) {
         onSubmit={handleSubmit(handleAddVaccines)}
         padding='2'
         bg='white'
-        color='gray.200'>
-        <ModalHeader display='flex'>
-          <Center bg='blue.700' w='30px' h='30px' borderRadius='5px'>
-            <FaClipboard color='white' />
-          </Center>
-          <Text fontWeight='bold' ml='2'>
-            Adicionar
-          </Text>
-          <Center
-            onClick={onClose}
-            as='button'
-            ml='auto'
-            w='32px'
-            h='32px'
-            bg='red.600'
-            fontSize='lg'
-            borderRadius='md'>
+        color='gray.200'
+        alignItems='center'
+        width={['95%', '100%']}>
+        <ModalHeader
+          display='flex'
+          padding='2'
+          borderBottom='2px solid'
+          borderColor='gray.400'
+          width='95%'
+          mb='2'>
+          <Flex alignItems='center' width='95%' justifyContent='space-between'>
+            <Text fontWeight='500' color='gray.200'>
+              Adicionar vacinas
+            </Text>
             <FaTimes color='whhite' />
-          </Center>
+          </Flex>
         </ModalHeader>
 
-        <ModalBody textAlign='center'>
-          <VStack spacing='5'>
-            <Box w='100%' paddingBottom='8'>
+        <ModalBody width='100%' padding='2'>
+          <VStack spacing='2'>
+            <Box w='100%' paddingBottom='4'>
               <InputComponent
                 errors={errors.type?.message}
                 register={register}
@@ -98,7 +95,7 @@ function ModalAddVaccines({ isOpen, onClose }) {
                 placeholder='Tipo'
               />
             </Box>
-            <Box w='100%' paddingBottom='8'>
+            <Box w='100%' paddingBottom='4'>
               <InputComponent
                 errors={errors.date?.message}
                 register={register}
@@ -107,7 +104,7 @@ function ModalAddVaccines({ isOpen, onClose }) {
                 placeholder='Ultima dose'
               />
             </Box>
-            <Box w='100%' paddingBottom='8'>
+            <Box w='100%' paddingBottom='4'>
               <InputComponent
                 errors={errors.nextshot?.message}
                 register={register}
@@ -119,14 +116,20 @@ function ModalAddVaccines({ isOpen, onClose }) {
           </VStack>
         </ModalBody>
 
-        <ModalFooter flexDirection='column'>
+        <ModalFooter
+          flexDirection='column'
+          width='75%'
+          pb='3'
+          pl='2'
+          pr='2'
+          pt='0'>
           <Button
             type='submit'
-            bg='purple.500'
+            bg='blue.700'
             color='white'
             w='100%'
             h='60px'
-            _hover={{ bg: 'purple.600' }}>
+            _hover={{ bg: 'blue.750' }}>
             Adicionar vacina
           </Button>
         </ModalFooter>
@@ -134,5 +137,3 @@ function ModalAddVaccines({ isOpen, onClose }) {
     </Modal>
   )
 }
-
-export default ModalAddVaccines

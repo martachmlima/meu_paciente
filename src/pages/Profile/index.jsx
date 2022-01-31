@@ -9,7 +9,6 @@ import {
   useMediaQuery,
   useDisclosure
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { theme } from '../../styles/global'
 import { useAuth } from '../../providers/AuthContext'
 import CardAllergies from './CardAllergies'
@@ -19,7 +18,7 @@ import ModalAddDisease from '../../components/ModalAddDisease'
 import ModalAddAllergy from '../../components/ModalAddAllergy'
 
 function Profile() {
-  const { user, allergiesAndIllnesses } = useAuth()
+  const { user } = useAuth()
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
@@ -144,7 +143,7 @@ function Profile() {
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {allergiesAndIllnesses.allergies.map(allergy => (
+              {user.allergies.map(allergy => (
                 <CardAllergies key={allergy} allergy={allergy} />
               ))}
             </Flex>
@@ -172,7 +171,7 @@ function Profile() {
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {allergiesAndIllnesses.illnesses.map(disease => (
+              {user.illnesses.map(disease => (
                 <CardIllnesses key={disease} disease={disease} />
               ))}
             </Flex>

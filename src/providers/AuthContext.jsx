@@ -6,15 +6,11 @@ const AuthContext = createContext({})
 const useAuth = () => useContext(AuthContext)
 
 function AuthProvider({ children }) {
-  const [allergiesAndIllnesses, setAllergiesAndIllnesses] = useState({})
-
   const [data, setData] = useState(() => {
     const accessToken = localStorage.getItem('@+saude:accessToken')
     const user = localStorage.getItem('@+saude:user')
 
     if (accessToken && user) {
-      const { allergies, illnesses } = JSON.parse(user)
-      setAllergiesAndIllnesses({ allergies, illnesses })
       return { accessToken, user: JSON.parse(user) }
     } else {
       return {}
@@ -30,10 +26,6 @@ function AuthProvider({ children }) {
       localStorage.setItem('@+saude:accessToken', accessToken)
       localStorage.setItem('@+saude:user', JSON.stringify(user))
       setData({ accessToken, user })
-      setAllergiesAndIllnesses({
-        allergies: user.allergies,
-        illnesses: user.illnesses
-      })
     })
   }
 
@@ -53,10 +45,6 @@ function AuthProvider({ children }) {
           const user = res.data
           localStorage.setItem('@+saude:user', JSON.stringify(user))
           data.user = user
-          setAllergiesAndIllnesses({
-            allergies: user.allergies,
-            illnesses: user.illnesses
-          })
         })
         .catch(err => console.log(err))
     },
@@ -79,10 +67,6 @@ function AuthProvider({ children }) {
           const user = res.data
           localStorage.setItem('@+saude:user', JSON.stringify(user))
           data.user = user
-          setAllergiesAndIllnesses({
-            allergies: user.allergies,
-            illnesses: user.illnesses
-          })
         })
         .catch(err => console.log(err))
     },
@@ -107,10 +91,6 @@ function AuthProvider({ children }) {
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
-        setAllergiesAndIllnesses({
-          allergies: user.allergies,
-          illnesses: user.illnesses
-        })
       })
       .catch(err => console.log(err))
   }
@@ -133,10 +113,6 @@ function AuthProvider({ children }) {
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
-        setAllergiesAndIllnesses({
-          allergies: user.allergies,
-          illnesses: user.illnesses
-        })
       })
       .catch(err => console.log(err))
   }
@@ -157,8 +133,7 @@ function AuthProvider({ children }) {
         addAllergy,
         addDisease,
         removeDisease,
-        removeAllergy,
-        allergiesAndIllnesses
+        removeAllergy
       }}>
       {children}
     </AuthContext.Provider>
