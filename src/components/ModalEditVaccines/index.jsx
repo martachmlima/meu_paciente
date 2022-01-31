@@ -1,6 +1,5 @@
 import {
   Button,
-  Center,
   Modal,
   ModalBody,
   ModalContent,
@@ -9,23 +8,24 @@ import {
   ModalOverlay,
   Text,
   VStack,
-  Box
+  Box,
+  Flex
 } from '@chakra-ui/react'
 import InputComponent from '../input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import { FaClipboard, FaTimes } from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
 import { useAuth } from '../../providers/AuthContext'
 import { useVaccines } from '../../providers/VaccinesContext'
 
 const editVaccinesSchema = yup.object().shape({
-  type: yup.string().required('Campo obrigatório'),
+  type: yup.string(),
   date: yup.string().required('Campo obrigatório'),
   nextshot: yup.string().required('Campo obrigatório')
 })
 
-function ModalEditVaccines({ isOpen, onClose, id }) {
+export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
   const {
     formState: { errors },
     register,
@@ -57,7 +57,6 @@ function ModalEditVaccines({ isOpen, onClose, id }) {
     editVaccines(id, newData)
     onClose()
   }
-
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -66,68 +65,76 @@ function ModalEditVaccines({ isOpen, onClose, id }) {
         onSubmit={handleSubmit(handleEditVaccines)}
         padding='2'
         bg='white'
-        color='gray.200'>
-        <ModalHeader display='flex'>
-          <Center bg='blue.700' w='30px' h='30px' borderRadius='5px'>
-            <FaClipboard color='white' />
-          </Center>
-          <Text fontWeight='bold' ml='2'>
-            Adicionar
-          </Text>
-          <Center
-            onClick={onClose}
-            as='button'
-            ml='auto'
-            w='32px'
-            h='32px'
-            bg='red.600'
-            fontSize='lg'
-            borderRadius='md'>
-            <FaTimes color='whhite' />
-          </Center>
+        color='gray.200'
+        alignItems='center'
+        width={['95%', '100%']}>
+        <ModalHeader
+          display='flex'
+          padding='2'
+          borderBottom='2px solid'
+          borderColor='gray.400'
+          width='95%'
+          mb='2'>
+          <Flex alignItems='center' width='95%' justifyContent='space-between'>
+            <Text fontWeight='500' color='gray.200'>
+              Editar vacina
+            </Text>
+            <Box onClick={onClose} _hover={{ cursor: 'pointer' }}>
+              <FaTimes color='whhite' />
+            </Box>
+          </Flex>
         </ModalHeader>
 
-        <ModalBody textAlign='center'>
-          <VStack spacing='5'>
-            <Box w='100%' paddingBottom='8'>
+        <ModalBody width='100%' padding='2'>
+          <VStack spacing='2'>
+            <Box w='100%' paddingBottom='4' h='80px'>
               <InputComponent
                 errors={errors.type?.message}
                 register={register}
                 valueRegister='type'
                 type='text'
-                placeholder='Tipo'
+                placeholder={type}
+                label='Tipo da vacina'
               />
             </Box>
-            <Box w='100%' paddingBottom='8'>
+            <Box w='100%' paddingBottom='4' h='80px'>
               <InputComponent
                 errors={errors.date?.message}
                 register={register}
                 valueRegister='date'
                 type='date'
                 placeholder='Ultima dose'
+                label='Ultima dosee'
               />
             </Box>
-            <Box w='100%' paddingBottom='8'>
+            <Box w='100%' paddingBottom='4' h='80px'>
               <InputComponent
                 errors={errors.nextshot?.message}
                 register={register}
                 valueRegister='nextshot'
                 type='date'
                 placeholder='Próxima dose'
+                label='Proxima dose'
               />
             </Box>
           </VStack>
         </ModalBody>
 
-        <ModalFooter flexDirection='column'>
+        <ModalFooter
+          flexDirection='column'
+          width='75%'
+          pb='3'
+          pl='2'
+          pr='2'
+          pt='0'>
           <Button
             type='submit'
-            bg='purple.500'
+            bg='blue.700'
             color='white'
             w='100%'
             h='60px'
-            _hover={{ bg: 'purple.600' }}>
-            Editar medicamento
+            _hover={{ bg: 'blue.750' }}>
+            Editar vacina
           </Button>
         </ModalFooter>
       </ModalContent>
