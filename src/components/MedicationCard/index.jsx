@@ -1,21 +1,14 @@
-import { Card, CardHeader, Paragraphs } from "./style";
-import { FaTrash, FaCheck } from "react-icons/fa";
-import { useDisclosure } from "@chakra-ui/react";
-import { ModalEditMedication } from "../ModalEditMedication";
+import { Card, CardHeader, Paragraphs } from './style'
+import { FaTrash, FaCheck } from 'react-icons/fa'
+import { useDisclosure } from '@chakra-ui/react'
+import ModalEditMedication from '../ModalEditMedication'
 
-const MedicationCard = ({
-  name,
-  frequency,
-  time,
-  use,
-  currentFunction,
-  id,
-}) => {
+function MedicationCard({ name, frequency, time, use, currentFunction, id }) {
   const {
     isOpen: isCreateTaskOpen,
     onOpen: onCreateTaskOpen,
-    onClose: onCreateTaskClose,
-  } = useDisclosure();
+    onClose: onCreateTaskClose
+  } = useDisclosure()
   return (
     <>
       <Card>
@@ -35,7 +28,7 @@ const MedicationCard = ({
         id={id}
       />
     </>
-  );
-};
+  )
+}
 
-export default MedicationCard;
+export default MedicationCard

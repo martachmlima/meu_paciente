@@ -9,139 +9,137 @@ import {
   Text,
   VStack,
   Box,
-  Flex,
-} from "@chakra-ui/react";
-import InputComponent from "../input";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { FaTimes } from "react-icons/fa";
-import * as yup from "yup";
-import { useAuth } from "../../providers/AuthContext";
-import { useVaccines } from "../../providers/VaccinesContext";
+  Flex
+} from '@chakra-ui/react'
+import InputComponent from '../input'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import { FaTimes } from 'react-icons/fa'
+import * as yup from 'yup'
+import { useAuth } from '../../providers/AuthContext'
+import { useVaccines } from '../../providers/VaccinesContext'
 
 const editVaccinesSchema = yup.object().shape({
   type: yup.string(),
-  date: yup.string().required("Campo obrigatório"),
-  nextshot: yup.string().required("Campo obrigatório"),
-});
+  date: yup.string().required('Campo obrigatório'),
+  nextshot: yup.string().required('Campo obrigatório')
+})
 
 export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
   const {
     formState: { errors },
     register,
-    handleSubmit,
+    handleSubmit
   } = useForm({
-    resolver: yupResolver(editVaccinesSchema),
-  });
+    resolver: yupResolver(editVaccinesSchema)
+  })
 
-  const { editVaccines } = useVaccines();
+  const { editVaccines } = useVaccines()
 
-  const { user } = useAuth();
+  const { user } = useAuth()
 
-  const handleEditVaccines = (data) => {
-    const { type, date, nextshot } = data;
-    const oldData = new Date(date);
-    const newDate = oldData.toLocaleDateString("pt-BR", { timeZone: "UTC" });
-    const oldNextshot = new Date(nextshot);
-    const newNextshot = oldNextshot.toLocaleDateString("pt-BR", {
-      timeZone: "UTC",
-    });
+  const handleEditVaccines = data => {
+    const { type, date, nextshot } = data
+    const oldData = new Date(date)
+    const newDate = oldData.toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+    const oldNextshot = new Date(nextshot)
+    const newNextshot = oldNextshot.toLocaleDateString('pt-BR', {
+      timeZone: 'UTC'
+    })
     const newData = {
       type,
       date: newDate,
       nextshot: newNextshot,
       userId: user.id,
-      completed: false,
-    };
+      completed: false
+    }
 
-    editVaccines(id, newData);
-    onClose();
-  };
+    editVaccines(id, newData)
+    onClose()
+  }
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent
-        as="form"
+        as='form'
         onSubmit={handleSubmit(handleEditVaccines)}
-        padding="2"
-        bg="white"
-        color="gray.200"
-        alignItems="center"
-        width={["95%", "100%"]}
-      >
+        padding='2'
+        bg='white'
+        color='gray.200'
+        alignItems='center'
+        width={['95%', '100%']}>
         <ModalHeader
-          display="flex"
-          padding="2"
-          borderBottom="2px solid"
-          borderColor="gray.400"
-          width="95%"
-          mb="2"
-        >
-          <Flex alignItems="center" width="95%" justifyContent="space-between">
-            <Text fontWeight="500" color="gray.200">
+          display='flex'
+          padding='2'
+          borderBottom='2px solid'
+          borderColor='gray.400'
+          width='95%'
+          mb='2'>
+          <Flex alignItems='center' width='95%' justifyContent='space-between'>
+            <Text fontWeight='500' color='gray.200'>
               Editar vacina
             </Text>
-            <Box onClick={onClose} _hover={{ cursor: "pointer" }}>
-              <FaTimes color="whhite" />
+            <Box onClick={onClose} _hover={{ cursor: 'pointer' }}>
+              <FaTimes color='whhite' />
             </Box>
           </Flex>
         </ModalHeader>
 
-        <ModalBody width="100%" padding="2">
-          <VStack spacing="2">
-            <Box w="100%" paddingBottom="4" h="80px">
+        <ModalBody width='100%' padding='2'>
+          <VStack spacing='2'>
+            <Box w='100%' paddingBottom='4' h='80px'>
               <InputComponent
                 errors={errors.type?.message}
                 register={register}
-                valueRegister="type"
-                type="text"
+                valueRegister='type'
+                type='text'
                 placeholder={type}
-                label="Tipo da vacina"
+                label='Tipo da vacina'
               />
             </Box>
-            <Box w="100%" paddingBottom="4" h="80px">
+            <Box w='100%' paddingBottom='4' h='80px'>
               <InputComponent
                 errors={errors.date?.message}
                 register={register}
-                valueRegister="date"
-                type="date"
-                placeholder="Ultima dose"
-                label="Ultima dosee"
+                valueRegister='date'
+                type='date'
+                placeholder='Ultima dose'
+                label='Ultima dosee'
               />
             </Box>
-            <Box w="100%" paddingBottom="4" h="80px">
+            <Box w='100%' paddingBottom='4' h='80px'>
               <InputComponent
                 errors={errors.nextshot?.message}
                 register={register}
-                valueRegister="nextshot"
-                type="date"
-                placeholder="Próxima dose"
-                label="Proxima dose"
+                valueRegister='nextshot'
+                type='date'
+                placeholder='Próxima dose'
+                label='Proxima dose'
               />
             </Box>
           </VStack>
         </ModalBody>
 
         <ModalFooter
-          flexDirection="column"
-          width="75%"
-          pb="3"
-          pl="2"
-          pr="2"
-          pt="0"
-        >
+          flexDirection='column'
+          width='75%'
+          pb='3'
+          pl='2'
+          pr='2'
+          pt='0'>
           <Button
-            type="submit"
-            bg="blue.700"
-            color="white"
-            w="100%"
-            h="60px"
-            _hover={{ bg: "blue.750" }}
-          >
+            type='submit'
+            bg='blue.700'
+            color='white'
+            w='100%'
+            h='60px'
+            _hover={{ bg: 'blue.750' }}>
             Editar vacina
           </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
+
+export default ModalEditVaccines

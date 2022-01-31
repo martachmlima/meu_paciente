@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Card = styled.div`
   width: 300px;
@@ -12,20 +12,20 @@ export const Card = styled.div`
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   p {
     margin-left: 5px;
     margin-bottom: 5px 0px 8px 0px;
     font-size: 19px;
   }
-`;
+`
 export const ContentBody = styled.div`
   height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   cursor: pointer;
-`;
+`
 
 export const CardHeader = styled.div`
   width: 95%;
@@ -37,4 +37,4 @@ export const CardHeader = styled.div`
   > svg {
     cursor: pointer;
   }
-`;
+`

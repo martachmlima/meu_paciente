@@ -1,14 +1,14 @@
-import { FaTrash } from "react-icons/fa";
-import { Card, CardHeader, ContentBody } from "./style";
-import { ModalEditVaccines } from "../../components/ModalEditVaccines";
-import { useDisclosure } from "@chakra-ui/react";
+import { FaTrash } from 'react-icons/fa'
+import { Card, CardHeader, ContentBody } from './style'
+import { ModalEditVaccines } from '../../components/ModalEditVaccines'
+import { useDisclosure } from '@chakra-ui/react'
 
 export const VaccinesCard = ({ type, date, nextshot, id, complete }) => {
   const {
     isOpen: modalEditIsOpen,
     onOpen: modalEditOnOpen,
-    onClose: modalEditOnClose,
-  } = useDisclosure();
+    onClose: modalEditOnClose
+  } = useDisclosure()
   return (
     <>
       <Card>
@@ -27,5 +27,5 @@ export const VaccinesCard = ({ type, date, nextshot, id, complete }) => {
         type={type}
       />
     </>
-  );
-};
+  )
+}

@@ -1,72 +1,72 @@
-import { createContext, useContext, useState } from "react";
-import { api } from "../services";
-import { useAuth } from "./AuthContext";
+import { createContext, useContext, useState } from 'react'
+import { api } from '../services'
+import { useAuth } from './AuthContext'
 
-const MedicationsContext = createContext({});
+const MedicationsContext = createContext({})
 
 function useMedications() {
-  return useContext(MedicationsContext);
+  return useContext(MedicationsContext)
 }
 
 function MedicationsProvider({ children }) {
-  const [medications, setMedications] = useState([]);
-  const { user, accessToken } = useAuth();
+  const [medications, setMedications] = useState([])
+  const { user, accessToken } = useAuth()
 
-  const getMedications = (token) => {
+  const getMedications = token => {
     if (token) {
       api
         .get(`/users/${user.id}?_embed=medications`, {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         })
-        .then((response) => {
-          setMedications(response.data.medications);
+        .then(response => {
+          setMedications(response.data.medications)
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     }
-  };
+  }
 
   const addMedication = (data, token) => {
     api
-      .post("/medications", data, {
+      .post('/medications', data, {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       })
-      .then((response) => {
-        setMedications([...medications, response.data]);
+      .then(response => {
+        setMedications([...medications, response.data])
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
-  const completeMedication = (id) => {
+  const completeMedication = id => {
     api
       .patch(
         `/medications/${id}`,
         { userId: user.id, completed: true },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+            Authorization: `Bearer ${accessToken}`
+          }
         }
       )
-      .then((res) => getMedications(accessToken))
-      .catch((err) => console.log(err));
-  };
+      .then(res => getMedications(accessToken))
+      .catch(err => console.log(err))
+  }
 
   const editMedication = (id, data) => {
     api
       .patch(`/medications/${id}`, data, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+          Authorization: `Bearer ${accessToken}`
+        }
       })
-      .then((response) => {
-        getMedications(accessToken);
+      .then(response => {
+        getMedications(accessToken)
       })
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
 
   return (
     <MedicationsContext.Provider
@@ -76,12 +76,11 @@ function MedicationsProvider({ children }) {
         setMedications,
         addMedication,
         completeMedication,
-        editMedication,
-      }}
-    >
+        editMedication
+      }}>
       {children}
     </MedicationsContext.Provider>
-  );
+  )
 }
 
-export { MedicationsProvider, useMedications };
+export { MedicationsProvider, useMedications }

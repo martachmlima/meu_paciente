@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const BoxCard = styled.div`
   display: flex;
-  flex-wrap: wrap;
-`;
+`
 
 export const ButtonVaccine = styled.button`
   width: 240px;
@@ -12,6 +11,6 @@ export const ButtonVaccine = styled.button`
   color: #f8f7f7;
   border-radius: 8px;
   margin: 10px 0 5px 10px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 20px;
-`;
+`
