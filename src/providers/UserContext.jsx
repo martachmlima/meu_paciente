@@ -70,6 +70,29 @@ function UserProvider({ children }) {
         .catch(err => console.log(err))
     }
   }
+  const handlePostAppointment = data => {
+    if (token) {
+      api
+        .post(`/appointments/`, data, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          api
+            .get(`/users/${user.id}?_embed=appointments`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(response => {
+              setQuery(response.data.appointments)
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
+  }
 
   return (
     <UserContext.Provider
@@ -78,7 +101,8 @@ function UserProvider({ children }) {
         medications,
         setMedications,
         query,
-        handleQueryCompleted
+        handleQueryCompleted,
+        handlePostAppointment
       }}>
       {children}
     </UserContext.Provider>
