@@ -66,46 +66,53 @@ function MedicationPage() {
             Histórico
           </Text>
         </Flex>
-        <Flex
-          justifyContent='space-evenly'
-          alignItems='center'
-          w='98%'
-          wrap='wrap'>
-          {whatToShow === 'active' ? (
-            <>
-              {medications
-                .filter(item => !item.completed)
-                .map(medication => (
-                  <MedicationCard
-                    id={medication.id}
-                    key={medication.id}
-                    name={medication.name}
-                    frequency={medication.frequency}
-                    time={medication.time}
-                    use={medication.function}
-                    currentFunction={() => completeMedication(medication.id)}
-                  />
-                ))}
-            </>
-          ) : (
-            <>
-              {medications
-                .filter(item => item.completed)
-                .map(medication => (
-                  <MedicationCard
-                    id={medication.id}
-                    key={medication.id}
-                    name={medication.name}
-                    frequency={medication.frequency}
-                    time={medication.time}
-                    use={medication.function}
-                    completed={medication.completed}
-                    currentFunction={() => completeMedication(medication.id)}
-                  />
-                ))}
-            </>
-          )}
-        </Flex>
+        {medications.length === 0 ? (
+          <Flex alignItems='center' justifyContent='center' w='100%' h='300px'>
+            <Text fontSize={['md', '2xl']}>Nenhum remédio cadastrado</Text>
+          </Flex>
+        ) : (
+          <Flex
+            justifyContent='space-evenly'
+            alignItems='center'
+            w='98%'
+            wrap='wrap'>
+            {whatToShow === 'active' ? (
+              <>
+                {medications
+                  .filter(item => !item.completed)
+                  .map(medication => (
+                    <MedicationCard
+                      id={medication.id}
+                      key={medication.id}
+                      name={medication.name}
+                      frequency={medication.frequency}
+                      time={medication.time}
+                      use={medication.function}
+                      currentFunction={() => completeMedication(medication.id)}
+                    />
+                  ))}
+              </>
+            ) : (
+              <>
+                {medications
+                  .filter(item => item.completed)
+                  .map(medication => (
+                    <MedicationCard
+                      id={medication.id}
+                      key={medication.id}
+                      name={medication.name}
+                      frequency={medication.frequency}
+                      time={medication.time}
+                      use={medication.function}
+                      completed={medication.completed}
+                      currentFunction={() => completeMedication(medication.id)}
+                    />
+                  ))}
+              </>
+            )}
+          </Flex>
+        )}
+
         <ModalAddMedication
           isOpen={isCreateTaskOpen}
           onClose={onCreateTaskClose}
