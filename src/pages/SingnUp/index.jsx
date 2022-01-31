@@ -56,7 +56,6 @@ function SingnUp() {
       allergies: [],
       illnesses: []
     }
-    console.log(newData)
     api
       .post('/register', newData)
       .then(response => {

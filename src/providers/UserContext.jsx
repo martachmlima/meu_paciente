@@ -13,7 +13,6 @@ function UserProvider({ children }) {
   const [query, setQuery] = useState([])
   const token = localStorage.getItem('@+saude:accessToken')
   const { user } = useAuth()
-  console.log(user)
   const getMedications = token => {
     if (token) {
       api

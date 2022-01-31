@@ -29,7 +29,6 @@ function AuthProvider({ children }) {
 
       localStorage.setItem('@+saude:accessToken', accessToken)
       localStorage.setItem('@+saude:user', JSON.stringify(user))
-      console.log(user)
       setData({ accessToken, user })
       setAllergiesAndIllnesses({
         allergies: user.allergies,

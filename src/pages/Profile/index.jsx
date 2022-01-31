@@ -23,10 +23,6 @@ function Profile() {
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
-  useEffect(() => {
-    console.log(allergiesAndIllnesses)
-  }, [allergiesAndIllnesses])
-
   const {
     isOpen: isAddDiseaseOpen,
     onOpen: onAddDiseaseOpen,
@@ -143,10 +139,7 @@ function Profile() {
                 _hover={{
                   background: `${theme.colors.blue[300]}`
                 }}
-                //função de adicionar teste para o modal
-                onClick={onAddAllergyOpen}
-                //
-              >
+                onClick={onAddAllergyOpen}>
                 +
               </Button>
             </HStack>
@@ -174,10 +167,7 @@ function Profile() {
                 _hover={{
                   background: `${theme.colors.blue[300]}`
                 }}
-                //função de adicionar teste para o modal
-                onClick={onAddDiseaseOpen}
-                //
-              >
+                onClick={onAddDiseaseOpen}>
                 +
               </Button>
             </HStack>
