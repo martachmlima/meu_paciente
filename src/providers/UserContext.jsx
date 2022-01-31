@@ -1,75 +1,75 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { api } from "../services";
-import { useAuth } from "./AuthContext";
+import { createContext, useContext, useEffect, useState } from 'react'
+import { api } from '../services'
+import { useAuth } from './AuthContext'
 
-const UserContext = createContext({});
+const UserContext = createContext({})
 
 function useUser() {
-  return useContext(UserContext);
+  return useContext(UserContext)
 }
 
 function UserProvider({ children }) {
-  const [medications, setMedications] = useState([]);
-  const [query, setQuery] = useState([]);
-  const token = localStorage.getItem("@+saude:accessToken");
-  const { user } = useAuth();
-  console.log(user);
-  const getMedications = (token) => {
+  const [medications, setMedications] = useState([])
+  const [query, setQuery] = useState([])
+  const token = localStorage.getItem('@+saude:accessToken')
+  const { user } = useAuth()
+  console.log(user)
+  const getMedications = token => {
     if (token) {
       api
-        .get("/medications", {
+        .get('/medications', {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         })
-        .then((response) => {
-          setMedications(response.data);
+        .then(response => {
+          setMedications(response.data)
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     }
-  };
+  }
 
   useEffect(() => {
     if (token) {
       api
         .get(`/users/${user.id}?_embed=appointments`, {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         })
-        .then((response) => {
-          setQuery(response.data.appointments);
+        .then(response => {
+          setQuery(response.data.appointments)
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     }
-  }, []);
+  }, [])
 
-  const handleQueryCompleted = (id) => {
+  const handleQueryCompleted = id => {
     const completed = {
-      completed: true,
-    };
+      completed: true
+    }
     if (token) {
       api
         .patch(`/appointments/${id}`, completed, {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         })
-        .then((res) => {
+        .then(res => {
           api
             .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
-                Authorization: `Bearer ${token}`,
-              },
+                Authorization: `Bearer ${token}`
+              }
             })
-            .then((response) => {
-              setQuery(response.data.appointments);
+            .then(response => {
+              setQuery(response.data.appointments)
             })
-            .catch((err) => console.log(err));
+            .catch(err => console.log(err))
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     }
-  };
+  }
 
   return (
     <UserContext.Provider
@@ -78,12 +78,11 @@ function UserProvider({ children }) {
         medications,
         setMedications,
         query,
-        handleQueryCompleted,
-      }}
-    >
+        handleQueryCompleted
+      }}>
       {children}
     </UserContext.Provider>
-  );
+  )
 }
 
-export { UserProvider, useUser };
+export { UserProvider, useUser }

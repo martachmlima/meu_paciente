@@ -1,4 +1,4 @@
-import { Conteiner } from "./StyleInput";
+import { Conteiner } from './StyleInput'
 
 const InputComponent = ({
   errors,
@@ -11,15 +11,15 @@ const InputComponent = ({
   return (
     <>
       <Conteiner errors={errors}>
-        {!!errors ? (<label>{errors}</label>) : (<label>{label}</label>)}
+        {!!errors ? <label>{errors}</label> : <label>{label}</label>}
 
         <input {...rest} {...register(valueRegister)} type={type} />
       </Conteiner>
     </>
-  );
-};
+  )
+}
 
-export default InputComponent;
+export default InputComponent
 // Exemplo de como utilizar o input
 
 // <InputComponent

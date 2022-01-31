@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Card = styled.div`
   width: 300px;
@@ -10,7 +10,7 @@ export const Card = styled.div`
   background-color: #9dc9ee;
   padding: 5px;
   margin-bottom: 20px;
-`;
+`
 
 export const Paragraphs = styled.div`
   padding-left: 5px;
@@ -18,7 +18,7 @@ export const Paragraphs = styled.div`
     margin-left: 5px;
     padding-bottom: 5px;
   }
-`;
+`
 
 export const CardHeader = styled.div`
   display: flex;
@@ -32,4 +32,4 @@ export const CardHeader = styled.div`
     cursor: pointer;
     margin-right: 10px;
   }
-`;
+`
