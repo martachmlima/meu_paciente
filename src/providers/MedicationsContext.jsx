@@ -68,6 +68,17 @@ function MedicationsProvider({ children }) {
       .catch(err => console.log(err))
   }
 
+  const deleteMedication = id => {
+    api
+      .delete(`/medications/${id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(res => getMedications(accessToken))
+      .catch(err => console.log(err))
+  }
+
   return (
     <MedicationsContext.Provider
       value={{
@@ -76,7 +87,8 @@ function MedicationsProvider({ children }) {
         setMedications,
         addMedication,
         completeMedication,
-        editMedication
+        editMedication,
+        deleteMedication
       }}>
       {children}
     </MedicationsContext.Provider>
