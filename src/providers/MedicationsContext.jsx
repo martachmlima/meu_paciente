@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import { api } from '../services'
 import { useAuth } from './AuthContext'
+import toast from 'react-hot-toast'
 
 const MedicationsContext = createContext({})
 
@@ -36,8 +37,9 @@ function MedicationsProvider({ children }) {
       })
       .then(response => {
         setMedications([...medications, response.data])
+        toast.success('Remédio adicionado com sucesso!')
       })
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Erro ao adicionar remédio!'))
   }
 
   const completeMedication = id => {
@@ -51,8 +53,11 @@ function MedicationsProvider({ children }) {
           }
         }
       )
-      .then(res => getMedications(accessToken))
-      .catch(err => console.log(err))
+      .then(res => {
+        getMedications(accessToken)
+        toast.success('Remédio arquivado!')
+      })
+      .catch(err => toast.error('Erro ao arquivar!'))
   }
 
   const editMedication = (id, data) => {
@@ -64,8 +69,9 @@ function MedicationsProvider({ children }) {
       })
       .then(response => {
         getMedications(accessToken)
+        toast.success('Edição realizada!')
       })
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Erro ao editar'))
   }
 
   const deleteMedication = id => {
@@ -75,8 +81,11 @@ function MedicationsProvider({ children }) {
           Authorization: `Bearer ${accessToken}`
         }
       })
-      .then(res => getMedications(accessToken))
-      .catch(err => console.log(err))
+      .then(res => {
+        getMedications(accessToken)
+        toast.success('Remédio excluído!')
+      })
+      .catch(err => toast.error('Erro ao excluir!'))
   }
 
   return (

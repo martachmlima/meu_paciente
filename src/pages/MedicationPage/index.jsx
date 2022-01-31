@@ -99,6 +99,7 @@ function MedicationPage() {
                     frequency={medication.frequency}
                     time={medication.time}
                     use={medication.function}
+                    completed={medication.completed}
                     currentFunction={() => completeMedication(medication.id)}
                   />
                 ))}
