@@ -6,6 +6,7 @@ import { useAuth } from '../../providers/AuthContext'
 import { useVaccines } from '../../providers/VaccinesContext'
 import { BoxCard, ButtonVaccine, HistoricSelector } from './style'
 import Header from '../../components/Header'
+import Button from '../../components/Button'
 
 export const Vaccines = () => {
   const { vaccines, getVaccines, completeVaccines, incompleteVaccines } =
@@ -21,7 +22,9 @@ export const Vaccines = () => {
       <Header actualPage='Vacinas' />
 
       <ModalAddVaccines isOpen={isOpen} onClose={onClose} />
-      <ButtonVaccine onClick={onOpen}>Adicionar vacinas</ButtonVaccine>
+      <ButtonVaccine>
+        <Button onClick={onOpen}>Adicionar vacinas</Button>
+      </ButtonVaccine>
       <HistoricSelector>
         <p onClick={() => setShowHistoric(false)}>Ativos</p>{' '}
         <p onClick={() => setShowHistoric(true)}>Histórico</p>
@@ -62,7 +65,9 @@ export const Vaccines = () => {
           </>
         )}
       </BoxCard>
-      <ButtonVaccine onClick={logOut}>sair</ButtonVaccine>
+      <ButtonVaccine>
+        <Button onClick={logOut}>sair</Button>
+      </ButtonVaccine>
     </div>
   )
 }
