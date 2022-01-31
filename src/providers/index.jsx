@@ -1,9 +1,9 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { AuthProvider } from "./AuthContext";
-import { MedicationsProvider } from "./MedicationsContext";
-import { UserProvider } from "./UserContext";
-import { VaccinesProvider } from "./VaccinesContext";
-import { theme } from "../styles/global";
+import { ChakraProvider } from '@chakra-ui/react'
+import { AuthProvider } from './AuthContext'
+import { MedicationsProvider } from './MedicationsContext'
+import { UserProvider } from './UserContext'
+import { VaccinesProvider } from './VaccinesContext'
+import { theme } from '../styles/global'
 
 export const AppProvider = ({ children }) => (
   <AuthProvider>
@@ -15,4 +15,4 @@ export const AppProvider = ({ children }) => (
       </VaccinesProvider>
     </MedicationsProvider>
   </AuthProvider>
-);
+)

@@ -1,8 +1,8 @@
-import { Redirect, Route as ReactRoute } from "react-router-dom";
-import { useAuth } from "../providers/AuthContext";
+import { Redirect, Route as ReactRoute } from 'react-router-dom'
+import { useAuth } from '../providers/AuthContext'
 
 export const Route = ({ isPrivate = false, component: Component, ...rest }) => {
-  const { accessToken } = useAuth();
+  const { accessToken } = useAuth()
   return (
     <ReactRoute
       {...rest}
@@ -10,9 +10,9 @@ export const Route = ({ isPrivate = false, component: Component, ...rest }) => {
         isPrivate === !!accessToken ? (
           <Component />
         ) : (
-          <Redirect to={isPrivate ? "/login" : "/dashboard"} />
+          <Redirect to={isPrivate ? '/login' : '/profile'} />
         )
       }
     />
-  );
-};
+  )
+}

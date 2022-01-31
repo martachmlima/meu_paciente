@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Conteiner = styled.div`
   display: flex;
@@ -10,4 +10,4 @@ export const Conteiner = styled.div`
   width: 200px;
   height: 150px;
   background-color: #9dc9ee;
-`;
+`

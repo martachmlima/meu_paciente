@@ -1,4 +1,3 @@
-import React from 'react'
 import { render, screen } from '@testing-library/react'
 import InputComponent from '../../components/input'
 import { BrowserRouter } from 'react-router-dom'
@@ -9,10 +8,10 @@ describe('Input Component', () => {
       <BrowserRouter>
         <InputComponent
           register={() => {}}
-          label="teste"
-          errors="errors"
-          valueRegister="email"
-          placeholder="teste"
+          label='teste'
+          errors='errors'
+          valueRegister='email'
+          placeholder='teste'
         />
       </BrowserRouter>
     )

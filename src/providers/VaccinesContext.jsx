@@ -1,67 +1,66 @@
-import { useContext, createContext, useState, useEffect } from "react";
-import { api } from "../services";
-import { useAuth } from "./AuthContext";
+import { useContext, createContext, useState } from 'react'
+import { api } from '../services'
+import { useAuth } from './AuthContext'
 
-const VaccinesContext = createContext({});
+const VaccinesContext = createContext({})
 
 export const useVaccines = () => {
-  return useContext(VaccinesContext);
-};
+  return useContext(VaccinesContext)
+}
 
 export const VaccinesProvider = ({ children }) => {
-  const [accessToken] = useState(localStorage.getItem("@+saude:accessToken"));
-  const [vaccines, setVaccines] = useState([]);
-  const { user } = useAuth();
-  const getVaccines = (token) => {
+  const [accessToken] = useState(localStorage.getItem('@+saude:accessToken'))
+  const [vaccines, setVaccines] = useState([])
+  const { user } = useAuth()
+  const getVaccines = token => {
     if (token) {
       api
-        .get("/vaccines", {
+        .get(`/users/${user.id}?_embed=vaccines`, {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         })
-        .then((response) => {
-          setVaccines(response.data);
+        .then(response => {
+          setVaccines(response.data.vaccines)
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err))
     }
-  };
-  const addVaccines = (data) => {
+  }
+  const addVaccines = data => {
     api
-      .post("/vaccines", data, {
+      .post('/vaccines', data, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+          Authorization: `Bearer ${accessToken}`
+        }
       })
-      .then((response) => {
-        setVaccines([...vaccines, response.data]);
+      .then(response => {
+        setVaccines([...vaccines, response.data])
       })
-      .catch((err) => console.log(err));
-  };
-  const completeVaccines = (id) => {
+      .catch(err => console.log(err))
+  }
+  const completeVaccines = id => {
     api
       .patch(
         `/vaccines/${id}`,
         { userId: user.id, completed: true },
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+            Authorization: `Bearer ${accessToken}`
+          }
         }
       )
-      .then((res) => console.log("arquivado"))
-      .catch((err) => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
   const editVaccines = (id, data) => {
     api
       .patch(`/vaccines/${id}`, data, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+          Authorization: `Bearer ${accessToken}`
+        }
       })
-      .then((_) => getVaccines)
-      .catch((err) => console.log(err));
-  };
+      .then(_ => getVaccines(accessToken))
+      .catch(err => console.log(err))
+  }
   return (
     <VaccinesContext.Provider
       value={{
@@ -69,10 +68,9 @@ export const VaccinesProvider = ({ children }) => {
         addVaccines,
         editVaccines,
         getVaccines,
-        completeVaccines,
-      }}
-    >
+        completeVaccines
+      }}>
       {children}
     </VaccinesContext.Provider>
-  );
-};
+  )
+}
