@@ -51,6 +51,19 @@ export const VaccinesProvider = ({ children }) => {
       )
       .catch(err => console.log(err))
   }
+  const incompleteVaccines = id => {
+    api
+      .patch(
+        `/vaccines/${id}`,
+        { userId: user.id, completed: false },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        }
+      )
+      .catch(err => console.log(err))
+  }
   const editVaccines = (id, data) => {
     api
       .patch(`/vaccines/${id}`, data, {
@@ -61,6 +74,16 @@ export const VaccinesProvider = ({ children }) => {
       .then(_ => getVaccines(accessToken))
       .catch(err => console.log(err))
   }
+  const deleteVaccines = id => {
+    api
+      .delete(`/vaccines/${id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(res => getVaccines(accessToken))
+      .catch(err => console.log(err))
+  }
   return (
     <VaccinesContext.Provider
       value={{
@@ -68,7 +91,9 @@ export const VaccinesProvider = ({ children }) => {
         addVaccines,
         editVaccines,
         getVaccines,
-        completeVaccines
+        completeVaccines,
+        incompleteVaccines,
+        deleteVaccines
       }}>
       {children}
     </VaccinesContext.Provider>
