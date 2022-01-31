@@ -4,7 +4,15 @@ import { useDisclosure } from '@chakra-ui/react'
 import ModalEditMedication from '../ModalEditMedication'
 import ModalDeleteMedication from '../ModalDeleteMedication'
 
-function MedicationCard({ name, frequency, time, use, currentFunction, id }) {
+function MedicationCard({
+  name,
+  frequency,
+  time,
+  use,
+  currentFunction,
+  id,
+  completed
+}) {
   const {
     isOpen: isCreateTaskOpen,
     onOpen: onCreateTaskOpen,
@@ -21,7 +29,7 @@ function MedicationCard({ name, frequency, time, use, currentFunction, id }) {
       <Card>
         <CardHeader>
           <p>Remédio: {name}</p> <FaTrash onClick={onDeleteMedicationOpen} />
-          <FaCheck onClick={currentFunction} />
+          {!completed && <FaCheck onClick={currentFunction} />}
         </CardHeader>
         <Paragraphs onClick={onCreateTaskOpen}>
           <p>Frequência: {frequency}</p>

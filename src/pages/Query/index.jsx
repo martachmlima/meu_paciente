@@ -1,6 +1,7 @@
 import CardQuery from '../../components/cardQuery'
 import Header from '../../components/Header'
 import { CardHeader } from '../../components/MedicationCard/style'
+import ModalAppointments from '../../components/ModalAppointment'
 import { useUser } from '../../providers/UserContext'
 import { CardBox } from './style'
 
@@ -10,12 +11,7 @@ function Query() {
   return (
     <div>
       <Header actualPage='Consultas' />
-      <CardHeader />
-
-      <button onClick={() => console.log('abrir modal')}>
-        Adicionar Consulta
-      </button>
-
+      <ModalAppointments />
       <CardBox>
         {query
           .filter(item => !item.completed)
