@@ -5,12 +5,9 @@ export const BoxCard = styled.div`
   flex-wrap: wrap;
 `
 
-export const ButtonVaccine = styled.button`
+export const ButtonVaccine = styled.div`
   width: 240px;
   height: 50px;
-  background-color: #8fb7e3;
-  color: #f8f7f7;
-  border-radius: 8px;
   margin: 10px 0 5px 10px;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;

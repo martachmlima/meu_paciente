@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.button`
   background: #8fb7e3;
@@ -6,4 +6,6 @@ export const Container = styled.button`
   cursor: pointer;
   border-radius: 5px;
   border: 0;
-`;
+  width: 100%;
+  height: 100%;
+`
