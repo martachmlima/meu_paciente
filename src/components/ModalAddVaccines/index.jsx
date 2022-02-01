@@ -80,7 +80,9 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
             <Text fontWeight='500' color='gray.200'>
               Adicionar vacinas
             </Text>
-            <FaTimes color='whhite' />
+            <Box onClick={onClose} _hover={{ cursor: 'pointer' }}>
+              <FaTimes color='whhite' />
+            </Box>
           </Flex>
         </ModalHeader>
 
