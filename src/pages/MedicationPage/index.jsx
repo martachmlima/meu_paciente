@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
-import { useDisclosure } from '@chakra-ui/react'
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Box, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, Text, Image } from '@chakra-ui/react'
 import MedicationCard from '../../components/MedicationCard'
 import ModalAddMedication from '../../components/ModalAddMedication'
 import Header from '../../components/Header'
 import { useMedications } from '../../providers/MedicationsContext'
 import { useAuth } from '../../providers/AuthContext'
+import Add from '../../assets/add.svg'
 
 function MedicationPage() {
-  const { getMedications, medications, completeMedication } = useMedications()
+  const {
+    getMedications,
+    medications,
+    completeMedication,
+    incompleteMedication
+  } = useMedications()
   const { accessToken } = useAuth()
   const {
     isOpen: isCreateTaskOpen,
@@ -68,6 +74,9 @@ function MedicationPage() {
         </Flex>
         {medications.length === 0 ? (
           <Flex alignItems='center' justifyContent='center' w='100%' h='300px'>
+            <Box boxSize='200px' color='blue.600'>
+              <Image sizes='md' src={Add} />
+            </Box>
             <Text fontSize={['md', '2xl']}>Nenhum remédio cadastrado</Text>
           </Flex>
         ) : (
@@ -88,7 +97,8 @@ function MedicationPage() {
                       frequency={medication.frequency}
                       time={medication.time}
                       use={medication.function}
-                      currentFunction={() => completeMedication(medication.id)}
+                      isCompleted={medication.completed}
+                      completed={() => completeMedication(medication.id)}
                     />
                   ))}
               </>
@@ -104,8 +114,8 @@ function MedicationPage() {
                       frequency={medication.frequency}
                       time={medication.time}
                       use={medication.function}
-                      completed={medication.completed}
-                      currentFunction={() => completeMedication(medication.id)}
+                      isCompleted={medication.completed}
+                      completed={() => incompleteMedication(medication.id)}
                     />
                   ))}
               </>

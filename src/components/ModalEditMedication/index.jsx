@@ -53,7 +53,7 @@ function ModalEditMedication({ isOpen, onClose, id }) {
       <ModalContent
         as='form'
         onSubmit={handleSubmit(handleEditMedication)}
-        borderRadius='0'
+        borderRadius='8px'
         width={['95%', '100%']}
         padding='2'
         bg='white'
@@ -83,7 +83,7 @@ function ModalEditMedication({ isOpen, onClose, id }) {
           </Flex>
         </ModalHeader>
 
-        <ModalBody textAlign='center'>
+        <ModalBody textAlign='start' w='100%'>
           <VStack spacing='2'>
             <Box w='100%' paddingBottom='8'>
               <InputComponent
