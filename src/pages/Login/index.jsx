@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -8,7 +8,6 @@ import LoginInfo from './LoginInfo'
 
 function Login() {
   const { signUp } = useAuth()
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
   const signInSchema = yup.object().shape({
     email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
