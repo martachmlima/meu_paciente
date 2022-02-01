@@ -5,7 +5,7 @@ import SignUp from '../pages/SingnUp'
 import Profile from '../pages/Profile'
 import LandingPage from '../pages/LandingPage'
 import { Vaccines } from '../pages/Vaccines'
-import Query from '../pages/Query'
+import Appointment from '../pages/Appointment'
 import MedicationPage from '../pages/MedicationPage'
 import Professionals from '../pages/Professionals'
 
@@ -18,7 +18,7 @@ function Routes() {
       <Route path='/vaccines' component={Vaccines} isPrivate />
       <Route path='/professionals' component={Professionals} isPrivate />
       <Route path='/profile' component={Profile} isPrivate />
-      <Route path='/query' component={Query} isPrivate />
+      <Route path='/appointment' component={Appointment} isPrivate />
       <Route path='/medications' component={MedicationPage} isPrivate />
     </Switch>
   )

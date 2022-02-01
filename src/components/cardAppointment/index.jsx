@@ -1,16 +1,20 @@
-import { FaCheck } from 'react-icons/fa'
+import { FaCheck, FaTrash } from 'react-icons/fa'
 import { useUser } from '../../providers/UserContext'
 import { CardHeader, Conteiner, Paragraphs } from './style'
 
-function CardQuery({ obj }) {
-  const { handleQueryCompleted } = useUser()
+function CardAppointment({ del, obj }) {
+  const { handleAppointmentCompleted, handleAppointmentDelete } = useUser()
   return (
     <>
       {
         <Conteiner>
           <CardHeader>
             <p>Doutor: {obj.doctor}</p>
-            <FaCheck onClick={() => handleQueryCompleted(obj.id)} />
+            {del ? (
+              <FaTrash onClick={() => handleAppointmentDelete(obj.id)} />
+            ) : (
+              <FaCheck onClick={() => handleAppointmentCompleted(obj.id)} />
+            )}
           </CardHeader>
           <Paragraphs>
             <p>Data: {obj.date}</p>
@@ -22,4 +26,4 @@ function CardQuery({ obj }) {
     </>
   )
 }
-export default CardQuery
+export default CardAppointment
