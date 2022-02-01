@@ -3,8 +3,6 @@ import {
   Box,
   Button,
   FormControl,
-  FormLabel,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -48,8 +46,14 @@ function ModalAppointments() {
   }
   return (
     <>
-      <Box w='100%' padding='12'>
-        <Button colorScheme='blue' onClick={onOpen}>
+      <Box w='300px' m='0 auto' padding='12'>
+        <Button
+          bg='blue.700'
+          color='white'
+          w='100%'
+          h='60px'
+          _hover={{ bg: 'blue.750' }}
+          onClick={onOpen}>
           Adicionar Consulta
         </Button>
       </Box>
@@ -113,10 +117,26 @@ function ModalAppointments() {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} type='submit'>
+              <Button
+                type='submit'
+                bg='blue.700'
+                color='white'
+                w='80%'
+                h='60px'
+                m='2px'
+                _hover={{ bg: 'blue.750' }}>
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button
+                bg='blue.700'
+                color='white'
+                w='80%'
+                h='60px'
+                m='2px'
+                _hover={{ bg: 'blue.750' }}
+                onClick={onClose}>
+                Cancel
+              </Button>
             </ModalFooter>
           </form>
         </ModalContent>
