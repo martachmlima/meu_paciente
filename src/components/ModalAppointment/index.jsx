@@ -28,7 +28,13 @@ function ModalAppointments() {
     doctor: yup.string().required('Nome do Médico?'),
     date: yup.string().required('Qual a data?'),
     time: yup.string().required('Horário?'),
-    contact: yup.string().required('Número para contato?')
+    contact: yup
+      .number()
+      .typeError('Isso não é um número de telefone')
+      .positive('Um número de telefone não pode começar com menos')
+      .integer('Um número de telefone não pode incluir um ponto decimal')
+      .min(8)
+      .required('Número obrigatório')
   })
 
   const {

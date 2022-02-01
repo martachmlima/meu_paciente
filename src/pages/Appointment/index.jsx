@@ -1,26 +1,26 @@
-import CardQuery from '../../components/cardQuery'
+import CardAppointment from '../../components/cardAppointment'
 import Header from '../../components/Header'
 import ModalAppointments from '../../components/ModalAppointment'
 import { useUser } from '../../providers/UserContext'
 import { CardBox } from './style'
 
-function Query() {
-  const { query } = useUser()
+function Appointment() {
+  const { appointment } = useUser()
 
   return (
     <div>
       <Header actualPage='Consultas' />
       <ModalAppointments />
       <CardBox>
-        {query
+        {appointment
           .filter(item => !item.completed)
           .map((obj, index) => (
             <div key={index}>
-              <CardQuery obj={obj} />
+              <CardAppointment obj={obj} />
             </div>
           ))}
       </CardBox>
     </div>
   )
 }
-export default Query
+export default Appointment

@@ -10,7 +10,7 @@ function useUser() {
 
 function UserProvider({ children }) {
   const [medications, setMedications] = useState([])
-  const [query, setQuery] = useState([])
+  const [appointment, setAppointment] = useState([])
   const token = localStorage.getItem('@+saude:accessToken')
   const { user } = useAuth()
   const getMedications = token => {
@@ -37,13 +37,13 @@ function UserProvider({ children }) {
           }
         })
         .then(response => {
-          setQuery(response.data.appointments)
+          setAppointment(response.data.appointments)
         })
         .catch(err => console.log(err))
     }
   }, [])
 
-  const handleQueryCompleted = id => {
+  const handleAppointmentCompleted = id => {
     const completed = {
       completed: true
     }
@@ -62,7 +62,7 @@ function UserProvider({ children }) {
               }
             })
             .then(response => {
-              setQuery(response.data.appointments)
+              setAppointment(response.data.appointments)
             })
             .catch(err => console.log(err))
         })
@@ -85,7 +85,7 @@ function UserProvider({ children }) {
               }
             })
             .then(response => {
-              setQuery(response.data.appointments)
+              setAppointment(response.data.appointments)
             })
             .catch(err => console.log(err))
         })
@@ -99,8 +99,8 @@ function UserProvider({ children }) {
         getMedications,
         medications,
         setMedications,
-        query,
-        handleQueryCompleted,
+        appointment,
+        handleAppointmentCompleted,
         handlePostAppointment
       }}>
       {children}
