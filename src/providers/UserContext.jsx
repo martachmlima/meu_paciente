@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { api } from '../services'
 import { useAuth } from './AuthContext'
 
@@ -55,6 +56,7 @@ function UserProvider({ children }) {
           }
         })
         .then(res => {
+          toast.success('Consulta arquivada!')
           api
             .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
@@ -79,6 +81,7 @@ function UserProvider({ children }) {
           }
         })
         .then(res => {
+          toast.success('Consulta deletada!')
           api
             .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
@@ -103,6 +106,7 @@ function UserProvider({ children }) {
           }
         })
         .then(res => {
+          toast.success('Consulta adicionada!')
           api
             .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
