@@ -29,7 +29,6 @@ function Login() {
   return (
     <Flex
       minHeight='100vh'
-      padding={['10px 15px', '10 15px', '0px', '0px']}
       alignItems='center'
       justifyContent='center'
       height={['auto', 'auto', '100vh', '100vh']}
@@ -37,10 +36,11 @@ function Login() {
       color='#000'>
       <Flex
         w={['100%', '100%', '90%', '75%']}
-        justifyContent='center'
+        h='100vh'
+        justifyContent={['space-between', 'center']}
         flexDirection={['column', 'column', 'row', 'row']}
         alignItems='center'>
-        {isLargerThan800 && <LoginInfo />}
+        <LoginInfo />
         <LoginForm
           handleSubmit={handleSubmit(signUp)}
           errors={errors}
