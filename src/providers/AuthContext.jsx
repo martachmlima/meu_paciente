@@ -7,6 +7,21 @@ const AuthContext = createContext({})
 const useAuth = () => useContext(AuthContext)
 
 function AuthProvider({ children }) {
+  const [allergiesAndIllnesses, setAllergiesAndIllnesses] = useState(() => {
+    const user = localStorage.getItem('@+saude:user')
+    if (user) {
+      return {
+        allergies: user.allergies,
+        illnesses: user.illnesses
+      }
+    } else {
+      return {
+        allergies: [],
+        illnesses: []
+      }
+    }
+  })
+
   const [data, setData] = useState(() => {
     const accessToken = localStorage.getItem('@+saude:accessToken')
     const user = localStorage.getItem('@+saude:user')
@@ -28,6 +43,10 @@ function AuthProvider({ children }) {
         localStorage.setItem('@+saude:accessToken', accessToken)
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         setData({ accessToken, user })
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
       })
       .catch(err => {
         toast.error('Usuário ou senha incorreto')
@@ -51,6 +70,10 @@ function AuthProvider({ children }) {
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
       })
       .catch(err => {
         toast.error('Erro inesperado. Tente novamente mais tarde')
@@ -74,6 +97,10 @@ function AuthProvider({ children }) {
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
       })
       .catch(err => {
         toast.error('Erro inesperado. Tente novamente mais tarde')
@@ -100,6 +127,10 @@ function AuthProvider({ children }) {
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
       })
       .catch(err => {
         toast.error('Erro inesperado. Tente novamente mais tarde')
@@ -126,6 +157,10 @@ function AuthProvider({ children }) {
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user
+        setAllergiesAndIllnesses({
+          allergies: user.allergies,
+          illnesses: user.illnesses
+        })
       })
       .catch(err => {
         toast.error('Erro inesperado. Tente novamente mais tarde')
@@ -150,7 +185,8 @@ function AuthProvider({ children }) {
         addAllergy,
         addDisease,
         removeDisease,
-        removeAllergy
+        removeAllergy,
+        allergiesAndIllnesses
       }}>
       {children}
     </AuthContext.Provider>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   Box,
   Flex,
@@ -18,7 +19,7 @@ import ModalAddDisease from '../../components/ModalAddDisease'
 import ModalAddAllergy from '../../components/ModalAddAllergy'
 
 function Profile() {
-  const { user } = useAuth()
+  const { user, allergiesAndIllnesses } = useAuth()
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
@@ -143,7 +144,7 @@ function Profile() {
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {user.allergies.map(allergy => (
+              {allergiesAndIllnesses.allergies.map(allergy => (
                 <CardAllergies key={allergy} allergy={allergy} />
               ))}
             </Flex>
@@ -171,7 +172,7 @@ function Profile() {
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {user.illnesses.map(disease => (
+              {allergiesAndIllnesses.illnesses.map(disease => (
                 <CardIllnesses key={disease} disease={disease} />
               ))}
             </Flex>
