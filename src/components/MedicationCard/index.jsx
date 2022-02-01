@@ -1,5 +1,5 @@
-import { Card, CardHeader, Paragraphs } from './style'
-import { FaTrash, FaCheck } from 'react-icons/fa'
+import { Card, CardHeader, CompletedCheck, ContentBody, Divider } from './style'
+import { FaTrash, FaCheckCircle } from 'react-icons/fa'
 import { useDisclosure } from '@chakra-ui/react'
 import ModalEditMedication from '../ModalEditMedication'
 import ModalDeleteMedication from '../ModalDeleteMedication'
@@ -9,9 +9,9 @@ function MedicationCard({
   frequency,
   time,
   use,
-  currentFunction,
   id,
-  completed
+  completed,
+  isCompleted
 }) {
   const {
     isOpen: isCreateTaskOpen,
@@ -28,14 +28,22 @@ function MedicationCard({
     <>
       <Card>
         <CardHeader>
-          <p>Remédio: {name}</p> <FaTrash onClick={onDeleteMedicationOpen} />
-          {!completed && <FaCheck onClick={currentFunction} />}
+          <p>Remédio: {name}</p>
+          <FaTrash onClick={onDeleteMedicationOpen} />
+          <CompletedCheck>
+            {isCompleted ? (
+              <FaCheckCircle size='25' onClick={completed} color='green' />
+            ) : (
+              <FaCheckCircle size='25' onClick={completed} />
+            )}
+          </CompletedCheck>
         </CardHeader>
-        <Paragraphs onClick={onCreateTaskOpen}>
+        <Divider />
+        <ContentBody onClick={onCreateTaskOpen}>
           <p>Frequência: {frequency}</p>
           <p>Horário: {time}</p>
           <p>Função: {use}</p>
-        </Paragraphs>
+        </ContentBody>
       </Card>
       <ModalEditMedication
         isOpen={isCreateTaskOpen}
