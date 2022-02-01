@@ -15,6 +15,6 @@ describe('Component MedicationCard', () => {
       </BrowserRouter>
     )
 
-    expect(screen.getByText('Adicionar Medicação')).toBeTruthy()
+    expect(screen.getByText('Adicionar')).toBeTruthy()
   })
 })
