@@ -9,9 +9,8 @@ export const useVaccines = () => {
 }
 
 export const VaccinesProvider = ({ children }) => {
-  const [accessToken] = useState(localStorage.getItem('@+saude:accessToken'))
   const [vaccines, setVaccines] = useState([])
-  const { user } = useAuth()
+  const { user, accessToken } = useAuth()
   const getVaccines = token => {
     if (token) {
       api
