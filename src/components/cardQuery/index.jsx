@@ -1,5 +1,6 @@
+import { FaCheck } from 'react-icons/fa'
 import { useUser } from '../../providers/UserContext'
-import { Conteiner } from './style'
+import { CardHeader, Conteiner, Paragraphs } from './style'
 
 function CardQuery({ obj }) {
   const { handleQueryCompleted } = useUser()
@@ -7,11 +8,15 @@ function CardQuery({ obj }) {
     <>
       {
         <Conteiner>
-          <button onClick={() => handleQueryCompleted(obj.id)}>teste</button>
-          <p>Doutor: {obj.doctor}</p>
-          <p>Data: {obj.date}</p>
-          <p>Horário: {obj.time}</p>
-          <p>Contato: {obj.contact}</p>
+          <CardHeader>
+            <p>Doutor: {obj.doctor}</p>
+            <FaCheck onClick={() => handleQueryCompleted(obj.id)} />
+          </CardHeader>
+          <Paragraphs>
+            <p>Data: {obj.date}</p>
+            <p>Horário: {obj.time}</p>
+            <p>Contato: {obj.contact}</p>
+          </Paragraphs>
         </Conteiner>
       }
     </>
