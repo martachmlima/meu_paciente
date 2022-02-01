@@ -1,13 +1,34 @@
 import styled from 'styled-components'
 
 export const Conteiner = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 8px;
-  padding: 8px;
-  margin: 8px;
-  width: 200px;
+  width: 300px;
   height: 150px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   background-color: #9dc9ee;
+  padding: 5px;
+  margin 20px;
+`
+export const Paragraphs = styled.div`
+  padding-left: 5px;
+  > p {
+    margin-left: 5px;
+    padding-bottom: 5px;
+  }
+`
+
+export const CardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: -20px;
+  padding: 7px;
+  > p {
+    margin-right: 70px;
+  }
+  > svg {
+    cursor: pointer;
+    margin-right: 10px;
+  }
 `
