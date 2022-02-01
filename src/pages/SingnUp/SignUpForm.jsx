@@ -1,35 +1,30 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Heading,
-  Select,
-  Text,
-  VStack,
-  Flex
-} from '@chakra-ui/react'
+import { Box, Grid, Heading, Select, Text, VStack } from '@chakra-ui/react'
 import InputComponent from '../../components/input'
-import { Link } from 'react-router-dom'
 import { theme } from '../../styles/global'
+import { useHistory } from 'react-router-dom'
+import Button from '../../components/Button'
 function SignUpForm({ hSubmit, errors, register }) {
+  const history = useHistory()
+
   return (
     <Grid
       onSubmit={hSubmit}
       as='form'
-      padding='15px'
-      borderRadius='8'
+      padding=' 30px 15px'
+      borderRadius={['0', '8']}
       bg={theme.colors.blue[800]}
       mt={['4', '4', '0']}
       w={['100%', '100%', '50%', '50%']}
       maxWidth='500px'
-      minWidth='350px'>
+      minWidth='320px'
+      h='800px'>
       <Heading textAlign='center' color={theme.colors.gray[200]} size='lg'>
         Bem vindo!
       </Heading>
-      <VStack spacing='5'>
+      <VStack spacing='5' justifyContent='space-evenly'>
         <Box w='100%' paddingBottom='4'>
           <InputComponent
-            label='Nome'
+            label='Nome:'
             errors={errors.name?.message}
             register={register}
             valueRegister='name'
@@ -39,7 +34,7 @@ function SignUpForm({ hSubmit, errors, register }) {
         </Box>
         <Box w='100%' paddingBottom='4'>
           <InputComponent
-            label='E-mail'
+            label='E-mail:'
             errors={errors.email?.message}
             register={register}
             valueRegister='email'
@@ -49,7 +44,7 @@ function SignUpForm({ hSubmit, errors, register }) {
         </Box>
         <Box w='100%' paddingBottom='4'>
           <InputComponent
-            label='Senha'
+            label='Senha:'
             errors={errors.password?.message}
             register={register}
             valueRegister='password'
@@ -58,7 +53,7 @@ function SignUpForm({ hSubmit, errors, register }) {
         </Box>
         <Box w='100%' paddingBottom='4'>
           <InputComponent
-            label='Confirme sua senha'
+            label='Confirme sua senha:'
             errors={errors.confirm_password?.message}
             register={register}
             valueRegister='confirm_password'
@@ -67,7 +62,7 @@ function SignUpForm({ hSubmit, errors, register }) {
         </Box>
         <Box w='100%' paddingBottom='4'>
           <InputComponent
-            label='Idade'
+            label='Idade:'
             errors={errors.age?.message}
             register={register}
             valueRegister='age'
@@ -76,7 +71,7 @@ function SignUpForm({ hSubmit, errors, register }) {
           />
         </Box>
         <Box color={errors.gender ? 'red' : 'grey'} w='100%'>
-          <label>{errors.gender ? `${errors.gender.message}` : 'Sexo'}</label>
+          <label>{errors.gender ? `${errors.gender.message}` : 'Sexo:'}</label>
           <Select
             bgColor={theme.colors.gray[900]}
             size='lg'
@@ -93,7 +88,7 @@ function SignUpForm({ hSubmit, errors, register }) {
           <label>
             {errors.bloodtype
               ? `${errors.bloodtype.message}`
-              : 'Tipo sanguíneo'}
+              : 'Tipo sanguíneo:'}
           </label>
           <Select
             bgColor={theme.colors.gray[900]}
@@ -113,23 +108,22 @@ function SignUpForm({ hSubmit, errors, register }) {
           </Select>
         </Box>
       </VStack>
-      <VStack mt='4' spacing='5'>
-        <Button
-          bg={theme.colors.blue[700]}
-          color={theme.colors.gray[900]}
-          w='100%'
-          h='40px'
-          borderRadius='8px'
-          _hover={{
-            background: `${theme.colors.blue[300]}`
-          }}
-          type='submit'>
-          Cadastrar
-        </Button>
+      <VStack mt='4' spacing='5' justifyContent='space-around'>
+        <Box w='100%' h='60px'>
+          <Button type='submit' bolder>
+            Entrar
+          </Button>
+        </Box>
         <Box>
-          <Text as='span'>Já é cadastrado? Faça seu </Text>
-          <Text as='span' color={theme.colors.blue[500]}>
-            <Link to={'/login'}>Login</Link>
+          <Text as='span' color='gray.200'>
+            Já é cadastrado?{' '}
+          </Text>
+          <Text
+            as='span'
+            color='blue.500'
+            _hover={{ cursor: 'pointer' }}
+            onClick={() => history.push('/login')}>
+            Faça seu login!
           </Text>
         </Box>
       </VStack>

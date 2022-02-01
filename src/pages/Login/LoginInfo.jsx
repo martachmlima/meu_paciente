@@ -10,7 +10,7 @@ function LoginInfo() {
       display='flex'
       paddingRight={['50px', '50px', '80px', '100px']}
       alignItems={['center', 'flex-start']}
-      justifyContent={['center']}
+      justifyContent='center'
       flexDirection='row'>
       <VStack alignItems='center'>
         <VStack alignItems='flex-start'>

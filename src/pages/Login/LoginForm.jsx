@@ -29,7 +29,7 @@ function LoginForm({ handleSubmit, errors, register }) {
       <VStack spacing='5' justifyContent='space-evenly'>
         <Box w='100%' paddingBottom='8'>
           <InputComponent
-            label='E-mail'
+            label='E-mail:'
             errors={errors.email?.message}
             register={register}
             valueRegister='email'
@@ -39,7 +39,7 @@ function LoginForm({ handleSubmit, errors, register }) {
         </Box>
         <Box w='100%' paddingBottom='8'>
           <InputComponent
-            label='Senha'
+            label='Senha:'
             errors={errors.password?.message}
             register={register}
             valueRegister='password'
@@ -55,7 +55,7 @@ function LoginForm({ handleSubmit, errors, register }) {
           </Button>
         </Box>
 
-        <Text color={theme.colors.gray[200]}>
+        <Text color='gray.200'>
           Não possui conta?
           <Text
             color='blue.500'

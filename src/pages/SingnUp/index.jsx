@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -10,7 +10,6 @@ import toast from 'react-hot-toast'
 
 function SingnUp() {
   const history = useHistory()
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
   const signUpSchema = yup.object().shape({
     name: yup.string().required('Nome obrigatório'),
@@ -67,7 +66,6 @@ function SingnUp() {
     <Flex
       margin={['0', '0', '20px 0', '10px']}
       minHeight='100vh'
-      padding={['10px 15px', '10 15px', '0px', '0px']}
       alignItems='center'
       justifyContent='center'
       height={['auto', 'auto', '100vh', '100vh']}
@@ -78,7 +76,7 @@ function SingnUp() {
         justifyContent='center'
         flexDirection={['column', 'column', 'row', 'row']}
         alignItems='center'>
-        {isLargerThan800 && <SignUpInfo />}
+        <SignUpInfo />
         <SignUpForm
           hSubmit={handleSubmit(handleSignup)}
           errors={errors}
