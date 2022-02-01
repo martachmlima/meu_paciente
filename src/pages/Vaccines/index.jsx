@@ -16,7 +16,7 @@ import Button from '../../components/Button'
 export const Vaccines = () => {
   const { vaccines, getVaccines, completeVaccines, incompleteVaccines } =
     useVaccines()
-  const { accessToken, logOut } = useAuth()
+  const { accessToken } = useAuth()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [showHistoric, setShowHistoric] = useState(false)
   useEffect(() => {
@@ -76,10 +76,6 @@ export const Vaccines = () => {
           )}
         </BoxCard>
       )}
-
-      <ButtonVaccine>
-        <Button onClick={logOut}>sair</Button>
-      </ButtonVaccine>
     </div>
   )
 }
