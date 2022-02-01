@@ -51,7 +51,7 @@ function ModalAddMedication({ isOpen, onClose }) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent
-        borderRadius='0'
+        borderRadius='8px'
         as='form'
         width={['95%', '100%']}
         padding='2'
@@ -83,7 +83,7 @@ function ModalAddMedication({ isOpen, onClose }) {
           </Flex>
         </ModalHeader>
 
-        <ModalBody textAlign='center'>
+        <ModalBody textAlign='start' w='100%'>
           <VStack spacing='2'>
             <Box w='100%' paddingBottom='8'>
               <InputComponent
