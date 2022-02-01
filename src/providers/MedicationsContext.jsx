@@ -60,6 +60,24 @@ function MedicationsProvider({ children }) {
       .catch(err => toast.error('Erro ao arquivar!'))
   }
 
+  const incompleteMedication = id => {
+    api
+      .patch(
+        `/medications/${id}`,
+        { userId: user.id, completed: false },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        }
+      )
+      .then(res => {
+        getMedications(accessToken)
+        toast.success('Remédio desarquivado!')
+      })
+      .catch(err => toast.error('Erro ao desarquivar!'))
+  }
+
   const editMedication = (id, data) => {
     api
       .patch(`/medications/${id}`, data, {
@@ -97,7 +115,8 @@ function MedicationsProvider({ children }) {
         addMedication,
         completeMedication,
         editMedication,
-        deleteMedication
+        deleteMedication,
+        incompleteMedication
       }}>
       {children}
     </MedicationsContext.Provider>

@@ -9,10 +9,11 @@ const useAuth = () => useContext(AuthContext)
 function AuthProvider({ children }) {
   const [allergiesAndIllnesses, setAllergiesAndIllnesses] = useState(() => {
     const user = localStorage.getItem('@+saude:user')
-    if (user) {
+    const ObjUser = JSON.parse(user)
+    if (ObjUser) {
       return {
-        allergies: user.allergies,
-        illnesses: user.illnesses
+        allergies: ObjUser.allergies,
+        illnesses: ObjUser.illnesses
       }
     } else {
       return {
