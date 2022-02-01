@@ -52,7 +52,7 @@ function ModalAppointments() {
   }
   return (
     <>
-      <Box w='300px' m='0 auto' padding='12'>
+      <Box w='300px' m='24px auto'>
         <Button
           bg='blue.700'
           color='white'

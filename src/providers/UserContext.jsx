@@ -69,6 +69,31 @@ function UserProvider({ children }) {
         .catch(err => console.log(err))
     }
   }
+
+  const handleAppointmentDelete = id => {
+    if (token) {
+      api
+        .delete(`/appointments/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          api
+            .get(`/users/${user.id}?_embed=appointments`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(response => {
+              setAppointment(response.data.appointments)
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
+  }
+
   const handlePostAppointment = data => {
     if (token) {
       api
@@ -101,7 +126,8 @@ function UserProvider({ children }) {
         setMedications,
         appointment,
         handleAppointmentCompleted,
-        handlePostAppointment
+        handlePostAppointment,
+        handleAppointmentDelete
       }}>
       {children}
     </UserContext.Provider>
