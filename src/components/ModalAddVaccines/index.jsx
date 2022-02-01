@@ -78,7 +78,7 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
           mb='2'>
           <Flex alignItems='center' width='95%' justifyContent='space-between'>
             <Text fontWeight='500' color='gray.200'>
-              Adicionar vacinas
+              Adicionar vacina
             </Text>
             <Box onClick={onClose} _hover={{ cursor: 'pointer' }}>
               <FaTimes color='whhite' />
@@ -132,7 +132,7 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
             w='100%'
             h='60px'
             _hover={{ bg: 'blue.750' }}>
-            Adicionar vacina
+            Concluir
           </Button>
         </ModalFooter>
       </ModalContent>

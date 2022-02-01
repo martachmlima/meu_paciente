@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import VaccinesCard from '../../components/VaccinesCard'
+import { VaccinesCard } from '../../components/VaccinesCard'
 
 const objTest = {
   type: 'test',
