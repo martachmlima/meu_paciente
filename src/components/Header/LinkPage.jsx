@@ -6,7 +6,7 @@ function LinkPage(actualPage) {
   const history = useHistory()
   const pages = [
     ['Remédios', 'medications'],
-    ['Consultas', 'query'],
+    ['Consultas', 'appointment'],
     ['Vacinas', 'vaccines'],
     ['Profissionais', 'professionals'],
     ['Meu Perfil', 'profile']

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import { api } from '../services'
 import { useAuth } from './AuthContext'
 
@@ -10,7 +11,7 @@ function useUser() {
 
 function UserProvider({ children }) {
   const [medications, setMedications] = useState([])
-  const [query, setQuery] = useState([])
+  const [appointment, setAppointment] = useState([])
   const token = localStorage.getItem('@+saude:accessToken')
   const { user } = useAuth()
   const getMedications = token => {
@@ -37,13 +38,13 @@ function UserProvider({ children }) {
           }
         })
         .then(response => {
-          setQuery(response.data.appointments)
+          setAppointment(response.data.appointments)
         })
         .catch(err => console.log(err))
     }
   }, [])
 
-  const handleQueryCompleted = id => {
+  const handleAppointmentCompleted = id => {
     const completed = {
       completed: true
     }
@@ -55,6 +56,7 @@ function UserProvider({ children }) {
           }
         })
         .then(res => {
+          toast.success('Consulta arquivada!')
           api
             .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
@@ -62,13 +64,39 @@ function UserProvider({ children }) {
               }
             })
             .then(response => {
-              setQuery(response.data.appointments)
+              setAppointment(response.data.appointments)
             })
             .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
     }
   }
+
+  const handleAppointmentDelete = id => {
+    if (token) {
+      api
+        .delete(`/appointments/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          toast.success('Consulta deletada!')
+          api
+            .get(`/users/${user.id}?_embed=appointments`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(response => {
+              setAppointment(response.data.appointments)
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
+  }
+
   const handlePostAppointment = data => {
     if (token) {
       api
@@ -78,6 +106,7 @@ function UserProvider({ children }) {
           }
         })
         .then(res => {
+          toast.success('Consulta adicionada!')
           api
             .get(`/users/${user.id}?_embed=appointments`, {
               headers: {
@@ -85,7 +114,7 @@ function UserProvider({ children }) {
               }
             })
             .then(response => {
-              setQuery(response.data.appointments)
+              setAppointment(response.data.appointments)
             })
             .catch(err => console.log(err))
         })
@@ -99,9 +128,10 @@ function UserProvider({ children }) {
         getMedications,
         medications,
         setMedications,
-        query,
-        handleQueryCompleted,
-        handlePostAppointment
+        appointment,
+        handleAppointmentCompleted,
+        handlePostAppointment,
+        handleAppointmentDelete
       }}>
       {children}
     </UserContext.Provider>
