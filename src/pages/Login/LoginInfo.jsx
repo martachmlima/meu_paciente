@@ -6,14 +6,16 @@ function LoginInfo() {
   return (
     <Grid
       w={['100%', '100%', '80%', '80%']}
-      display={['none', 'none', 'flex', 'flex']}
+      h={['290px', '300px', '330px', '410px', '500px']}
+      display='flex'
       paddingRight={['50px', '50px', '80px', '100px']}
-      alignItems='flex-start'
+      alignItems={['center', 'flex-start']}
+      justifyContent={['center']}
       flexDirection='row'>
-      <VStack>
+      <VStack alignItems='center'>
         <VStack alignItems='flex-start'>
           <Heading
-            fontSize={['xl', 'xl', '3xl', '3xl']}
+            fontSize={['4xl', '4xl', '3xl', '3xl']}
             color={theme.colors.gray[200]}
             mt='4'
             as='h1'>
@@ -21,13 +23,13 @@ function LoginInfo() {
           </Heading>
           <Text
             fontStyle='italic'
-            fontSize={['md', 'md', 'xl', 'xl']}
+            fontSize={['2xl', '2xl', 'xl', 'xl']}
             color={theme.colors.gray[200]}
             maxW='350px'>
             Gerencie sua saúde <br /> com facilidade e <br /> praticidade.
           </Text>
         </VStack>
-        <Image src={SVG} />
+        <Image display={['none', 'block']} src={SVG} />
       </VStack>
     </Grid>
   )
