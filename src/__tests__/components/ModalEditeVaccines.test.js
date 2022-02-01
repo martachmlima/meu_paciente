@@ -20,6 +20,6 @@ describe('Component ModalEditVaccines', () => {
       </BrowserRouter>
     )
 
-    expect(screen.getByText(/Editar medicamento/i)).toBeTruthy()
+    expect(screen.getByText(/Editar vacina/i)).toBeTruthy()
   })
 })

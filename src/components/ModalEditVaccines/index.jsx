@@ -134,7 +134,7 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
             w='100%'
             h='60px'
             _hover={{ bg: 'blue.750' }}>
-            Editar vacina
+            Concluir
           </Button>
         </ModalFooter>
       </ModalContent>

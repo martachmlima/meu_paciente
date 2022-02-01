@@ -8,7 +8,7 @@ function LinkPage(actualPage) {
     ['Remédios', 'medications'],
     ['Consultas', 'query'],
     ['Vacinas', 'vaccines'],
-    ['Exames', 'exams'],
+    ['Profissionais', 'professionals'],
     ['Meu Perfil', 'profile']
   ]
 

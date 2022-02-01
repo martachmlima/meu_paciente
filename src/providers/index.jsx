@@ -4,15 +4,18 @@ import { MedicationsProvider } from './MedicationsContext'
 import { UserProvider } from './UserContext'
 import { VaccinesProvider } from './VaccinesContext'
 import { theme } from '../styles/global'
+import { ProfessionalsProvider } from './ProfessionalsContext'
 
 export const AppProvider = ({ children }) => (
   <AuthProvider>
-    <MedicationsProvider>
-      <VaccinesProvider>
-        <UserProvider>
-          <ChakraProvider theme={theme}>{children}</ChakraProvider>
-        </UserProvider>
-      </VaccinesProvider>
-    </MedicationsProvider>
+    <ProfessionalsProvider>
+      <MedicationsProvider>
+        <VaccinesProvider>
+          <UserProvider>
+            <ChakraProvider theme={theme}>{children}</ChakraProvider>
+          </UserProvider>
+        </VaccinesProvider>
+      </MedicationsProvider>
+    </ProfessionalsProvider>
   </AuthProvider>
 )

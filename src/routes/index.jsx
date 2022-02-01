@@ -5,9 +5,9 @@ import SignUp from '../pages/SingnUp'
 import Profile from '../pages/Profile'
 import LandingPage from '../pages/LandingPage'
 import { Vaccines } from '../pages/Vaccines'
-import Exams from '../pages/Exams'
 import Query from '../pages/Query'
 import MedicationPage from '../pages/MedicationPage'
+import Professionals from '../pages/Professionals'
 
 function Routes() {
   return (
@@ -16,7 +16,7 @@ function Routes() {
       <Route path='/login' component={Login} />
       <Route path='/signup' component={SignUp} />
       <Route path='/vaccines' component={Vaccines} isPrivate />
-      <Route path='/exams' component={Exams} isPrivate />
+      <Route path='/professionals' component={Professionals} isPrivate />
       <Route path='/profile' component={Profile} isPrivate />
       <Route path='/query' component={Query} isPrivate />
       <Route path='/medications' component={MedicationPage} isPrivate />
