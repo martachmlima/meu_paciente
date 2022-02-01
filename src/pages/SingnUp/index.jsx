@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { api } from '../../services'
 import SignUpForm from './SignUpForm'
 import SignUpInfo from './SignUpInfo'
+import toast from 'react-hot-toast'
 
 function SingnUp() {
   const history = useHistory()
@@ -14,11 +15,6 @@ function SingnUp() {
   const signUpSchema = yup.object().shape({
     name: yup.string().required('Nome obrigatório'),
     email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-    confirm_email: yup
-      .string()
-      .required('E-mail obrigatório')
-      .email('E-mail inválido')
-      .oneOf([yup.ref('email')], 'Emails diferentes'),
     password: yup
       .string()
       .required('Senha obrigatória')
@@ -56,11 +52,10 @@ function SingnUp() {
       allergies: [],
       illnesses: []
     }
-    console.log(newData)
     api
       .post('/register', newData)
       .then(response => {
-        console.log('Usuário cadastrado')
+        toast.success('Usuário cadastrado')
         history.push('/login')
       })
       .catch(err => {

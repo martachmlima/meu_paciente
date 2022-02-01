@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   Box,
   Flex,
@@ -9,7 +10,6 @@ import {
   useMediaQuery,
   useDisclosure
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { theme } from '../../styles/global'
 import { useAuth } from '../../providers/AuthContext'
 import CardAllergies from './CardAllergies'
@@ -22,10 +22,6 @@ function Profile() {
   const { user, allergiesAndIllnesses } = useAuth()
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
-  console.log(user)
-  useEffect(() => {
-    console.log(allergiesAndIllnesses)
-  }, [allergiesAndIllnesses])
 
   const {
     isOpen: isAddDiseaseOpen,
@@ -66,8 +62,8 @@ function Profile() {
             fontSize={['4xl', '4xl', '2xl', '2xl']}
             justifyContent='space-around'
             w='100%'>
-            <Box>
-              Nome Completo: <br />
+            <Flex alignItems='center'>
+              Nome Completo:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -75,9 +71,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.name}
               </Text>
-            </Box>
-            <Box>
-              Idade: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Idade:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -85,9 +81,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.age}
               </Text>
-            </Box>
-            <Box>
-              Altura: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Altura:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -95,9 +91,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.height}
               </Text>
-            </Box>
-            <Box>
-              Peso: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Peso:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -105,9 +101,9 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.weight}
               </Text>
-            </Box>
-            <Box>
-              Tipo Sanguíneo: <br />
+            </Flex>
+            <Flex alignItems='center'>
+              Tipo Sanguíneo:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -115,7 +111,7 @@ function Profile() {
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.bloodtype}
               </Text>
-            </Box>
+            </Flex>
           </Flex>
         </Flex>
 
@@ -143,15 +139,12 @@ function Profile() {
                 _hover={{
                   background: `${theme.colors.blue[300]}`
                 }}
-                //função de adicionar teste para o modal
-                onClick={onAddAllergyOpen}
-                //
-              >
+                onClick={onAddAllergyOpen}>
                 +
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {user.allergies.map(allergy => (
+              {allergiesAndIllnesses.allergies.map(allergy => (
                 <CardAllergies key={allergy} allergy={allergy} />
               ))}
             </Flex>
@@ -174,15 +167,12 @@ function Profile() {
                 _hover={{
                   background: `${theme.colors.blue[300]}`
                 }}
-                //função de adicionar teste para o modal
-                onClick={onAddDiseaseOpen}
-                //
-              >
+                onClick={onAddDiseaseOpen}>
                 +
               </Button>
             </HStack>
             <Flex flexDirection='column' w='100%'>
-              {user.illnesses.map(disease => (
+              {allergiesAndIllnesses.illnesses.map(disease => (
                 <CardIllnesses key={disease} disease={disease} />
               ))}
             </Flex>
