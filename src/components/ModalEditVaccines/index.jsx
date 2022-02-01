@@ -1,5 +1,4 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalContent,
@@ -18,11 +17,13 @@ import { FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
 import { useAuth } from '../../providers/AuthContext'
 import { useVaccines } from '../../providers/VaccinesContext'
+import { FormateData } from '../../services/dateFormat'
+import Button from '../Button'
 
 const editVaccinesSchema = yup.object().shape({
-  type: yup.string(),
-  date: yup.string().required('Campo obrigatório'),
-  nextshot: yup.string().required('Campo obrigatório')
+  type: yup.string().required('Qual o tipo de  vacina?'),
+  date: yup.string().required('Qual a data da ultima dose?'),
+  nextshot: yup.string().required('Qual a data da próxima dose?')
 })
 
 export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
@@ -40,12 +41,8 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
 
   const handleEditVaccines = data => {
     const { type, date, nextshot } = data
-    const oldData = new Date(date)
-    const newDate = oldData.toLocaleDateString('pt-BR', { timeZone: 'UTC' })
-    const oldNextshot = new Date(nextshot)
-    const newNextshot = oldNextshot.toLocaleDateString('pt-BR', {
-      timeZone: 'UTC'
-    })
+    const newDate = FormateData(date)
+    const newNextshot = FormateData(nextshot)
     const newData = {
       type,
       date: newDate,
@@ -86,35 +83,47 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
         </ModalHeader>
 
         <ModalBody width='100%' padding='2'>
-          <VStack spacing='2'>
-            <Box w='100%' paddingBottom='4' h='80px'>
+          <VStack spacing='2' height='260px' justifyContent='space-evenly'>
+            <Box
+              w='100%'
+              paddingBottom='4'
+              boxSizing='border-box'
+              height='80px'>
               <InputComponent
                 errors={errors.type?.message}
                 register={register}
                 valueRegister='type'
                 type='text'
                 placeholder={type}
-                label='Tipo da vacina'
+                label='Tipo da vacina:'
               />
             </Box>
-            <Box w='100%' paddingBottom='4' h='80px'>
+            <Box
+              w='100%'
+              paddingBottom='4'
+              boxSizing='border-box'
+              height='80px'>
               <InputComponent
                 errors={errors.date?.message}
                 register={register}
                 valueRegister='date'
                 type='date'
                 placeholder='Ultima dose'
-                label='Ultima dose'
+                label='Ultima dose:'
               />
             </Box>
-            <Box w='100%' paddingBottom='4' h='80px'>
+            <Box
+              w='100%'
+              paddingBottom='4'
+              boxSizing='border-box'
+              height='80px'>
               <InputComponent
                 errors={errors.nextshot?.message}
                 register={register}
                 valueRegister='nextshot'
                 type='date'
                 placeholder='Próxima dose'
-                label='Proxima dose'
+                label='Proxima dose:'
               />
             </Box>
           </VStack>
@@ -127,15 +136,9 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
           pl='2'
           pr='2'
           pt='0'>
-          <Button
-            type='submit'
-            bg='blue.700'
-            color='white'
-            w='100%'
-            h='60px'
-            _hover={{ bg: 'blue.750' }}>
-            Concluir
-          </Button>
+          <Box w='100%' h='60px'>
+            <Button type='submit'>Adicionar vacina</Button>
+          </Box>
         </ModalFooter>
       </ModalContent>
     </Modal>

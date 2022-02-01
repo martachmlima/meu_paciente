@@ -30,3 +30,19 @@ export const HistoricSelector = styled.div`
     width: 98%;
   }
 `
+
+export const VaccinesEmpty = styled.div`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 18px;
+  }
+  @media screen and (min-width: 700px) {
+    p {
+      font-size: 24px;
+    }
+  }
+`
