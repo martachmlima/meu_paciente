@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import {
   Box,
   Flex,
@@ -20,7 +19,6 @@ import ModalAddAllergy from '../../components/ModalAddAllergy'
 
 function Profile() {
   const { user, allergiesAndIllnesses } = useAuth()
-  console.log(allergiesAndIllnesses)
 
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 

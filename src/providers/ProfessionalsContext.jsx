@@ -23,7 +23,6 @@ function ProfessionalsProvider({ children }) {
         })
         .then(response => {
           setProfessionals(response.data)
-          console.log(response.data)
         })
         .catch(err => console.log(err))
     }
