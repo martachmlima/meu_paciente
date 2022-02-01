@@ -80,7 +80,7 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
               Editar vacina
             </Text>
             <Box onClick={onClose} _hover={{ cursor: 'pointer' }}>
-              <FaTimes color='whhite' />
+              <FaTimes />
             </Box>
           </Flex>
         </ModalHeader>
@@ -104,7 +104,7 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
                 valueRegister='date'
                 type='date'
                 placeholder='Ultima dose'
-                label='Ultima dosee'
+                label='Ultima dose'
               />
             </Box>
             <Box w='100%' paddingBottom='4' h='80px'>
@@ -134,7 +134,7 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
             w='100%'
             h='60px'
             _hover={{ bg: 'blue.750' }}>
-            Editar vacina
+            Concluir
           </Button>
         </ModalFooter>
       </ModalContent>

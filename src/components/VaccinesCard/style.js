@@ -18,6 +18,9 @@ export const Card = styled.div`
     margin-bottom: 5px 0px 8px 0px;
     font-size: 19px;
   }
+  @media screen and (min-width: 700px) {
+    margin-left: 20px;
+  }
 `
 export const ContentBody = styled.div`
   height: 80px;
@@ -33,8 +36,19 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: default;
-  > svg {
+  position: relative;
+  svg {
     cursor: pointer;
+  }
+`
+export const CompletedCheck = styled.div`
+  cursor: pointer;
+  position: absolute;
+  left: 280px;
+  top: -18px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  &:hover {
+    color: green;
   }
 `
