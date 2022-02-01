@@ -1,7 +1,24 @@
 import { theme } from '../../styles/global'
-import { Box, HStack, Heading, Flex, Text } from '@chakra-ui/react'
+import {
+  Box,
+  HStack,
+  Heading,
+  Flex,
+  Text,
+  List,
+  ListItem,
+  ListIcon
+} from '@chakra-ui/react'
+import { MdCircle } from 'react-icons/md'
 
-const ProfessionalCard = ({ name, specialties, contact, address }) => {
+const ProfessionalCard = ({
+  name,
+  specialties,
+  contact,
+  street,
+  city,
+  clinic
+}) => {
   return (
     <Box
       w={['300px', '400px']}
@@ -19,9 +36,21 @@ const ProfessionalCard = ({ name, specialties, contact, address }) => {
         <Heading fontSize='2xl'>{name}</Heading>
       </HStack>
       <Flex flexDirection='column'>
-        <Text fontSize={['md', 'xl']}>Especialidades: {specialties}</Text>
+        <Text fontWeight='600' fontSize={['md', 'xl']}>
+          {clinic}
+        </Text>
+        <List fontSize={['md', 'xl']}>
+          <ListItem>Especialidades:</ListItem>
+          {specialties.map(spec => (
+            <Flex ml='8' alignItems='center'>
+              <ListIcon as={MdCircle} fontSize='md' />
+              <ListItem>{spec}</ListItem>
+            </Flex>
+          ))}
+        </List>
         <Text fontSize={['md', 'xl']}>Contato: {contact}</Text>
-        <Text fontSize={['md', 'xl']}>Endereço: {address}</Text>
+        <Text fontSize={['md', 'xl']}>Endereço: {street}</Text>
+        <Text fontSize={['md', 'xl']}>Cidade: {city}</Text>
       </Flex>
     </Box>
   )
