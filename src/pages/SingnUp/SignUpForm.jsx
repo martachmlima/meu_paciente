@@ -126,12 +126,12 @@ function SignUpForm({ hSubmit, errors, register }) {
           type='submit'>
           Cadastrar
         </Button>
-        <Flex>
-          Já é cadastrado? Faça seu
-          <Link to={'/login'}>
-            <Text color={theme.colors.blue[500]}>Login</Text>
-          </Link>
-        </Flex>
+        <Box>
+          <Text as='span'>Já é cadastrado? Faça seu </Text>
+          <Text as='span' color={theme.colors.blue[500]}>
+            <Link to={'/login'}>Login</Link>
+          </Text>
+        </Box>
       </VStack>
     </Grid>
   )
