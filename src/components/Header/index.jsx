@@ -27,7 +27,8 @@ function Header({ actualPage }) {
         bgColor={theme.colors.blue[800]}
         p='0px 0px 0px 5%'
         justifyContent='space-between'
-        alignItems='center'>
+        alignItems='center'
+        boxShadow='md'>
         <Heading
           as='h1'
           fontSize='2xl'

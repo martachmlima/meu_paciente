@@ -22,7 +22,7 @@ function ModalDeleteMedication({ isOpen, onClose, id }) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent
-        borderRadius='0'
+        borderRadius='8px'
         width={['95%', '100%']}
         padding='2'
         bg='white'
