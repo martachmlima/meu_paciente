@@ -1,4 +1,4 @@
-import { Button, Center, Flex, Input } from '@chakra-ui/react'
+import { Center, Flex } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { FaSearch } from 'react-icons/fa'
 import InputComponent from '../../components/input'
