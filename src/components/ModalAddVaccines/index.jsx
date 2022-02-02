@@ -41,12 +41,10 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
 
   const handleAddVaccines = data => {
     const { type, date, nextshot } = data
-    const newDate = FormateData(date)
-    const newNextshot = FormateData(nextshot)
     const newData = {
       type,
-      date: newDate,
-      nextshot: newNextshot,
+      date: FormateData(date),
+      nextshot: FormateData(nextshot),
       userId: user.id,
       completed: false
     }
