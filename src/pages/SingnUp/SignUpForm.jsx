@@ -1,4 +1,4 @@
-import { Box, Grid, Heading, Select, Text, VStack } from '@chakra-ui/react'
+import { Box, Grid, Heading, Text, VStack } from '@chakra-ui/react'
 import InputComponent from '../../components/input'
 import { theme } from '../../styles/global'
 import { useHistory } from 'react-router-dom'
@@ -10,14 +10,14 @@ function SignUpForm({ hSubmit, errors, register }) {
     <Grid
       onSubmit={hSubmit}
       as='form'
-      padding=' 30px 15px'
+      padding='20px 15px'
       borderRadius={['0', '8']}
       bg={theme.colors.blue[800]}
       mt={['4', '4', '0']}
       w={['100%', '100%', '50%', '50%']}
       maxWidth='500px'
       minWidth='320px'
-      h='800px'>
+      h='610px'>
       <Heading textAlign='center' color={theme.colors.gray[200]} size='lg'>
         Bem vindo!
       </Heading>
@@ -70,7 +70,7 @@ function SignUpForm({ hSubmit, errors, register }) {
             placeholder='Ex: 32'
           />
         </Box>
-        <Box color={errors.gender ? 'red' : 'grey'} w='100%'>
+        {/* <Box color={errors.gender ? 'red' : 'grey'} w='100%'>
           <label>{errors.gender ? `${errors.gender.message}` : 'Sexo:'}</label>
           <Select
             bgColor={theme.colors.gray[900]}
@@ -106,12 +106,12 @@ function SignUpForm({ hSubmit, errors, register }) {
             <option value='O-'>O-</option>
             <option value='DoNotKnow'>Não sei</option>
           </Select>
-        </Box>
+        </Box> */}
       </VStack>
       <VStack mt='4' spacing='5' justifyContent='space-around'>
         <Box w='100%' h='60px'>
           <Button type='submit' bolder>
-            Entrar
+            Cadastrar
           </Button>
         </Box>
         <Box>
