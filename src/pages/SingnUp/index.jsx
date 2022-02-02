@@ -25,9 +25,9 @@ function SingnUp() {
     age: yup
       .string()
       .required('Idade obrigatória')
-      .max(3, 'Máximo 3 algarismos'),
-    gender: yup.string().required('Informação obrigatória'),
-    bloodtype: yup.string().required('Informação obrigatória')
+      .max(3, 'Máximo 3 algarismos')
+    // gender: yup.string().required('Informação obrigatória'),
+    // bloodtype: yup.string().required('Informação obrigatória')
   })
 
   const {
@@ -44,10 +44,10 @@ function SingnUp() {
       email: data.email,
       password: data.password,
       age: data.age,
-      gender: data.gender,
-      bloodtype: data.bloodtype,
-      weight: 18,
-      height: 160,
+      gender: '',
+      bloodtype: '',
+      weight: '',
+      height: '',
       allergies: [],
       illnesses: []
     }
@@ -58,7 +58,7 @@ function SingnUp() {
         history.push('/login')
       })
       .catch(err => {
-        console.log(err)
+        toast.error('Usuário já cadastrado')
       })
   }
 
