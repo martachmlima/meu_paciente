@@ -8,8 +8,11 @@ import { Vaccines } from '../pages/Vaccines'
 import Appointment from '../pages/Appointment'
 import MedicationPage from '../pages/MedicationPage'
 import Professionals from '../pages/Professionals'
+import PageNotFound from '../pages/PageNotFound'
+import { useAuth } from '../providers/AuthContext'
 
 function Routes() {
+  const { accessToken } = useAuth()
   return (
     <Switch>
       <Route exact path='/' component={LandingPage} />
@@ -20,6 +23,7 @@ function Routes() {
       <Route path='/profile' component={Profile} isPrivate />
       <Route path='/appointment' component={Appointment} isPrivate />
       <Route path='/medications' component={MedicationPage} isPrivate />
+      <Route component={PageNotFound} isPrivate={!!accessToken} />
     </Switch>
   )
 }
