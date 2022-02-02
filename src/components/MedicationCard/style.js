@@ -8,7 +8,6 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-left: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px;

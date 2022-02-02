@@ -28,7 +28,7 @@ const ProfessionalCard = ({
       minHeight={'200px'}
       borderRadius='8'
       p={'4'}
-      marginBottom={['0px', '12px']}>
+      marginBottom='20px'>
       <HStack
         justifyContent='space-between'
         marginBottom='4'

@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Box, useDisclosure } from '@chakra-ui/react'
-import { Button, Flex, Text, Image } from '@chakra-ui/react'
+import { Flex, Text, Image } from '@chakra-ui/react'
 import MedicationCard from '../../components/MedicationCard'
 import ModalAddMedication from '../../components/ModalAddMedication'
 import Header from '../../components/Header'
 import { useMedications } from '../../providers/MedicationsContext'
 import { useAuth } from '../../providers/AuthContext'
 import Add from '../../assets/add.svg'
+import Button from '../../components/Button'
 
 function MedicationPage() {
   const {
@@ -39,38 +40,33 @@ function MedicationPage() {
   return (
     <>
       <Header actualPage='Remédios' />
-      <Flex
-        padding='20px'
-        direction='column'
-        alignItems={['center', 'center', 'start']}>
-        <Button
-          w={['70%', '50%', '17%']}
-          padding='4'
-          borderRadius='3'
-          mt='6'
-          bgColor='blue.750'
-          color='white'
-          _hover={{ bg: 'blue.300 ' }}
-          onClick={onCreateTaskOpen}
-          marginBottom='20px'>
-          Adicionar Remédio
-        </Button>
-        <Flex mb='4' alignItems='center' justifyContent='center' w='100%'>
-          <Text
-            pr='3'
-            borderRight='2px solid'
-            fontSize={['md', '3xl']}
-            cursor='pointer'
-            onClick={showActive}>
-            Ativos
-          </Text>
-          <Text
-            pl='3'
-            fontSize={['md', '3xl']}
-            cursor='pointer'
-            onClick={showHistory}>
-            Histórico
-          </Text>
+      <Flex direction='column' alignItems={['center', 'center', 'start']}>
+        <Box
+          width='240px'
+          height='50px'
+          margin='10px 0 5px 10px'
+          fontSize='20px'>
+          <Button onClick={onCreateTaskOpen}>Adicionar Remédio</Button>
+        </Box>
+        <Flex w='100%' justifyContent='center'>
+          <Flex
+            mb='4'
+            alignItems='center'
+            justifyContent='space-between'
+            w={['90%', '43%']}>
+            <Text
+              fontSize={['20px', '3xl']}
+              cursor='pointer'
+              onClick={showActive}>
+              Ativos
+            </Text>
+            <Text
+              fontSize={['20px', '3xl']}
+              cursor='pointer'
+              onClick={showHistory}>
+              Histórico
+            </Text>
+          </Flex>
         </Flex>
         {medications.length === 0 ? (
           <Flex alignItems='center' justifyContent='center' w='100%' h='300px'>
@@ -80,11 +76,7 @@ function MedicationPage() {
             <Text fontSize={['md', '2xl']}>Nenhum remédio cadastrado</Text>
           </Flex>
         ) : (
-          <Flex
-            justifyContent='space-evenly'
-            alignItems='center'
-            w='98%'
-            wrap='wrap'>
+          <Flex wrap='wrap'>
             {whatToShow === 'active' ? (
               <>
                 {medications
