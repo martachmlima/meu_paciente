@@ -8,7 +8,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-left: 10px;
+  margin-left: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px;
@@ -17,13 +17,36 @@ export const Card = styled.div`
   color: white;
   font-weight: 500;
   font-size: 20px;
+  transition: 0.5s;
   p {
     margin-left: 5px;
     margin-bottom: 5px 0px 8px 0px;
     font-size: 19px;
   }
+  @media screen and (min-width: 370px) {
+    margin-left: 0;
+  }
+  @media screen and (min-width: 600px) {
+    margin-left: 5px;
+  }
   @media screen and (min-width: 700px) {
+    margin-left: 35px;
+  }
+  @media screen and (min-width: 750px) {
+    margin-left: 35px;
+    margin-right: 40px;
+  }
+  @media screen and (min-width: 1023px) {
+    margin-left: 25px;
+    margin-right: 0;
+  }
+  @media screen and (min-width: 1400px) {
     margin-left: 20px;
+    margin-right: 30px;
+  }
+  @media screen and (min-width: 1900px) {
+    margin-left: 10px;
+    margin-right: 5px;
   }
 `
 
