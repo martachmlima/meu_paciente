@@ -1,5 +1,5 @@
 import { FaCheckCircle, FaTrash } from 'react-icons/fa'
-import { Card, CardHeader, CompletedCheck, ContentBody } from './style'
+import { Card, CardHeader, CompletedCheck, ContentBody, Divider } from './style'
 import { ModalEditVaccines } from '../../components/ModalEditVaccines'
 import { useDisclosure } from '@chakra-ui/react'
 import { ModalDeleteVaccine } from '../ModalDeleteVaccines'
@@ -36,6 +36,7 @@ export const VaccinesCard = ({
             )}
           </CompletedCheck>
         </CardHeader>
+        <Divider />
         <ContentBody onClick={modalEditOnOpen}>
           <p>Ultima dose: {date}</p>
           <p>Próxima dose: {nextshot}</p>

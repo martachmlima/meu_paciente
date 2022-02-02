@@ -1,4 +1,5 @@
 import { useContext, createContext, useState } from 'react'
+import toast from 'react-hot-toast'
 import { api } from '../services'
 import { useAuth } from './AuthContext'
 
@@ -34,6 +35,7 @@ export const VaccinesProvider = ({ children }) => {
       })
       .then(response => {
         setVaccines([...vaccines, response.data])
+        toast.success('Vacina adicionada com sucesso')
       })
       .catch(err => console.log(err))
   }
@@ -48,6 +50,7 @@ export const VaccinesProvider = ({ children }) => {
           }
         }
       )
+      .then(_ => toast.success('Vacina arquivada com sucesso'))
       .catch(err => console.log(err))
   }
   const incompleteVaccines = id => {
@@ -61,6 +64,7 @@ export const VaccinesProvider = ({ children }) => {
           }
         }
       )
+      .then(_ => toast.success('Vacina desarquivada com sucesso'))
       .catch(err => console.log(err))
   }
   const editVaccines = (id, data) => {
@@ -70,7 +74,10 @@ export const VaccinesProvider = ({ children }) => {
           Authorization: `Bearer ${accessToken}`
         }
       })
-      .then(_ => getVaccines(accessToken))
+      .then(
+        _ => getVaccines(accessToken),
+        toast.success('Vacina editada com succeso')
+      )
       .catch(err => console.log(err))
   }
   const deleteVaccines = id => {
@@ -80,7 +87,7 @@ export const VaccinesProvider = ({ children }) => {
           Authorization: `Bearer ${accessToken}`
         }
       })
-      .then(res => getVaccines(accessToken))
+      .then(res => getVaccines(accessToken), toast.success('Vacina deletada'))
       .catch(err => console.log(err))
   }
   return (

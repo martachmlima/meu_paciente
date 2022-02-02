@@ -12,6 +12,7 @@ import {
 } from './style'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
+import Add from '../../assets/add.svg'
 
 export const Vaccines = () => {
   const { vaccines, getVaccines, completeVaccines, incompleteVaccines } =
@@ -36,6 +37,7 @@ export const Vaccines = () => {
       </HistoricSelector>
       {vaccines.length === 0 ? (
         <VaccinesEmpty>
+          <img src={Add} alt='add' />
           <p>Nenhuma vacina cadastrada</p>
         </VaccinesEmpty>
       ) : (

@@ -36,6 +36,7 @@ export const CardHeader = styled.div`
   position: relative;
   > p {
     margin-right: 70px;
+    cursor: default;
   }
   > svg {
     cursor: pointer;
