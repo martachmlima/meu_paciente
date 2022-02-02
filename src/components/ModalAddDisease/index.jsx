@@ -9,7 +9,8 @@ import {
   ModalOverlay,
   Text,
   VStack,
-  Box
+  Box,
+  Flex
 } from '@chakra-ui/react'
 import InputComponent from '../input'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -18,6 +19,7 @@ import { FaClipboard, FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
 import { useAuth } from '../../providers/AuthContext'
 import { theme } from '../../styles/global'
+import toast from 'react-hot-toast'
 
 const addDiseaseSchema = yup.object().shape({
   title: yup.string().required('Campo obrigatório')
@@ -42,7 +44,7 @@ function ModalAddDisease({ isOpen, onClose }) {
       addDisease(data.title, user.illnesses, user.id, accessToken)
       onClose()
     } else {
-      console.log('Doença já adicionada')
+      toast.error('Doença já adicionada')
     }
   }
 
@@ -50,35 +52,43 @@ function ModalAddDisease({ isOpen, onClose }) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent
+        borderRadius='8px'
         as='form'
-        onSubmit={handleSubmit(handleAddDisease)}
+        width={['95%', '100%']}
         padding='2'
         bg='white'
-        color='gray.200'>
-        <ModalHeader display='flex'>
-          <Center bg='blue.700' w='30px' h='30px' borderRadius='5px'>
-            <FaClipboard color='white' />
-          </Center>
-          <Text fontWeight='bold' ml='2'>
-            Adicionar
-          </Text>
-          <Center
-            onClick={onClose}
-            as='button'
-            ml='auto'
-            w='32px'
-            h='32px'
-            bg='red.600'
-            fontSize='lg'
-            borderRadius='md'>
-            <FaTimes color='white' />
-          </Center>
+        alignItems='center'
+        color='gray.200'
+        onSubmit={handleSubmit(handleAddDisease)}>
+        <ModalHeader
+          display='flex'
+          padding='2'
+          borderBottom='2px solid'
+          borderColor='gray.400'
+          width='95%'
+          mb='2'>
+          <Flex alignItems='center' width='95%' justifyContent='space-between'>
+            <Text fontWeight='500' color='gray.200'>
+              Adicionar doença
+            </Text>
+            <Center
+              onClick={onClose}
+              as='button'
+              ml='auto'
+              w='32px'
+              h='32px'
+              fontSize='lg'
+              borderRadius='md'>
+              <FaTimes />
+            </Center>
+          </Flex>
         </ModalHeader>
 
-        <ModalBody textAlign='center'>
-          <VStack spacing='5'>
+        <ModalBody textAlign='start' w='100%'>
+          <VStack spacing='2'>
             <Box w='100%' paddingBottom='8'>
               <InputComponent
+                label='Nome da doença'
                 errors={errors.title?.message}
                 register={register}
                 valueRegister='title'
@@ -92,12 +102,13 @@ function ModalAddDisease({ isOpen, onClose }) {
         <ModalFooter flexDirection='column'>
           <Button
             type='submit'
-            bg={theme.colors.blue[500]}
+            bg='blue.750'
             color='white'
             w='100%'
-            h='60px'
-            _hover={{ bg: `${theme.colors.blue[300]}` }}>
-            Adicionar Doença
+            borderRadius='3px'
+            h='40px'
+            _hover={{ bg: 'blue.300' }}>
+            Concluir
           </Button>
         </ModalFooter>
       </ModalContent>

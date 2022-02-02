@@ -26,7 +26,8 @@ const Professionals = () => {
         {notFound && <Text>Especialidade não encontrada</Text>}
         {professionals.map(prof => (
           <ProfessionalCard
-            key={prof.id}
+            key={crypto.randomUUID()}
+            id={prof.id}
             name={prof.name}
             specialties={prof.specialties}
             contact={prof.contact}

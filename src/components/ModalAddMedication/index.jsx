@@ -131,13 +131,13 @@ function ModalAddMedication({ isOpen, onClose }) {
         <ModalFooter flexDirection='column'>
           <Button
             type='submit'
-            w='170%'
+            w='100%'
             h='40px'
             _hover={{ bg: 'blue.300' }}
             bg='blue.750'
             borderRadius='3px'
             color='white'>
-            Adicionar
+            Concluir
           </Button>
         </ModalFooter>
       </ModalContent>
