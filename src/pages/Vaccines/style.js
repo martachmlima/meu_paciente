@@ -37,6 +37,10 @@ export const VaccinesEmpty = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  img {
+    height: 200px;
+    width: 200px;
+  }
   p {
     font-size: 18px;
   }
