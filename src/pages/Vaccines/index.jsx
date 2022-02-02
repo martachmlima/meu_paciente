@@ -13,6 +13,8 @@ import {
 import Header from '../../components/Header'
 import Button from '../../components/Button'
 import Add from '../../assets/add.svg'
+import { RiFolderAddLine } from 'react-icons/ri'
+import { MdArchive } from 'react-icons/md'
 
 export const Vaccines = () => {
   const { vaccines, getVaccines, completeVaccines, incompleteVaccines } =
@@ -23,6 +25,8 @@ export const Vaccines = () => {
   useEffect(() => {
     getVaccines(accessToken)
   })
+  const allCompleted = vaccines.filter(item => item.completed)
+  const allActive = vaccines.filter(item => !item.completed)
   return (
     <div>
       <Header actualPage='Vacinas' />
@@ -44,9 +48,13 @@ export const Vaccines = () => {
         <BoxCard>
           {showHistoric ? (
             <>
-              {vaccines
-                .filter(item => item.completed)
-                .map(items => (
+              {allCompleted.length === 0 ? (
+                <VaccinesEmpty>
+                  <MdArchive size='25' />
+                  <p>Nenhuma vacina arquivada</p>
+                </VaccinesEmpty>
+              ) : (
+                allCompleted.map(items => (
                   <div key={items.id}>
                     <VaccinesCard
                       type={items.type}
@@ -57,13 +65,18 @@ export const Vaccines = () => {
                       isCompleted={items.completed}
                     />
                   </div>
-                ))}
+                ))
+              )}
             </>
           ) : (
             <>
-              {vaccines
-                .filter(item => !item.completed)
-                .map(items => (
+              {allActive.length === 0 ? (
+                <VaccinesEmpty>
+                  <RiFolderAddLine size='25' />
+                  <p>Nenhuma vacina ativa</p>
+                </VaccinesEmpty>
+              ) : (
+                allActive.map(items => (
                   <div key={items.id}>
                     <VaccinesCard
                       type={items.type}
@@ -73,7 +86,8 @@ export const Vaccines = () => {
                       complete={() => completeVaccines(items.id)}
                     />
                   </div>
-                ))}
+                ))
+              )}
             </>
           )}
         </BoxCard>
