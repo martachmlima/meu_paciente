@@ -1,5 +1,4 @@
 import {
-  Button,
   Center,
   Modal,
   ModalBody,
@@ -19,6 +18,7 @@ import { FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
 import { useAuth } from '../../providers/AuthContext'
 import { useMedications } from '../../providers/MedicationsContext'
+import Button from '../Button'
 
 const editMedicationSchema = yup.object().shape({
   name: yup.string().required('Campo obrigatório'),
@@ -129,16 +129,9 @@ function ModalEditMedication({ isOpen, onClose, id }) {
         </ModalBody>
 
         <ModalFooter flexDirection='column'>
-          <Button
-            type='submit'
-            w='170%'
-            h='40px'
-            _hover={{ bg: 'blue.300' }}
-            bg='blue.750'
-            borderRadius='3px'
-            color='white'>
-            Alterar
-          </Button>
+          <Box w='170%' h='40px'>
+            <Button type='submit'>Alterar</Button>
+          </Box>
         </ModalFooter>
       </ModalContent>
     </Modal>
