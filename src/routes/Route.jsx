@@ -10,7 +10,7 @@ export const Route = ({ isPrivate = false, component: Component, ...rest }) => {
         isPrivate === !!accessToken ? (
           <Component />
         ) : (
-          <Redirect to={isPrivate ? '/login' : '/profile'} />
+          <Redirect to={isPrivate ? '/' : '/profile'} />
         )
       }
     />

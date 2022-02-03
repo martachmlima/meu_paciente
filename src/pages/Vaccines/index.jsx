@@ -8,7 +8,8 @@ import {
   BoxCard,
   ButtonVaccine,
   HistoricSelector,
-  VaccinesEmpty
+  VaccinesEmpty,
+  Paragraph
 } from './style'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
@@ -36,9 +37,25 @@ export const Vaccines = () => {
         <Button onClick={onOpen}>Adicionar vacinas</Button>
       </ButtonVaccine>
       <HistoricSelector>
-        <p onClick={() => setShowHistoric(false)}>Ativos</p>{' '}
-        <p onClick={() => setShowHistoric(true)}>Histórico</p>
+        {showHistoric ? (
+          <>
+            <Paragraph onClick={() => setShowHistoric(false)}>Ativos</Paragraph>
+            <Paragraph onClick={() => setShowHistoric(true)} focus>
+              Histórico
+            </Paragraph>
+          </>
+        ) : (
+          <>
+            <Paragraph onClick={() => setShowHistoric(false)} focus>
+              Ativos
+            </Paragraph>
+            <Paragraph onClick={() => setShowHistoric(true)}>
+              Histórico
+            </Paragraph>
+          </>
+        )}
       </HistoricSelector>
+
       {vaccines.length === 0 ? (
         <VaccinesEmpty>
           <img src={Add} alt='add' />

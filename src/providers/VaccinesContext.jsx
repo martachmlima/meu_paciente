@@ -37,7 +37,7 @@ export const VaccinesProvider = ({ children }) => {
         setVaccines([...vaccines, response.data])
         toast.success('Vacina adicionada com sucesso')
       })
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Erro ao adicionar vacina'))
   }
   const completeVaccines = id => {
     api
@@ -51,7 +51,7 @@ export const VaccinesProvider = ({ children }) => {
         }
       )
       .then(_ => toast.success('Vacina arquivada com sucesso'))
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Erro ao arquivar vacina'))
   }
   const incompleteVaccines = id => {
     api
@@ -65,7 +65,7 @@ export const VaccinesProvider = ({ children }) => {
         }
       )
       .then(_ => toast.success('Vacina desarquivada com sucesso'))
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Erro ao desarquivar vacina'))
   }
   const editVaccines = (id, data) => {
     api
@@ -78,7 +78,7 @@ export const VaccinesProvider = ({ children }) => {
         _ => getVaccines(accessToken),
         toast.success('Vacina editada com succeso')
       )
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Falha ao editar vacina'))
   }
   const deleteVaccines = id => {
     api
@@ -88,7 +88,7 @@ export const VaccinesProvider = ({ children }) => {
         }
       })
       .then(res => getVaccines(accessToken), toast.success('Vacina deletada'))
-      .catch(err => console.log(err))
+      .catch(err => toast.error('Falha ao deletar vacina'))
   }
   return (
     <VaccinesContext.Provider

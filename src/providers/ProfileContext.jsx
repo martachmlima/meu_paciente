@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import { api } from '../services'
 import { useAuth } from './AuthContext'
+import toast from 'react-hot-toast'
 
 const ProfileContext = createContext({})
 
@@ -43,8 +44,10 @@ export const ProfileProvider = ({ children }) => {
             illnesses: user.illnesses,
             id: user.id
           })
-        )
+        ),
+        toast.success('Perfil alterado com sucesso!')
       )
+      .catch(err => toast.error('Erro ao alterar perfil'))
   }
   return (
     <ProfileContext.Provider

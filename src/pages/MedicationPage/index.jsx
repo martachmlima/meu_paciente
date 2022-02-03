@@ -10,6 +10,7 @@ import Add from '../../assets/add.svg'
 import Button from '../../components/Button'
 import { MdArchive } from 'react-icons/md'
 import { RiFolderAddLine } from 'react-icons/ri'
+import { HistoricSelector, Paragraph } from './style'
 
 function MedicationPage() {
   const {
@@ -27,7 +28,7 @@ function MedicationPage() {
 
   useEffect(() => {
     getMedications(accessToken)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [whatToShow, setWhatToShow] = useState('active')
@@ -56,18 +57,25 @@ function MedicationPage() {
           <Button onClick={onCreateTaskOpen}>Adicionar Remédio</Button>
         </Box>
         <Flex w='100%' justifyContent='center'>
-          <Flex
-            mb='4'
-            alignItems='center'
-            justifyContent='space-between'
-            w={['90%', '43%']}>
-            <Text fontSize='20px' cursor='pointer' onClick={showActive}>
-              Ativos
-            </Text>
-            <Text fontSize='20px' cursor='pointer' onClick={showHistory}>
-              Histórico
-            </Text>
-          </Flex>
+          <HistoricSelector>
+            {whatToShow === 'active' ? (
+              <>
+                {' '}
+                <Paragraph focus onClick={showActive}>
+                  Ativos
+                </Paragraph>
+                <Paragraph onClick={showHistory}>Histórico</Paragraph>
+              </>
+            ) : (
+              <>
+                {' '}
+                <Paragraph onClick={showActive}>Ativos</Paragraph>
+                <Paragraph focus onClick={showHistory}>
+                  Histórico
+                </Paragraph>
+              </>
+            )}
+          </HistoricSelector>
         </Flex>
         {medications.length === 0 ? (
           <Flex alignItems='center' justifyContent='center' w='100%' h='300px'>

@@ -22,6 +22,7 @@ import InputComponent from '../input'
 import { useAuth } from '../../providers/AuthContext'
 import { useUser } from '../../providers/UserContext'
 import { ComponentInput } from './styles'
+import { FormateData } from '../../services/dateFormat'
 
 function ModalAppointments({ isOpen, onClose }) {
   const { user } = useAuth()
@@ -47,9 +48,17 @@ function ModalAppointments({ isOpen, onClose }) {
     resolver: yupResolver(signInSchema)
   })
   const handleAppointment = data => {
-    data.completed = false
-    data.userId = user.id
-    handlePostAppointment(data)
+    const { doctor, date, time, contact } = data
+    const newData = {
+      doctor,
+      date: FormateData(date),
+      time,
+      contact,
+      userId: user.id,
+      completed: false
+    }
+
+    handlePostAppointment(newData)
     onClose()
   }
 
