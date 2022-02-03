@@ -17,10 +17,12 @@ import ModalAddDisease from '../../components/ModalAddDisease'
 import ModalAddAllergy from '../../components/ModalAddAllergy'
 import Button from '../../components/Button'
 import { ModalEditProfile } from '../../components/ModalEditProfile'
+import { useProfile } from '../../providers/ProfileContext'
+import { useEffect } from 'react'
 
 function Profile() {
-  const { user, allergiesAndIllnesses } = useAuth()
-
+  const { allergiesAndIllnesses } = useAuth()
+  const { user, attProfile } = useProfile()
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
 
   const {
@@ -40,6 +42,10 @@ function Profile() {
     onOpen: onEditProfileOpen,
     onClose: onEditProfileClose
   } = useDisclosure()
+
+  useEffect(() => {
+    attProfile()
+  })
 
   return (
     <>
@@ -76,7 +82,7 @@ function Profile() {
               Nome:
               <Text
                 p='0 10px'
-                minWidth='200px'
+                minWidth='150px'
                 fontWeight='normal'
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.name}
@@ -86,7 +92,7 @@ function Profile() {
               Idade:
               <Text
                 p='0 10px'
-                minWidth='200px'
+                minWidth='150px'
                 fontWeight='normal'
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.age}
@@ -96,7 +102,7 @@ function Profile() {
               Altura:
               <Text
                 p='0 10px'
-                minWidth='200px'
+                minWidth='150px'
                 fontWeight='normal'
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.height}
@@ -106,7 +112,7 @@ function Profile() {
               Peso:
               <Text
                 p='0 10px'
-                minWidth='200px'
+                minWidth='150px'
                 fontWeight='normal'
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.weight}
@@ -116,7 +122,7 @@ function Profile() {
               Tipo Sanguíneo:
               <Text
                 p='0 10px'
-                minWidth='200px'
+                minWidth='150px'
                 fontWeight='normal'
                 fontSize={['2xl', '2xl', 'xl', 'xl']}>
                 {user.bloodtype}
