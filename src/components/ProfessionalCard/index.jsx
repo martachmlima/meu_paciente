@@ -12,6 +12,7 @@ import {
 import { MdCircle } from 'react-icons/md'
 
 const ProfessionalCard = ({
+  id,
   name,
   specialties,
   contact,
@@ -27,7 +28,7 @@ const ProfessionalCard = ({
       minHeight={'200px'}
       borderRadius='8'
       p={'4'}
-      marginBottom={['0px', '12px']}>
+      marginBottom='20px'>
       <HStack
         justifyContent='space-between'
         marginBottom='4'
@@ -42,7 +43,7 @@ const ProfessionalCard = ({
         <List fontSize={['md', 'xl']}>
           <ListItem>Especialidades:</ListItem>
           {specialties.map(spec => (
-            <Flex ml='8' alignItems='center'>
+            <Flex key={spec} ml='8' alignItems='center'>
               <ListIcon as={MdCircle} fontSize='md' />
               <ListItem>{spec}</ListItem>
             </Flex>

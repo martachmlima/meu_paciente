@@ -41,12 +41,10 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
 
   const handleAddVaccines = data => {
     const { type, date, nextshot } = data
-    const newDate = FormateData(date)
-    const newNextshot = FormateData(nextshot)
     const newData = {
       type,
-      date: newDate,
-      nextshot: newNextshot,
+      date: FormateData(date),
+      nextshot: FormateData(nextshot),
       userId: user.id,
       completed: false
     }
@@ -137,7 +135,11 @@ export const ModalAddVaccines = ({ isOpen, onClose }) => {
           pl='2'
           pr='2'
           pt='0'>
-          <Box w='100%' h='60px'>
+          <Box
+            w='100%'
+            h='60px'
+            fontFamily="'Roboto', sans-serif"
+            fontSize='20px'>
             <Button type='submit'>Adicionar vacina</Button>
           </Box>
         </ModalFooter>

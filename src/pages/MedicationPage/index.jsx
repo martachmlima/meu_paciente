@@ -1,14 +1,23 @@
 import { useEffect, useState } from 'react'
-import { useDisclosure } from '@chakra-ui/react'
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Box, useDisclosure } from '@chakra-ui/react'
+import { Flex, Text, Image } from '@chakra-ui/react'
 import MedicationCard from '../../components/MedicationCard'
 import ModalAddMedication from '../../components/ModalAddMedication'
 import Header from '../../components/Header'
 import { useMedications } from '../../providers/MedicationsContext'
 import { useAuth } from '../../providers/AuthContext'
+import Add from '../../assets/add.svg'
+import Button from '../../components/Button'
+import { MdArchive } from 'react-icons/md'
+import { RiFolderAddLine } from 'react-icons/ri'
 
 function MedicationPage() {
-  const { getMedications, medications, completeMedication } = useMedications()
+  const {
+    getMedications,
+    medications,
+    completeMedication,
+    incompleteMedication
+  } = useMedications()
   const { accessToken } = useAuth()
   const {
     isOpen: isCreateTaskOpen,
@@ -30,84 +39,101 @@ function MedicationPage() {
     setWhatToShow('history')
   }
 
+  const allCompleted = medications.filter(item => item.completed)
+
+  const allActive = medications.filter(item => !item.completed)
+
   return (
     <>
       <Header actualPage='Remédios' />
-      <Flex
-        padding='20px'
-        direction='column'
-        alignItems={['center', 'center', 'start']}>
-        <Button
-          w={['70%', '50%', '17%']}
-          padding='4'
-          borderRadius='3'
-          mt='6'
-          bgColor='blue.750'
-          color='white'
-          _hover={{ bg: 'blue.300 ' }}
-          onClick={onCreateTaskOpen}
-          marginBottom='20px'>
-          Adicionar Remédio
-        </Button>
-        <Flex mb='4' alignItems='center' justifyContent='center' w='100%'>
-          <Text
-            pr='3'
-            borderRight='2px solid'
-            fontSize={['md', '3xl']}
-            cursor='pointer'
-            onClick={showActive}>
-            Ativos
-          </Text>
-          <Text
-            pl='3'
-            fontSize={['md', '3xl']}
-            cursor='pointer'
-            onClick={showHistory}>
-            Histórico
-          </Text>
+      <Flex direction='column' alignItems={['center', 'center', 'start']}>
+        <Box
+          width='240px'
+          height='50px'
+          margin='10px 0 5px 10px'
+          fontSize='20px'>
+          <Button onClick={onCreateTaskOpen}>Adicionar Remédio</Button>
+        </Box>
+        <Flex w='100%' justifyContent='center'>
+          <Flex
+            mb='4'
+            alignItems='center'
+            justifyContent='space-between'
+            w={['90%', '43%']}>
+            <Text fontSize='20px' cursor='pointer' onClick={showActive}>
+              Ativos
+            </Text>
+            <Text fontSize='20px' cursor='pointer' onClick={showHistory}>
+              Histórico
+            </Text>
+          </Flex>
         </Flex>
         {medications.length === 0 ? (
           <Flex alignItems='center' justifyContent='center' w='100%' h='300px'>
+            <Box boxSize='200px' color='blue.600'>
+              <Image sizes='md' src={Add} />
+            </Box>
             <Text fontSize={['md', '2xl']}>Nenhum remédio cadastrado</Text>
           </Flex>
         ) : (
-          <Flex
-            justifyContent='space-evenly'
-            alignItems='center'
-            w='98%'
-            wrap='wrap'>
+          <Flex wrap='wrap'>
             {whatToShow === 'active' ? (
               <>
-                {medications
-                  .filter(item => !item.completed)
-                  .map(medication => (
-                    <MedicationCard
-                      id={medication.id}
-                      key={medication.id}
-                      name={medication.name}
-                      frequency={medication.frequency}
-                      time={medication.time}
-                      use={medication.function}
-                      currentFunction={() => completeMedication(medication.id)}
-                    />
-                  ))}
+                {allActive.length === 0 ? (
+                  <Flex
+                    h={['30vh', '50vh']}
+                    alignItems='center'
+                    justifyContent='center'
+                    width='100vw'
+                    fontSize={['lg', '3xl']}>
+                    <RiFolderAddLine />
+                    <Text ml='4'>Nenhum remédio ativo</Text>
+                  </Flex>
+                ) : (
+                  <>
+                    {allActive.map(medication => (
+                      <MedicationCard
+                        id={medication.id}
+                        key={medication.id}
+                        name={medication.name}
+                        frequency={medication.frequency}
+                        time={medication.time}
+                        use={medication.function}
+                        isCompleted={medication.completed}
+                        completed={() => completeMedication(medication.id)}
+                      />
+                    ))}{' '}
+                  </>
+                )}
               </>
             ) : (
               <>
-                {medications
-                  .filter(item => item.completed)
-                  .map(medication => (
-                    <MedicationCard
-                      id={medication.id}
-                      key={medication.id}
-                      name={medication.name}
-                      frequency={medication.frequency}
-                      time={medication.time}
-                      use={medication.function}
-                      completed={medication.completed}
-                      currentFunction={() => completeMedication(medication.id)}
-                    />
-                  ))}
+                {allCompleted.length === 0 ? (
+                  <Flex
+                    h={['30vh', '50vh']}
+                    alignItems='center'
+                    justifyContent='center'
+                    width='100vw'
+                    fontSize={['lg', '3xl']}>
+                    <MdArchive />
+                    <Text ml='4'>Nenhum remédio arquivado</Text>
+                  </Flex>
+                ) : (
+                  <>
+                    {allCompleted.map(medication => (
+                      <MedicationCard
+                        id={medication.id}
+                        key={medication.id}
+                        name={medication.name}
+                        frequency={medication.frequency}
+                        time={medication.time}
+                        use={medication.function}
+                        isCompleted={medication.completed}
+                        completed={() => incompleteMedication(medication.id)}
+                      />
+                    ))}
+                  </>
+                )}
               </>
             )}
           </Flex>

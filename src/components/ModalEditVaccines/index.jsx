@@ -136,13 +136,15 @@ export const ModalEditVaccines = ({ isOpen, onClose, id, type }) => {
           pl='2'
           pr='2'
           pt='0'>
-          <Box w='100%' h='60px'>
-            <Button type='submit'>Adicionar vacina</Button>
+          <Box
+            w='100%'
+            h='50px'
+            fontFamily="'Roboto', sans-serif"
+            fontSize='20px'>
+            <Button type='submit'>Editar vacina</Button>
           </Box>
         </ModalFooter>
       </ModalContent>
     </Modal>
   )
 }
-
-export default ModalEditVaccines

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { api } from '../services'
 import { useAuth } from './AuthContext'
 
@@ -23,7 +23,6 @@ function ProfessionalsProvider({ children }) {
         })
         .then(response => {
           setProfessionals(response.data)
-          console.log(response.data)
         })
         .catch(err => console.log(err))
     }

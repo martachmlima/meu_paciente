@@ -1,34 +1,42 @@
 import * as yup from 'yup'
 import {
   Box,
+  Flex,
+  Text,
+  Center,
+  VStack,
   Button,
-  FormControl,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
-  useDisclosure
+  ModalOverlay
 } from '@chakra-ui/react'
+import InputMask from 'react-input-mask'
+import { FaTimes } from 'react-icons/fa'
 import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import InputComponent from '../input'
 import { useAuth } from '../../providers/AuthContext'
 import { useUser } from '../../providers/UserContext'
-function ModalAppointments() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+import { ComponentInput } from './styles'
+
+function ModalAppointments({ isOpen, onClose }) {
   const { user } = useAuth()
   const { handlePostAppointment } = useUser()
-  const initialRef = React.useRef()
-  const finalRef = React.useRef()
   const signInSchema = yup.object().shape({
     doctor: yup.string().required('Nome do Médico?'),
     date: yup.string().required('Qual a data?'),
     time: yup.string().required('Horário?'),
-    contact: yup.string().required('Número para contato?')
+    contact: yup
+      .string()
+      .required('Número obrigatório')
+      .matches(
+        '^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$',
+        'Formato inválido'
+      )
   })
 
   const {
@@ -44,104 +52,104 @@ function ModalAppointments() {
     handlePostAppointment(data)
     onClose()
   }
+
   return (
-    <>
-      <Box w='300px' m='0 auto' padding='12'>
-        <Button
-          bg='blue.700'
-          color='white'
-          w='100%'
-          h='60px'
-          _hover={{ bg: 'blue.750' }}
-          onClick={onOpen}>
-          Adicionar Consulta
-        </Button>
-      </Box>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Cadastre uma nova consulta</ModalHeader>
-          <ModalCloseButton />
-          <form onSubmit={handleSubmit(handleAppointment)}>
-            <ModalBody pb={6}>
-              <FormControl>
-                <Box w='100%' paddingBottom='8'>
-                  <InputComponent
-                    label='Doutor'
-                    errors={errors.doctor?.message}
-                    register={register}
-                    valueRegister='doctor'
-                    placeholder='doctor'
-                  />
-                </Box>
-              </FormControl>
-              <FormControl mt={6}>
-                <Box w='100%' paddingBottom='8'>
-                  <InputComponent
-                    label='Data'
-                    errors={errors.date?.message}
-                    register={register}
-                    valueRegister='date'
-                    type='date'
-                    placeholder='Data'
-                  />
-                </Box>
-              </FormControl>
-              <FormControl mt={6}>
-                <Box w='100%' paddingBottom='8'>
-                  <InputComponent
-                    label='Horário'
-                    errors={errors.time?.message}
-                    register={register}
-                    valueRegister='time'
-                    type='time'
-                    placeholder='Horário'
-                  />
-                </Box>
-              </FormControl>
-              <FormControl mt={6}>
-                <Box w='100%' paddingBottom='8'>
-                  <InputComponent
-                    label='Telefone'
-                    errors={errors.contact?.message}
-                    register={register}
-                    valueRegister='contact'
-                    type='tel'
-                    placeholder='Contato'
-                  />
-                </Box>
-              </FormControl>
-            </ModalBody>
-            <ModalFooter>
-              <Button
-                type='submit'
-                bg='blue.700'
-                color='white'
-                w='80%'
-                h='60px'
-                m='2px'
-                _hover={{ bg: 'blue.750' }}>
-                Save
-              </Button>
-              <Button
-                bg='blue.700'
-                color='white'
-                w='80%'
-                h='60px'
-                m='2px'
-                _hover={{ bg: 'blue.750' }}
-                onClick={onClose}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </form>
-        </ModalContent>
-      </Modal>
-    </>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent
+        borderRadius='8px'
+        as='form'
+        width={['95%', '100%']}
+        padding='2'
+        bg='white'
+        alignItems='center'
+        color='gray.200'
+        onSubmit={handleSubmit(handleAppointment)}>
+        <ModalHeader
+          display='flex'
+          padding='2'
+          borderBottom='2px solid'
+          borderColor='gray.400'
+          width='95%'
+          mb='2'>
+          <Flex alignItems='center' width='95%' justifyContent='space-between'>
+            <Text fontWeight='500' color='gray.200'>
+              Adicionar consulta
+            </Text>
+            <Center
+              onClick={onClose}
+              as='button'
+              ml='auto'
+              w='32px'
+              h='32px'
+              fontSize='lg'
+              borderRadius='md'>
+              <FaTimes />
+            </Center>
+          </Flex>
+        </ModalHeader>
+
+        <ModalBody textAlign='start' w='100%'>
+          <VStack spacing='2'>
+            <Box w='100%' paddingBottom='8'>
+              <InputComponent
+                label='Doutor'
+                errors={errors.doctor?.message}
+                register={register}
+                valueRegister='doctor'
+                placeholder='doctor'
+              />
+            </Box>
+            <Box w='100%' paddingBottom='8'>
+              <InputComponent
+                label='Data'
+                errors={errors.date?.message}
+                register={register}
+                valueRegister='date'
+                type='date'
+                placeholder='Data'
+              />
+            </Box>
+            <Box w='100%' paddingBottom='8'>
+              <InputComponent
+                label='Horário'
+                errors={errors.time?.message}
+                register={register}
+                valueRegister='time'
+                type='time'
+                placeholder='Horário'
+              />
+            </Box>
+            <ComponentInput err={errors.contact}>
+              {!!errors.contact ? (
+                <label>{errors.contact.message}</label>
+              ) : (
+                <label>Telefone</label>
+              )}
+              <InputMask
+                color={{ borderColor: errors.contact ? 'red' : '#777' }}
+                mask='99 99999-9999'
+                placeholder='Contato'
+                {...register('contact')}
+              />
+            </ComponentInput>
+          </VStack>
+        </ModalBody>
+
+        <ModalFooter flexDirection='column'>
+          <Button
+            type='submit'
+            bg='blue.750'
+            color='white'
+            w='100%'
+            borderRadius='3px'
+            h='40px'
+            _hover={{ bg: 'blue.300' }}>
+            Concluir
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }
 export default ModalAppointments
