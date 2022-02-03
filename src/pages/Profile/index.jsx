@@ -1,6 +1,5 @@
 import {
   Box,
-  Center,
   Flex,
   Image,
   Text,

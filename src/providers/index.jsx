@@ -5,6 +5,7 @@ import { UserProvider } from './UserContext'
 import { VaccinesProvider } from './VaccinesContext'
 import { theme } from '../styles/global'
 import { ProfessionalsProvider } from './ProfessionalsContext'
+import { ProfileProvider } from './ProfileContext'
 
 export const AppProvider = ({ children }) => (
   <AuthProvider>
@@ -12,7 +13,9 @@ export const AppProvider = ({ children }) => (
       <MedicationsProvider>
         <VaccinesProvider>
           <UserProvider>
-            <ChakraProvider theme={theme}>{children}</ChakraProvider>
+            <ProfileProvider>
+              <ChakraProvider theme={theme}>{children}</ChakraProvider>
+            </ProfileProvider>
           </UserProvider>
         </VaccinesProvider>
       </MedicationsProvider>
