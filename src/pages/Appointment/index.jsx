@@ -2,7 +2,7 @@ import CardAppointment from '../../components/cardAppointment'
 import Header from '../../components/Header'
 import ModalAppointments from '../../components/ModalAppointment'
 import { useUser } from '../../providers/UserContext'
-import { CardBox, Title, ButtonAppointment, HistoricSelector } from './style'
+import { CardBox, ButtonAppointment, HistoricSelector } from './style'
 import { useState } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 import Button from '../../components/Button'
@@ -41,7 +41,7 @@ function Appointment() {
             .filter(item => item.completed)
             .map((obj, index) => (
               <div key={index}>
-                <CardAppointment del obj={obj} />
+                <CardAppointment obj={obj} />
               </div>
             ))}
         </CardBox>

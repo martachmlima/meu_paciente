@@ -44,9 +44,9 @@ function UserProvider({ children }) {
     }
   }, [])
 
-  const handleAppointmentCompleted = id => {
+  const handleAppointmentCompleted = (id, comp) => {
     const completed = {
-      completed: true
+      completed: !comp
     }
     if (token) {
       api
@@ -121,6 +121,30 @@ function UserProvider({ children }) {
         .catch(err => console.log(err))
     }
   }
+  const handleEditAppointment = (data, obj) => {
+    if (token) {
+      api
+        .patch(`/appointments/${obj.id}`, data, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          toast.success('Consulta arquivada!')
+          api
+            .get(`/users/${user.id}?_embed=appointments`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            .then(response => {
+              setAppointment(response.data.appointments)
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
+  }
 
   return (
     <UserContext.Provider
@@ -131,7 +155,8 @@ function UserProvider({ children }) {
         appointment,
         handleAppointmentCompleted,
         handlePostAppointment,
-        handleAppointmentDelete
+        handleAppointmentDelete,
+        handleEditAppointment
       }}>
       {children}
     </UserContext.Provider>
