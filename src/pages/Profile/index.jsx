@@ -5,7 +5,6 @@ import {
   Text,
   HStack,
   Heading,
-  Button,
   useMediaQuery,
   useDisclosure
 } from '@chakra-ui/react'
@@ -16,6 +15,8 @@ import CardIllnesses from './CardIllnesses'
 import Header from '../../components/Header'
 import ModalAddDisease from '../../components/ModalAddDisease'
 import ModalAddAllergy from '../../components/ModalAddAllergy'
+import Button from '../../components/Button'
+import { ModalEditProfile } from '../../components/ModalEditProfile'
 
 function Profile() {
   const { user, allergiesAndIllnesses } = useAuth()
@@ -34,10 +35,20 @@ function Profile() {
     onClose: onAddAllergyClose
   } = useDisclosure()
 
+  const {
+    isOpen: isEditProfileOpen,
+    onOpen: onEditProfileOpen,
+    onClose: onEditProfileClose
+  } = useDisclosure()
+
   return (
     <>
       <ModalAddDisease isOpen={isAddDiseaseOpen} onClose={onAddDiseaseClose} />
       <ModalAddAllergy isOpen={isAddAllergyOpen} onClose={onAddAllergyClose} />
+      <ModalEditProfile
+        isOpen={isEditProfileOpen}
+        onClose={onEditProfileClose}
+      />
       <Header actualPage='Meu Perfil' />
       <Box p={['12px 16px', '16px 32px', '24px 48px', '32px 64px']}>
         <Flex
@@ -62,7 +73,7 @@ function Profile() {
             justifyContent='space-around'
             w='100%'>
             <Flex alignItems='center'>
-              Nome Completo:
+              Nome:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -112,6 +123,9 @@ function Profile() {
               </Text>
             </Flex>
           </Flex>
+          <Flex h='50px' w='150px' onClick={onEditProfileOpen}>
+            <Button>Editar perfil</Button>
+          </Flex>
         </Flex>
 
         <Flex
@@ -133,14 +147,9 @@ function Profile() {
               paddingBottom='3'
               borderBottom={`2px solid ${theme.colors.gray[900]}`}>
               <Heading>Alergias</Heading>
-              <Button
-                bgColor={theme.colors.blue[700]}
-                _hover={{
-                  background: `${theme.colors.blue[300]}`
-                }}
-                onClick={onAddAllergyOpen}>
-                +
-              </Button>
+              <Box w='41px' h='40px'>
+                <Button onClick={onAddAllergyOpen}>+</Button>
+              </Box>
             </HStack>
             <Flex flexDirection='column' w='100%'>
               {allergiesAndIllnesses.allergies.map(allergy => (
@@ -161,14 +170,9 @@ function Profile() {
               paddingBottom='3'
               borderBottom={`2px solid ${theme.colors.gray[900]}`}>
               <Heading>Doenças</Heading>
-              <Button
-                bgColor={theme.colors.blue[700]}
-                _hover={{
-                  background: `${theme.colors.blue[300]}`
-                }}
-                onClick={onAddDiseaseOpen}>
-                +
-              </Button>
+              <Box w='41px' h='40px'>
+                <Button onClick={onAddDiseaseOpen}>+</Button>
+              </Box>
             </HStack>
             <Flex flexDirection='column' w='100%'>
               {allergiesAndIllnesses.illnesses.map(disease => (
