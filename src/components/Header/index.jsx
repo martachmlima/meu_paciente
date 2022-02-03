@@ -4,7 +4,9 @@ import {
   Heading,
   HStack,
   useMediaQuery,
-  useDisclosure
+  useDisclosure,
+  Image,
+  Box
 } from '@chakra-ui/react'
 import { theme } from '../../styles/global'
 import { GrMenu } from 'react-icons/gr'
@@ -12,6 +14,7 @@ import { MdOutlineLogout } from 'react-icons/md'
 import LinkPage from './LinkPage'
 import ModalLink from './ModalLink'
 import { useAuth } from '../../providers/AuthContext'
+import Logo from '../../assets/images/FullLogo.png'
 
 function Header({ actualPage }) {
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
@@ -29,13 +32,9 @@ function Header({ actualPage }) {
         justifyContent='space-between'
         alignItems='center'
         boxShadow='md'>
-        <Heading
-          as='h1'
-          fontSize='2xl'
-          fontWeight='normal'
-          color={theme.colors.gray[200]}>
-          +Saúde
-        </Heading>
+        <Box boxSize='100px' mt='9'>
+          <Image src={Logo} />
+        </Box>
         {isLargerThan800 ? (
           <HStack h='100%'>
             <LinkPage actualPage={actualPage} />
