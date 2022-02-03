@@ -154,7 +154,7 @@ function AuthProvider({ children }) {
         }
       )
       .then(res => {
-        toast.success('Doença removida')
+        toast.success('Alergia removida')
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
         data.user = user

@@ -2,7 +2,12 @@ import CardAppointment from '../../components/cardAppointment'
 import Header from '../../components/Header'
 import ModalAppointments from '../../components/ModalAppointment'
 import { useUser } from '../../providers/UserContext'
-import { CardBox, ButtonAppointment, HistoricSelector } from './style'
+import {
+  CardBox,
+  ButtonAppointment,
+  HistoricSelector,
+  Paragraph
+} from './style'
 import { useState } from 'react'
 import { Box, Flex, Image, Text, useDisclosure } from '@chakra-ui/react'
 import Button from '../../components/Button'
@@ -26,8 +31,22 @@ function Appointment() {
         <Button onClick={onOpen}>Adicionar Consulta</Button>
       </ButtonAppointment>
       <HistoricSelector>
-        <p onClick={() => setFiled(false)}>Ativos</p>
-        <p onClick={() => setFiled(true)}>Histórico</p>
+        {filed ? (
+          <>
+            <Paragraph onClick={() => setFiled(false)}>Ativos</Paragraph>
+            <Paragraph onClick={() => setFiled(true)} focus>
+              Histórico
+            </Paragraph>
+          </>
+        ) : (
+          <>
+            {' '}
+            <Paragraph onClick={() => setFiled(false)} focus>
+              Ativos
+            </Paragraph>
+            <Paragraph onClick={() => setFiled(true)}>Histórico</Paragraph>
+          </>
+        )}
       </HistoricSelector>
       {appointment.length === 0 ? (
         <Flex alignItems='center' justifyContent='center' w='100%' h='300px'>
