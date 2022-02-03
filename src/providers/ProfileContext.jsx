@@ -10,7 +10,7 @@ export const useProfile = () => {
 
 export const ProfileProvider = ({ children }) => {
   const { user, accessToken } = useAuth()
-  const [users, setUsers] = useState(localStorage.getItem('@+saude:user'))
+  const [users, setUsers] = useState(user)
   const attProfile = () => {
     api
       .get(`/users/${user.id}`, {
@@ -28,8 +28,7 @@ export const ProfileProvider = ({ children }) => {
         }
       })
       .then(
-        _ => console.log(_),
-        attProfile,
+        _ => attProfile,
         localStorage.setItem(
           '@+saude:user',
           JSON.stringify({
@@ -48,7 +47,8 @@ export const ProfileProvider = ({ children }) => {
       )
   }
   return (
-    <ProfileContext.Provider value={{ user: users, attProfile, editProfile }}>
+    <ProfileContext.Provider
+      value={{ user: users || user, attProfile, editProfile }}>
       {children}
     </ProfileContext.Provider>
   )
