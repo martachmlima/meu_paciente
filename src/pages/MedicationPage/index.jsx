@@ -27,6 +27,7 @@ function MedicationPage() {
 
   useEffect(() => {
     getMedications(accessToken)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [whatToShow, setWhatToShow] = useState('active')
