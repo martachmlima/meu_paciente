@@ -42,7 +42,7 @@ function Profile() {
     onOpen: onEditeProfileOpen,
     onClose: onEditeProfileClose
   } = useDisclosure()
-
+  console.log(user)
   return (
     <>
       <ModalEditeProfile

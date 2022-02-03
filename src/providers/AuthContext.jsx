@@ -180,7 +180,7 @@ function AuthProvider({ children }) {
         toast.success('Perfil alterado')
         const user = res.data
         localStorage.setItem('@+saude:user', JSON.stringify(user))
-        data.user = user
+        setData({ accessToken: token, user: user })
       })
       .catch(err => {
         toast.error('Erro inesperado. Tente novamente mais tarde')
