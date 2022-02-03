@@ -16,14 +16,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { FaTimes } from 'react-icons/fa'
 import * as yup from 'yup'
-// import { useAuth } from '../../providers/AuthContext'
-// import { FormateData } from '../../services/dateFormat'
 import Button from '../Button'
 import { theme } from '../../styles/global'
 import { useProfile } from '../../providers/ProfileContext'
 
 const editProfileSchema = yup.object().shape({
-  name: yup.string(),
+  name: yup.string().required('Campo obrigatório'),
   gender: yup.string().required('Informação obrigatória'),
   bloodtype: yup.string().required('Informação obrigatória'),
   weight: yup
@@ -79,7 +77,7 @@ export const ModalEditProfile = ({ isOpen, onClose, id, type }) => {
         </ModalHeader>
 
         <ModalBody width='100%' padding='2'>
-          <VStack spacing='2' height='360px' justifyContent='space-evenly'>
+          <VStack spacing='2' height='400px' justifyContent='space-evenly'>
             <Box
               w='100%'
               paddingBottom='4'
