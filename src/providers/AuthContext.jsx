@@ -169,6 +169,25 @@ function AuthProvider({ children }) {
       })
   }
 
+  const editeProfile = async (newUser, userId, token) => {
+    await api
+      .patch(`/users/${userId}`, newUser, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(res => {
+        toast.success('Perfil alterado')
+        const user = res.data
+        localStorage.setItem('@+saude:user', JSON.stringify(user))
+        data.user = user
+      })
+      .catch(err => {
+        toast.error('Erro inesperado. Tente novamente mais tarde')
+        console.log(err)
+      })
+  }
+
   const logOut = () => {
     toast.success('Você saiu')
     localStorage.removeItem('@+saude:accessToken')
@@ -187,7 +206,8 @@ function AuthProvider({ children }) {
         addDisease,
         removeDisease,
         removeAllergy,
-        allergiesAndIllnesses
+        allergiesAndIllnesses,
+        editeProfile
       }}>
       {children}
     </AuthContext.Provider>

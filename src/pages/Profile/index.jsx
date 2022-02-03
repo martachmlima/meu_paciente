@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Flex,
   Image,
   Text,
@@ -11,11 +12,13 @@ import {
 } from '@chakra-ui/react'
 import { theme } from '../../styles/global'
 import { useAuth } from '../../providers/AuthContext'
+import { FiEdit } from 'react-icons/fi'
 import CardAllergies from './CardAllergies'
 import CardIllnesses from './CardIllnesses'
 import Header from '../../components/Header'
 import ModalAddDisease from '../../components/ModalAddDisease'
 import ModalAddAllergy from '../../components/ModalAddAllergy'
+import ModalEditeProfile from '../../components/ModalEditProfile'
 
 function Profile() {
   const { user, allergiesAndIllnesses } = useAuth()
@@ -34,8 +37,18 @@ function Profile() {
     onClose: onAddAllergyClose
   } = useDisclosure()
 
+  const {
+    isOpen: isEditeProfileOpen,
+    onOpen: onEditeProfileOpen,
+    onClose: onEditeProfileClose
+  } = useDisclosure()
+
   return (
     <>
+      <ModalEditeProfile
+        isOpen={isEditeProfileOpen}
+        onClose={onEditeProfileClose}
+      />
       <ModalAddDisease isOpen={isAddDiseaseOpen} onClose={onAddDiseaseClose} />
       <ModalAddAllergy isOpen={isAddAllergyOpen} onClose={onAddAllergyClose} />
       <Header actualPage='Meu Perfil' />
@@ -45,6 +58,7 @@ function Profile() {
           borderBottom={`2px solid ${theme.colors.gray[300]}`}
           flexDirection={isLargerThan800 ? 'row' : 'column'}
           alignItems='center'
+          position='relative'
           justifyContent='center'>
           <Image
             borderRadius='full'
@@ -62,7 +76,7 @@ function Profile() {
             justifyContent='space-around'
             w='100%'>
             <Flex alignItems='center'>
-              Nome Completo:
+              Nome:
               <Text
                 p='0 10px'
                 minWidth='200px'
@@ -111,6 +125,15 @@ function Profile() {
                 {user.bloodtype}
               </Text>
             </Flex>
+          </Flex>
+          <Flex
+            position='absolute'
+            top='0'
+            right='0'
+            fontSize='3xl'
+            onClick={onEditeProfileOpen}
+            _hover={{ color: 'red' }}>
+            <FiEdit />
           </Flex>
         </Flex>
 
