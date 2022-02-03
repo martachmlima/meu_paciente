@@ -11,20 +11,27 @@ export const Title = styled.div`
   text-align: center;
 `
 export const ButtonAppointment = styled.div`
-  width: 240px;
-  height: 50px;
-  margin: 10px 0 5px 10px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  button {
+    margin: 0 auto;
+    width: 240px;
+    margin: 10px auto;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+  }
+  @media screen and (min-width: 374px) {
+  }
 `
 export const HistoricSelector = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 5px auto;
   font-size: 20px;
   p {
-    display: inline-block;
     cursor: pointer;
     width: 90px;
   }
