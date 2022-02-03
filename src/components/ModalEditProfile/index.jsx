@@ -42,8 +42,6 @@ export const ModalEditProfile = ({ isOpen, onClose, id, type }) => {
 
   const { editProfile } = useProfile()
 
-  //   const { user } = useAuth()
-
   const handleEditProfile = data => {
     editProfile(data)
     onClose()

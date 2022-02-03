@@ -23,7 +23,7 @@ import { useEffect } from 'react'
 function Profile() {
   const { allergiesAndIllnesses } = useAuth()
   const { user, attProfile } = useProfile()
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
+  const [isLargerThan1900] = useMediaQuery('(min-width: 1900px)')
 
   const {
     isOpen: isAddDiseaseOpen,
@@ -60,7 +60,7 @@ function Profile() {
         <Flex
           p={['4px', '8px 4px', '12px 8px', '16px 12px']}
           borderBottom={`2px solid ${theme.colors.gray[300]}`}
-          flexDirection={isLargerThan800 ? 'row' : 'column'}
+          flexDirection={['column', 'row']}
           alignItems='center'
           justifyContent='center'>
           <Image
@@ -71,82 +71,103 @@ function Profile() {
             alt='profile'
           />
           <Flex
-            flexDirection={isLargerThan800 ? 'row' : 'column'}
+            flexDirection={['column', 'column', 'column', 'column']}
             flexWrap='wrap'
             fontWeight='bold'
             color={theme.colors.gray[200]}
-            fontSize={['4xl', '4xl', '2xl', '2xl']}
             justifyContent='space-around'
+            height={['200px', '200px', '200px', '110px', '100px']}
+            alignContent={['center', 'flex-start']}
+            marginLeft={['0', '50px']}
             w='100%'>
             <Flex alignItems='center'>
-              Nome:
+              <Heading as='h3' fontSize={['2xl', '2xl', '3xl', '3xl']}>
+                Nome:
+              </Heading>
               <Text
                 p='0 10px'
                 minWidth='150px'
                 fontWeight='normal'
-                fontSize={['2xl', '2xl', 'xl', 'xl']}>
+                fontSize={['xl', 'xl', '2xl', '2xl']}>
                 {user.name}
               </Text>
             </Flex>
             <Flex alignItems='center'>
-              Idade:
+              <Heading as='h3' fontSize={['2xl', '2xl', '3xl', '3xl']}>
+                Idade:
+              </Heading>
               <Text
                 p='0 10px'
                 minWidth='150px'
                 fontWeight='normal'
-                fontSize={['2xl', '2xl', 'xl', 'xl']}>
+                fontSize={['xl', 'xl', '2xl', '2xl']}>
+                {' '}
                 {user.age}
               </Text>
             </Flex>
             <Flex alignItems='center'>
-              Altura:
+              <Heading as='h3' fontSize={['2xl', '2xl', '3xl', '3xl']}>
+                Altura:
+              </Heading>
               <Text
                 p='0 10px'
                 minWidth='150px'
                 fontWeight='normal'
-                fontSize={['2xl', '2xl', 'xl', 'xl']}>
-                {user.height}
+                fontSize={['xl', 'xl', '2xl', '2xl']}>
+                {' '}
+                {user.height} cm
               </Text>
             </Flex>
             <Flex alignItems='center'>
-              Peso:
+              <Heading as='h3' fontSize={['2xl', '2xl', '3xl', '3xl']}>
+                Peso:
+              </Heading>
               <Text
                 p='0 10px'
                 minWidth='150px'
                 fontWeight='normal'
-                fontSize={['2xl', '2xl', 'xl', 'xl']}>
-                {user.weight}
+                fontSize={['xl', 'xl', '2xl', '2xl']}>
+                {' '}
+                {user.weight} Kg
               </Text>
             </Flex>
             <Flex alignItems='center'>
-              Tipo Sanguíneo:
+              <Heading as='h3' fontSize={['2xl', '2xl', '3xl', '3xl']}>
+                Sangue:
+              </Heading>
               <Text
                 p='0 10px'
                 minWidth='150px'
                 fontWeight='normal'
-                fontSize={['2xl', '2xl', 'xl', 'xl']}>
+                fontSize={['xl', 'xl', '2xl', '2xl']}>
+                {' '}
                 {user.bloodtype}
               </Text>
             </Flex>
           </Flex>
-          <Flex h='50px' w='150px' onClick={onEditProfileOpen}>
+          <Flex
+            h='50px'
+            w={['150px', '350px']}
+            fontSize={['xl', '2xl']}
+            m='3'
+            onClick={onEditProfileOpen}>
             <Button>Editar perfil</Button>
           </Flex>
         </Flex>
 
         <Flex
           w='100%'
-          flexDirection={isLargerThan800 ? 'row' : 'column'}
+          flexDirection={['column', 'row']}
           justifyContent='space-around'
           p={['4', '4', '8', '8']}>
           <Box
-            w={isLargerThan800 ? '48%' : '100%'}
+            w={['100%', '48%']}
             color={theme.colors.gray[900]}
             bgColor={theme.colors.blue[750]}
             minHeight={'200px'}
             borderRadius='8'
             p={'4'}
-            marginBottom={isLargerThan800 ? '0px' : '12px'}>
+            marginBottom={['12px', '0px']}>
             <HStack
               justifyContent='space-between'
               marginBottom='4'
@@ -164,7 +185,7 @@ function Profile() {
             </Flex>
           </Box>
           <Box
-            w={isLargerThan800 ? '48%' : '100%'}
+            w={['100%', '48%']}
             color={theme.colors.gray[900]}
             bgColor={theme.colors.blue[750]}
             minHeight={'200px'}
