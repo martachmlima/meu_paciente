@@ -22,7 +22,7 @@ import Button from '../Button'
 import { theme } from '../../styles/global'
 
 const editeProfileSchema = yup.object().shape({
-  name: yup.string().required('Nome obrigatório'),
+  // name: yup.string().required('Nome obrigatório'),
   age: yup.string().required('Idade obrigatória').max(3, 'Máximo 3 algarismos'),
   gender: yup.string().required('Informação obrigatória'),
   bloodtype: yup.string().required('Informação obrigatória'),
@@ -55,7 +55,7 @@ function ModalEditProfile({ isOpen, onClose }) {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size='xs'>
       <ModalOverlay />
       <ModalContent
         as='form'
@@ -92,7 +92,7 @@ function ModalEditProfile({ isOpen, onClose }) {
 
         <ModalBody textAlign='start' w='100%'>
           <VStack spacing='2'>
-            <Box w='100%' paddingBottom='8'>
+            {/* <Box w='100%' paddingBottom='8'>
               <InputComponent
                 label='Seu nome'
                 errors={errors.name?.message}
@@ -101,7 +101,7 @@ function ModalEditProfile({ isOpen, onClose }) {
                 type='name'
                 placeholder='Ex: Ana Maria'
               />
-            </Box>
+            </Box> */}
             <Box w='100%' paddingBottom='8'>
               <InputComponent
                 label='Sua idade'
