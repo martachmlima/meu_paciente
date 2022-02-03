@@ -11,9 +11,9 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  ModalOverlay,
-  useDisclosure
+  ModalOverlay
 } from '@chakra-ui/react'
+import InputMask from 'react-input-mask'
 import { FaTimes } from 'react-icons/fa'
 import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -21,6 +21,7 @@ import { useForm } from 'react-hook-form'
 import InputComponent from '../input'
 import { useAuth } from '../../providers/AuthContext'
 import { useUser } from '../../providers/UserContext'
+import { ComponentInput } from './styles'
 
 function ModalAppointments({ isOpen, onClose }) {
   const { user } = useAuth()
@@ -30,12 +31,12 @@ function ModalAppointments({ isOpen, onClose }) {
     date: yup.string().required('Qual a data?'),
     time: yup.string().required('Horário?'),
     contact: yup
-      .number()
-      .typeError('Isso não é um número de telefone')
-      .positive('Um número de telefone não pode começar com menos')
-      .integer('Um número de telefone não pode incluir um ponto decimal')
-      .min(8)
+      .string()
       .required('Número obrigatório')
+      .matches(
+        '^([1-9]{2}) (?:[2-8]|9[1-9])[0-9]{3}-[0-9]{4}$',
+        'Formato inválido'
+      )
   })
 
   const {
@@ -51,6 +52,7 @@ function ModalAppointments({ isOpen, onClose }) {
     handlePostAppointment(data)
     onClose()
   }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -118,16 +120,19 @@ function ModalAppointments({ isOpen, onClose }) {
                 placeholder='Horário'
               />
             </Box>
-            <Box w='100%' paddingBottom='8'>
-              <InputComponent
-                label='Telefone'
-                errors={errors.contact?.message}
-                register={register}
-                valueRegister='contact'
-                type='tel'
+            <ComponentInput err={errors.contact}>
+              {!!errors.contact ? (
+                <label>{errors.contact.message}</label>
+              ) : (
+                <label>Telefone</label>
+              )}
+              <InputMask
+                color={{ borderColor: errors.contact ? 'red' : '#777' }}
+                mask='99 99999-9999'
                 placeholder='Contato'
+                {...register('contact')}
               />
-            </Box>
+            </ComponentInput>
           </VStack>
         </ModalBody>
 
