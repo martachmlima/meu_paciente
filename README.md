@@ -21,3 +21,11 @@ Anotação de consultas com todas as informações necessárias: dia, horário, 
 ### `Profissionais`
 
 Busca de profissionais cadastrados na plataforma pelas suas especialidades.
+
+#### Deploy
+
+Deploy da aplicação em https://maissaude.vercel.app/
+
+#### API
+
+Repositório da API utilizada na aplicação: https://github.com/martachmlima/json_server_meu_paciente
